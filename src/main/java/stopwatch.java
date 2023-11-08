@@ -1,3 +1,6 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class stopwatch {
 
     private int minutes;
@@ -20,6 +23,21 @@ public class stopwatch {
     }
 
     public void clockLoop(){
+        Timer timer = new Timer();
+
+        TimerTask task = new TimerTask() {
+            int x = 0;
+            @Override
+            public void run() {
+                        // Define the task to be executed at the specified interval
+                System.out.println(x += 1);
+                    }
+                };
+
+                // Schedule the task to run after a 1-second delay and then repeat every 2 seconds
+        timer.schedule(task, 1000, 1000);
+            }
+        }
 
     }
 
