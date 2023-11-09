@@ -30,29 +30,28 @@ public class TimerGUI extends JFrame{
         timeUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                JOptionPane.showMessageDialog(TimerGUI.this, "+5 Minutes");
             }
 
         });
         timeDown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(TimerGUI.this, "-5 Minutes");
             }
 
         });
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(TimerGUI.this, "Timer reseted");
             }
 
         });
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(TimerGUI.this, "Timer started");
             }
 
         });
