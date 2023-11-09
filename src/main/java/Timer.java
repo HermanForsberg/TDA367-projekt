@@ -1,18 +1,17 @@
-import java.util.Timer;
 import java.util.TimerTask;
 
-public class Stopwatch {
+public class Timer {
     //Timer     = Keeps track of the time in a background thread.
     //TimerTask = Contains an abstract method called run(). When our Timer reaches a certain time
     //            it will execute a task either once or repeatedly.
     private int minutes;
     private int seconds;
-    private Timer timer;
-    public Stopwatch(int minutes) {
+    private java.util.Timer timer;
+    public Timer(int minutes) {
 
         this.minutes = minutes;
         this.seconds = 0;
-        this.timer = new Timer();
+        this.timer = new java.util.Timer();
 
     }
     TimerTask task = new TimerTask() {
@@ -60,7 +59,7 @@ public class Stopwatch {
     }
 
     public static void main(String[] args){
-        Stopwatch stopwatch = new Stopwatch(10);
-        stopwatch.startClock();
+        Timer timer = new Timer(10);
+        timer.startClock();
     }
 }
