@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="flashcardDeckgui">
+  <grid id="27dc6" binding="deck" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-1181441"/>
+    </properties>
+    <border type="line">
+      <font/>
+      <title-color color="-16777216"/>
+      <color color="-16777216"/>
+    </border>
+    <children>
+      <component id="8af06" class="javax.swing.JButton" binding="next">
+        <constraints>
+          <grid row="0" column="2" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="30" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-14837583"/>
+          <enabled value="true"/>
+          <hideActionText value="false"/>
+          <horizontalAlignment value="0"/>
+          <text value="Next &gt;"/>
+          <verticalAlignment value="0"/>
+          <verticalTextPosition value="0"/>
+        </properties>
+      </component>
+      <component id="ec6fa" class="javax.swing.JButton" binding="previous">
+        <constraints>
+          <grid row="0" column="0" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="116" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-14837583"/>
+          <text value="&lt; Previous"/>
+        </properties>
+      </component>
+      <grid id="e905c" binding="flashcard" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="10">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="20" height="20"/>
+            <preferred-size width="200" height="100"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-6159104"/>
+        </properties>
+        <border type="line">
+          <color color="-16777216"/>
+        </border>
+        <children/>
+      </grid>
+      <component id="7bc3f" class="javax.swing.JButton" binding="falseButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-6159104"/>
+          <enabled value="true"/>
+          <text value="False"/>
+          <verticalAlignment value="0"/>
+        </properties>
+      </component>
+      <component id="95737" class="javax.swing.JButton" binding="correctButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-14177458"/>
+          <text value="Correct"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
