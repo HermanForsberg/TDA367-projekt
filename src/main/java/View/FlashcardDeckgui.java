@@ -1,8 +1,10 @@
+package View;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class flashcardDeckgui extends JFrame {
+public class FlashcardDeckgui extends JFrame {
     private JPanel deck;
     private JPanel flashcard;
     private JButton previous;
@@ -10,7 +12,7 @@ public class flashcardDeckgui extends JFrame {
     private JButton falseButton;
     private JButton correctButton;
 
-    public flashcardDeckgui() {
+    public FlashcardDeckgui() {
         setContentPane(deck);
         setTitle("TestDeck");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -22,7 +24,7 @@ public class flashcardDeckgui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
-                JOptionPane.showMessageDialog(flashcardDeckgui.this, "föregående kort");
+                JOptionPane.showMessageDialog(FlashcardDeckgui.this, "föregående kort");
             }
         });
         next.addActionListener(new ActionListener() {
@@ -30,7 +32,7 @@ public class flashcardDeckgui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
-                JOptionPane.showMessageDialog(flashcardDeckgui.this, "nästa kort");
+                JOptionPane.showMessageDialog(FlashcardDeckgui.this, "nästa kort");
             }
         });
         correctButton.addActionListener(new ActionListener() {
@@ -38,7 +40,7 @@ public class flashcardDeckgui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
-                JOptionPane.showMessageDialog(flashcardDeckgui.this, "Korrekt!!");
+                JOptionPane.showMessageDialog(FlashcardDeckgui.this, "Korrekt!!");
             }
         });
         falseButton.addActionListener(new ActionListener() {
@@ -46,12 +48,12 @@ public class flashcardDeckgui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
-                JOptionPane.showMessageDialog(flashcardDeckgui.this, "Fel...");
+                JOptionPane.showMessageDialog(FlashcardDeckgui.this, "Fel...");
             }
         });
     }
 
     public static void main(String[] args) {
-        new flashcardDeckgui();
+        new FlashcardDeckgui();
     }
 }

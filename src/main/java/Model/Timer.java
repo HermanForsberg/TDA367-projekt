@@ -1,8 +1,10 @@
+package Model;
+
 import java.util.TimerTask;
 
 public class Timer {
-    //Timer     = Keeps track of the time in a background thread.
-    //TimerTask = Contains an abstract method called run(). When our Timer reaches a certain time
+    //Model.Timer     = Keeps track of the time in a background thread.
+    //TimerTask = Contains an abstract method called run(). When our Model.Timer reaches a certain time
     //            it will execute a task either once or repeatedly.
     private int minutes;
     private int seconds;

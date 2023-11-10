@@ -1,3 +1,7 @@
+package View;
+
+import Model.Timer;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +14,7 @@ public class TimerGUI extends JFrame{
     private JButton startButton;
     private JLabel timerText;
 
-    private Timer timer;
+    private Model.Timer timer;
 
 
     public TimerGUI(){
@@ -44,14 +48,14 @@ public class TimerGUI extends JFrame{
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(TimerGUI.this, "Timer reseted");
+                JOptionPane.showMessageDialog(TimerGUI.this, "Model.Timer reseted");
             }
 
         });
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(TimerGUI.this, "Timer started");
+                JOptionPane.showMessageDialog(TimerGUI.this, "Model.Timer started");
             }
 
         });

@@ -1,12 +1,12 @@
 package Model;
 
-public class flashcard {
+public class Flashcard {
     private String solution;
     private String question;
     private boolean flipped;
     private boolean correct;
 
-    public flashcard(String question, String solution){
+    public Flashcard(String question, String solution){
         this.question = question;
         this.solution = solution;
     }
