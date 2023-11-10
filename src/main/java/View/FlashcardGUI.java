@@ -2,7 +2,7 @@ package View;
 
 import javax.swing.*;
 
-public class flashcardgui {
+public class FlashcardGUI {
     private JPanel panel1;
     private JTextField textField1;
 
