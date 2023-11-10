@@ -34,11 +34,11 @@ public class flashcardDeckguiTest extends JFrame {
 
         //deck.add(button);
 
-        //flashcard.add(new JButton("swag"));
+        //Model.flashcard.add(new JButton("swag"));
         previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //lägg in att man byter till föregående flashcard här
+                //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 //JOptionPane.showMessageDialog(flashcardDeckgui.this, "föregående kort");
                 flashcard.removeAll();
@@ -49,7 +49,7 @@ public class flashcardDeckguiTest extends JFrame {
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //lägg in att man byter till föregående flashcard här
+                //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 //JOptionPane.showMessageDialog(flashcardDeckgui.this, "nästa kort");
                 flashcard.removeAll();
@@ -60,7 +60,7 @@ public class flashcardDeckguiTest extends JFrame {
         correctButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //lägg in att man byter till föregående flashcard här
+                //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 JOptionPane.showMessageDialog(flashcardDeckguiTest.this, "Korrekt!!");
             }
@@ -68,7 +68,7 @@ public class flashcardDeckguiTest extends JFrame {
         falseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //lägg in att man byter till föregående flashcard här
+                //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 JOptionPane.showMessageDialog(flashcardDeckguiTest.this, "Fel...");
             }

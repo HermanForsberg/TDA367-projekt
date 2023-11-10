@@ -20,7 +20,7 @@ public class flashcardDeckgui extends JFrame {
         previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //lägg in att man byter till föregående flashcard här
+                //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 JOptionPane.showMessageDialog(flashcardDeckgui.this, "föregående kort");
             }
@@ -28,7 +28,7 @@ public class flashcardDeckgui extends JFrame {
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //lägg in att man byter till föregående flashcard här
+                //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 JOptionPane.showMessageDialog(flashcardDeckgui.this, "nästa kort");
             }
@@ -36,7 +36,7 @@ public class flashcardDeckgui extends JFrame {
         correctButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //lägg in att man byter till föregående flashcard här
+                //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 JOptionPane.showMessageDialog(flashcardDeckgui.this, "Korrekt!!");
             }
@@ -44,7 +44,7 @@ public class flashcardDeckgui extends JFrame {
         falseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //lägg in att man byter till föregående flashcard här
+                //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 JOptionPane.showMessageDialog(flashcardDeckgui.this, "Fel...");
             }

@@ -1,3 +1,5 @@
+package Model;
+
 public class flashcard {
     private String solution;
     private String question;
@@ -24,4 +26,6 @@ public class flashcard {
     public void setCorrect(boolean correct) {
         this.correct = correct;
     }
+
+
 }
