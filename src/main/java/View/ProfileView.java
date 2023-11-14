@@ -8,16 +8,6 @@ public class ProfileView extends JFrame {
     private JPanel mainPanel;
     public ProfileView(){
 
-        JPanel mainPanel = new JPanel();
-        JLabel nameLabel = new JLabel("Namn Namnson");
-        mainPanel.setLayout(new GridLayout(0,5,10,10));
-        mainPanel.add(new JLabel("Bajs"));mainPanel.add(new JLabel("Bajs"));
-        mainPanel.add(new JLabel("Bajs"));mainPanel.add(new JLabel("Bajs"));
-        mainPanel.add(new JLabel("Bajs"));mainPanel.add(new JLabel("Bajs"));
-        mainPanel.add(new JLabel("Bajs"));mainPanel.add(new JLabel("Bajs"));
-
-        //mainPanel.add(nameLabel);
-
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(2,2));
         JLabel l = new JLabel("a");
@@ -27,7 +17,7 @@ public class ProfileView extends JFrame {
         l = new JLabel("b");
         p.add(l);
         btn = new JButton("click");
-        p.add (btn);
+        p.add(btn);
 
 
 
