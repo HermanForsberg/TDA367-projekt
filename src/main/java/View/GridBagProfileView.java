@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class GridBagMainLayout {
+public class GridBagProfileView {
     final static boolean shouldFill = true;
     final static boolean shouldWeightX = true;
     final static boolean RIGHT_TO_LEFT = false;
@@ -24,49 +24,57 @@ public class GridBagMainLayout {
         }
 
         JButton profile = new JButton("Profile");
-        c.weightx = 0.5;
-
-        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0;
+        c.weighty = 0.5;
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
+        c.gridwidth = 1;
         c.gridy = 0;
         pane.add(profile, c);
 
 
-        JButton flashcards = new JButton("Flashcards");
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 1;
-        c.gridy = 0;
+        JButton flashcards = new JButton("Stats");
+        c.weightx = 0;
+        c.weighty = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0;
+        c.gridwidth = 1;
+        c.gridy = 1;
         pane.add(flashcards, c);
 
-        JButton timer = new JButton("Timer");
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
-        c.gridx = 2;
-        c.gridy = 0;
+
+        JButton timer = new JButton("Quests");
+        c.weightx = 0;
+        c.weighty = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0 ;
+        c.gridwidth = 1;
+        c.gridy = 2;
+        c.ipadx = 100;
         pane.add(timer, c);
 
-        button = new JButton("5");
-        c.fill = GridBagConstraints.BOTH;
-        c.ipady = 0;       //reset to default
-        c.weighty = 1.0;   //request any extra vertical space
-        c.anchor = GridBagConstraints.PAGE_END; //bottom of space
-        c.insets = new Insets(0,0,0,0);  //top padding
-        c.gridx = 1;       //aligned with button 2
-        c.gridwidth = 1;   //2 columns wide
-        c.gridy = 2;       //third row
-        pane.add(button, c);
 
-        button = new JButton("test");
+        JComponent backPanel = new JPanel();
+        backPanel.setLayout(new GridBagLayout());
+        backPanel.setForeground(Color.BLACK);
+        backPanel.setBackground(Color.BLACK);
+        c.weightx = 0.5;
         c.fill = GridBagConstraints.BOTH;
-        c.ipady = 0;       //reset to default
-        c.weighty = 1.0;   //request any extra vertical space
-        c.anchor = GridBagConstraints.PAGE_END; //bottom of space
-        c.insets = new Insets(0,0,0,0);  //top padding
-        c.gridx = 1;       //aligned with button 2
-        c.gridwidth = 2;   //2 columns wide
-        c.gridy = 1;       //third row
-        pane.add(button, c);
+        c.gridx = 1;
+        c.gridwidth = 3;
+        c.gridheight = 3;
+        c.gridy = 0;
+        pane.add(backPanel, c);
+
+        JButton butt1 = new JButton("test");
+        c.weightx = 0;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.gridy = 0;
+        backPanel.add(butt1, c);
+
 
 
         profile.addActionListener(new ActionListener() {
@@ -75,6 +83,15 @@ public class GridBagMainLayout {
                 //lägg in att man byter till föregående Model.flashcard här
                 //just nu öppnar den bara ett fönster
                 JOptionPane.showMessageDialog(pane, "profil här");
+                JButton butt2 = new JButton("test2");
+                c.weightx = 0.4;
+                c.fill = GridBagConstraints.BOTH;
+                c.gridx = 1;
+                c.gridwidth = 1;
+                c.gridheight = 1;
+                c.gridy = 0;
+                backPanel.add(butt2, c);
+
             }
         });
 

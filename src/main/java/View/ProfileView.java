@@ -3,36 +3,23 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class ProfileView extends JFrame {
+public class ProfileView extends JComponent {
 
     private JPanel mainPanel;
     public ProfileView(){
+        JPanel profile = new JPanel();
+        profile.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
 
-        JPanel p = new JPanel();
-        p.setLayout(new GridLayout(2,2));
-        JLabel l = new JLabel("a");
-        p.add(l);
-        JButton btn = new JButton("click");
-        p.add (btn);
-        l = new JLabel("b");
-        p.add(l);
-        btn = new JButton("click");
-        p.add(btn);
+        JLabel lvl = new JLabel("Level: ");
+        c.gridx = 0;
+        c.gridy = 0;
+        profile.add(lvl, c);
 
-
-
-        setContentPane(p);
-        setTitle("TestDeck");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800, 600);
-        setLocationRelativeTo(null);
-
-        setVisible(true);
-
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new ProfileView();
+        JLabel name = new JLabel("Name: ");
+        c.gridx = 0;
+        c.gridy = 1;
+        profile.add(name, c);
     }
 
 }
