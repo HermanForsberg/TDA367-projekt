@@ -1,4 +1,7 @@
+package Controller;
+
 import java.awt.event.ActionEvent;
+import Model.*;
 
 public class MvcControl {
     private MvcModel model;

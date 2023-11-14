@@ -1,4 +1,8 @@
+
 import javax.swing.*;
+import Model.*;
+import View.*;
+import Controller.*;
 
 public class SwingMvcTest {
     private static void createAndShowUI() {

@@ -1,6 +1,6 @@
 package View;
 
-import Model.Timer;
+import Model.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,7 @@ public class TimerGUI extends JFrame{
     private JButton startButton;
     private JLabel timerText;
 
-    private Model.Timer timer;
+    private Timer timer;
 
 
     public TimerGUI(){

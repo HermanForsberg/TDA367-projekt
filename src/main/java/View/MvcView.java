@@ -1,5 +1,7 @@
-import TimerModel.Timer;
-import TimerModel.TimerGUI;
+package View;
+
+import Model.*;
+import Controller.*;
 
 import java.awt.*;
 import java.awt.event.*;
