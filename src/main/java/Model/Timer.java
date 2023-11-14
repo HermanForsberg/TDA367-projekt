@@ -1,4 +1,4 @@
-package Model;
+package TimerModel;
 
 import java.util.TimerTask;
 
@@ -60,8 +60,5 @@ public class Timer {
         return seconds;
     }
 
-    public static void main(String[] args){
-        Timer timer = new Timer(10);
-        timer.startClock();
-    }
+
 }
