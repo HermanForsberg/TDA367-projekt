@@ -14,11 +14,11 @@ public class TimerGUI extends JFrame{
     private JButton startButton;
     private JLabel timerText;
 
-    private Timer timer;
+    private Model.Timer timer;
 
 
     public TimerGUI(){
-        timer = new Timer(10);
+        timer = new Model.Timer(10);
 
         setContentPane(frame);
         setTitle("MyPlug");
