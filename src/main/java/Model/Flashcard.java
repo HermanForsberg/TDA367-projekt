@@ -10,7 +10,6 @@ public class Flashcard {
         this.question = question;
         this.solution = solution;
     }
-
     public void setSolution(String solution) {
         this.solution = solution;
     }

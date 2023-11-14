@@ -28,6 +28,9 @@ public class FlashcardDeck {
         }
         return deleted;
     }
+    public void shuffle(){
+
+    }
 
     public void setDeckName(String deckName) {
         this.deckName = deckName;
