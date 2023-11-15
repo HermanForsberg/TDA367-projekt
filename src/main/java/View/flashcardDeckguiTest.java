@@ -1,7 +1,15 @@
+package View;
+import Controller.*;
+import Model.Flashcard;
+import Model.FlashcardDeck;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 public class flashcardDeckguiTest extends JPanel {
     private JPanel deck;
@@ -11,18 +19,29 @@ public class flashcardDeckguiTest extends JPanel {
     private JButton falseButton;
     private JButton correctButton;
 
+    private FlashcardDeck deckModel;
+
+    private ArrayList<Flashcard> deckList;
+
+    private DeckController deckController;
 
 
-    public flashcardDeckguiTest() {
 
+
+    public flashcardDeckguiTest(FlashcardDeck deck) {
+
+
+
+        deckModel = deck;
+        deckList = deckModel.getDeck();
 
         setSize(800, 600);
 
 
         setVisible(true);
 
-        FlashcardTestForDeck startButton = new FlashcardTestForDeck("Question", "Answer");
-        FlashcardTestForDeck Button2 = new FlashcardTestForDeck("Question2", "Answer2");
+        FlashcardTestForDeck startButton = new FlashcardTestForDeck(deckList.get(0));
+        FlashcardTestForDeck Button2 = new FlashcardTestForDeck(deckList.get(1));
 
 
         flashcard.setLayout(new GridLayout(1, 0, 10, 0));
@@ -36,12 +55,18 @@ public class flashcardDeckguiTest extends JPanel {
         previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                if (deckController != null){
+                    deckController.previousClicked();
+                    flashcard.removeAll();
+                    flashcard.add(new FlashcardTestForDeck(deckList.get(deckModel.getCurrentIndex())).get());
+                    flashcard.updateUI();
+                }
                 //lägg in att man byter till föregående flashcard här
                 //just nu öppnar den bara ett fönster
                 //JOptionPane.showMessageDialog(flashcardDeckgui.this, "föregående kort");
-                flashcard.removeAll();
-                flashcard.add(Button2.get());
-                flashcard.updateUI();
+
+
             }
         });
         next.addActionListener(new ActionListener() {
@@ -50,9 +75,12 @@ public class flashcardDeckguiTest extends JPanel {
                 //lägg in att man byter till föregående flashcard här
                 //just nu öppnar den bara ett fönster
                 //JOptionPane.showMessageDialog(flashcardDeckgui.this, "nästa kort");
-                flashcard.removeAll();
-                flashcard.add(startButton.get());
-                flashcard.updateUI();
+                if (deckController != null) {
+                    deckController.nextClicked();
+                    flashcard.removeAll();
+                    flashcard.add(new FlashcardTestForDeck(deckList.get(deckModel.getCurrentIndex())).get());
+                    flashcard.updateUI();
+                }
             }
         });
         correctButton.addActionListener(new ActionListener() {
@@ -74,6 +102,11 @@ public class flashcardDeckguiTest extends JPanel {
     }
     public JPanel get(){
         return deck;
+    }
+
+    public void setDeckController(DeckController deckController){
+        this.deckController = deckController;
+
     }
 
    /* public static void main(String[] args) {

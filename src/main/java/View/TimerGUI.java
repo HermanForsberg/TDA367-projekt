@@ -1,12 +1,14 @@
 package View;
 
+import Controller.TimerController;
 import Model.Timer;
 
 import javax.swing.*;
+//import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TimerGUI extends JFrame{
+public class TimerGUI extends JPanel implements FramesWithGet{
     private JPanel frame;
     private JButton timeUp;
     private JButton timeDown;
@@ -14,17 +16,16 @@ public class TimerGUI extends JFrame{
     private JButton startButton;
     private JLabel timerText;
 
-    private Model.Timer timer;
+    private Timer timer;
+
+    private TimerController controller;
 
 
-    public TimerGUI(){
-        timer = new Timer(10);
+    public TimerGUI(Timer timer, TimerController controller){
+        this.controller = controller;
+        this.timer = timer;
 
-        setContentPane(frame);
-        setTitle("MyPlug");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
-        setLocationRelativeTo(null);
         setVisible(true);
 
         //timerText = new JLabel(String.format("%02d:%02d%n", timer.getMinutes(), timer.getSeconds()));
@@ -35,6 +36,7 @@ public class TimerGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(TimerGUI.this, "+5 Minutes");
+                //controller.minusFive();
             }
 
         });
@@ -63,10 +65,13 @@ public class TimerGUI extends JFrame{
 
 
     }
-
-    public static void main(String[] args) {
-        new TimerGUI();
+    public void setController(TimerController controller){
+        this.controller = controller;
     }
+    public JPanel get(){
+        return frame;
+    }
+
 }
 
 

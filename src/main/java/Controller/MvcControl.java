@@ -1,12 +1,14 @@
-import java.awt.event.ActionEvent;
+package Controller;
 
+import java.awt.event.ActionEvent;
+import Model.*;
 public class MvcControl {
     private MvcModel model;
 
 
 
     public MvcControl(MvcModel model) {
-    this.model = model;
+        this.model = model;
 
     }
 

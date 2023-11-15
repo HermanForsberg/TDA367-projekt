@@ -1,3 +1,5 @@
+package Model;
+import Controller.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -15,15 +17,15 @@ public class MvcMenu {
 
         flashcards.addActionListener(new ActionListener() {
 
-                public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
 
-                    if (control != null) {
+                if (control != null) {
 
-                        control.flashcardMenuActionPerformed(e); // e.g., here
+                    control.flashcardMenuActionPerformed(e); // e.g., here
 
-                    }
                 }
-            });
+            }
+        });
 
         JButton timers = new JButton("Timers");
 
