@@ -55,7 +55,7 @@ public class GridBagProfileView {
 
 
         JComponent backPanel = new JPanel();
-        backPanel.setLayout(new GridBagLayout());
+        backPanel.setLayout(new GridLayout(2, 0));
         backPanel.setForeground(Color.BLACK);
         backPanel.setBackground(Color.BLACK);
         c.weightx = 0.5;
@@ -91,6 +91,7 @@ public class GridBagProfileView {
                 c.gridheight = 1;
                 c.gridy = 0;
                 backPanel.add(butt2, c);
+                backPanel.updateUI();
 
             }
         });
