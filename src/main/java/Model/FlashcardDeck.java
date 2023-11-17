@@ -17,8 +17,7 @@ public class FlashcardDeck {
         this.deckName = deckName;
         this.size = 2;
         this.currentIndex = 0;
-        deck.add(new Flashcard("Swag", "Gamer"));
-        deck.add(new Flashcard("Swag2", "Gamer2"));
+
     }
 
     public boolean addFlashcard(Flashcard flash){

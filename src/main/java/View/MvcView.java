@@ -1,6 +1,7 @@
 package View;
 
 import Controller.MvcControl;
+import Controller.flashcardDeckguiTest;
 import Model.MvcModel;
 
 import java.awt.*;
@@ -8,16 +9,10 @@ import java.beans.*;
 import javax.swing.*;
 
 public class MvcView {
+
     private MvcControl control;
 
-    private JButton questButton;
-
     private JPanel mainPanel = new JPanel();
-
-    private JPanel buttonPanel = new JPanel(new GridLayout(1, 0, 10, 0));
-
-    private flashcardDeckguiTest deckTest;
-
     private int gap = 10;
 
     public MvcView(MvcModel model, DrawPanel drawPanel) {
@@ -43,6 +38,8 @@ public class MvcView {
         //mainPanel.add(deckTest.get());
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         mainPanel.setSize(300,300);
+
+
         // mainPanel.add(statePanel, BorderLayout.PAGE_END);
     }
 

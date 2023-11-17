@@ -1,8 +1,9 @@
 package Model;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
-public class FlashcardFeature {
+public class FlashcardFeature extends JPanel {
 
     private ArrayList<FlashcardDeck> ListOfDecks = new ArrayList<FlashcardDeck>();
 
@@ -10,9 +11,9 @@ public class FlashcardFeature {
 
     public FlashcardFeature(FlashcardDeck deck){
         ListOfDecks.add(deck);
-
-
     }
+
+
 
     public void addClicked(String name){
         FlashcardDeck newDeck = new FlashcardDeck(name);

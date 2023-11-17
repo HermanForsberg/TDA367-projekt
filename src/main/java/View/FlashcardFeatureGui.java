@@ -1,6 +1,7 @@
 package View;
 
 import Controller.FlashcardFeatureController;
+import Controller.flashcardDeckguiTest;
 import Model.FlashcardDeck;
 import Model.FlashcardFeature;
 
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 public class FlashcardFeatureGui implements FramesWithGet{
 
     private FlashcardFeature model;
-     private JPanel mainPanel = new JPanel();
+    private JPanel mainPanel = new JPanel();
 
     private JButton deck1 = new JButton("TestDeckClickable");
 
@@ -38,9 +39,9 @@ public class FlashcardFeatureGui implements FramesWithGet{
         fill.add(addButton);
         grid.add(fill);
         grid.add(deck1);
-        for (FlashcardDeck card : model.GetListOfDecks()) {
+        for (FlashcardDeck deck : model.GetListOfDecks()) {
             grid.add(fill);
-            grid.add(new JButton(card.getDeckName()));
+            grid.add(new JButton(deck.getDeckName()));
 
         }
 
@@ -49,7 +50,7 @@ public class FlashcardFeatureGui implements FramesWithGet{
             public void actionPerformed(ActionEvent e) {
 
                 if (controller != null) {
-                    controller.deck1Clicked();
+                    //controller.deck1Clicked();
                     mainPanel.removeAll();
                     mainPanel.add(deckView.get());
                     mainPanel.updateUI();
@@ -69,7 +70,7 @@ public class FlashcardFeatureGui implements FramesWithGet{
 
                 if (controller != null) {
 
-                    controller.addClicked("NewDeck");
+                    //controller.addClicked("NewDeck");
                     grid.add(new JButton(model.getNewestDeck().getDeckName()));
                     grid.updateUI();
                 }

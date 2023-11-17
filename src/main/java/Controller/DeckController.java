@@ -1,14 +1,25 @@
 package Controller;
 
 import Model.FlashcardDeck;
+import Model.Flashcard;
 
-public class DeckController {
+import javax.swing.*;
+import java.util.ArrayList;
+
+public class DeckController extends JPanel {
 
     private FlashcardDeck model;
 
-    public DeckController(FlashcardDeck model) {
-        this.model = model;
+    private ArrayList<FlashcardController> listOfCards = new ArrayList<>();
 
+    public DeckController(FlashcardDeck model) {
+
+
+        /*
+        for (Flashcard card : model.getDeck()) {
+            FlashcardController newCard = new FlashcardController(card);
+            listOfCards.add(newCard);
+        }*/
     }
 
     public void previousClicked(){

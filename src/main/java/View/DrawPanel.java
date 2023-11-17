@@ -4,31 +4,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-public class DrawPanel {
+public class DrawPanel extends JPanel{
 
-    private JPanel viewPanel;
 
-    private HashMap<String, FramesWithGet> views;
+
+    private HashMap<String, JPanel> views;
 
     int gap = 10;
 
 
-    public DrawPanel(HashMap viewsMap){
-        this.views=viewsMap;
-        this.viewPanel = new JPanel();
-        viewPanel.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
-        viewPanel.setLayout(new BorderLayout(gap, gap));
-        this.viewPanel.add(this.views.get("Flashcard").get());
+    public DrawPanel(JPanel view){
+
+        setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
+        setLayout(new BorderLayout(gap, gap));
+        add(view);
     }
 
     public void updateView(String name){
-        viewPanel.removeAll();
-        viewPanel.add(views.get(name).get());
-        viewPanel.updateUI();
+        removeAll();
+
+        updateUI();
     }
 
     public JPanel getViewPanel(){
-        return viewPanel;
+        return this;
     }
 
 
