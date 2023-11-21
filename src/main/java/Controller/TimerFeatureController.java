@@ -3,9 +3,13 @@ package Controller;
 import Model.TimerFeature;
 import View.TimerGUI;
 
-public class TimerFeatureController {
+import javax.swing.*;
+
+public class TimerFeatureController extends JPanel {
 
     public TimerFeatureController(TimerFeature timerFeature){
+
+
 
     }
 }
