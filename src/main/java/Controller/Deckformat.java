@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Flashcard;
 import Model.FlashcardDeck;
 
 import javax.swing.*;
@@ -85,15 +86,35 @@ public class Deckformat extends JPanel{
 
         c.gridy = 2;
         c.gridx = 1;
-        c.weightx = 0.5;
-        c.insets = new Insets(100, 100, 40, 100);
+        c.weightx = 0;
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(40, 100, 40, 100);
         c.ipadx = 300;
         c.ipady = 200;
         panelForFlashcard.add(flashcard);
         add(panelForFlashcard,c);
 
+        JButton addNewCard = new JButton("Add Card");
+        addNewCard.setBackground(Color.BLUE);
+        addNewCard.setForeground(Color.WHITE);
+        c.gridx = 1;
+        c.gridy = 1;
+        c.fill = GridBagConstraints.NONE;
+        c.insets = new Insets(0, 0, 0, 0);
+        c.ipadx = 50;
+        c.ipady = 20;
+        add(addNewCard,c);
 
+        addNewCard.addActionListener(new ActionListener() {
 
+            public void actionPerformed(ActionEvent e) {
+                String question = JOptionPane.showInputDialog("Question: ");
+                String answer = JOptionPane.showInputDialog("Answer: ");
+                Flashcard flash = new Flashcard(question, answer);
+                deck.addFlashcard(flash);
+            }
+
+        });
 
     }
 
