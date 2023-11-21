@@ -24,7 +24,6 @@ public class FlashcardController extends JButton {
             {
                 setText(card.getSolution());}
             else{setText(card.getQuestion());
-                updateUI();
             }
         }
 

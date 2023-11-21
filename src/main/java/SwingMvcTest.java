@@ -2,9 +2,9 @@ import javax.swing.*;
 import Model.*;
 import Controller.*;
 import Model.Timer;
-
+import View.TimerGUI;
 import View.*;
-
+import Controller.flashcardDeckguiTest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +21,8 @@ public class SwingMvcTest {
         TimerFeature timerFeature = new TimerFeature(timersList);
 
 
-        Flashcard flashcard1 = new Flashcard("Question", "Answer");
-        Flashcard flashcard2 = new Flashcard("Kvestion", "Önser");
+        Flashcard flashcard1 = new Flashcard("Swag2", "Gamer2");
+        Flashcard flashcard2 = new Flashcard("Swag", "Gamer");
 
         FlashcardDeck deck = new FlashcardDeck("TestDeck");
 
@@ -38,6 +38,34 @@ public class SwingMvcTest {
         MvcControl control = new MvcControl(model);
 
 
+        //HashMap<String ,JPanel> views = new HashMap<>();
+
+
+
+
+
+
+
+        //gör hashmaps för decks också kanske och skicka med mapen till flashcardfeaturegui?
+/*
+        flashcardDeckguiTest deckView = new flashcardDeckguiTest(deck);
+        DeckController deckController = new DeckController(deck);
+        deckView.setDeckController(deckController);
+
+
+        Timer timer = new Timer(20);
+        TimerController timerController = new TimerController(timer);
+        TimerGUI timerGUI = new TimerGUI(timer, timerController);
+
+
+
+        FlashcardFeatureController flashcardFeatureController = new FlashcardFeatureController(flashcardFeature);
+        FlashcardFeatureGui flashcardFeatureGui = new FlashcardFeatureGui(flashcardFeature, deckView);
+        flashcardFeatureGui.setController(flashcardFeatureController);
+
+*/
+        //views.put("Flashcards", flashcardFeature);
+        //views.put("Timers", timerFeature);
         DrawPanel mainPanel = new DrawPanel(control);
 
 

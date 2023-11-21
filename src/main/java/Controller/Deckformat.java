@@ -1,25 +1,20 @@
 package Controller;
 
-import Model.Flashcard;
 import Model.FlashcardDeck;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class Deckformat extends JPanel{
-
-    private FlashcardController flashcard;
     public Deckformat(FlashcardDeck deck) throws HeadlessException {
         //Set up the content pane.
+
 
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
         JButton next = new JButton("Next");
-
         next.setBackground(Color.CYAN);
         c.gridx = 2;
         c.gridy = 2;
@@ -29,7 +24,6 @@ public class Deckformat extends JPanel{
         add(next, c);
 
         JButton prev = new JButton("Previous");
-
         prev.setBackground(Color.CYAN);
         c.gridx = 0;
         c.gridy = 2;
@@ -56,8 +50,7 @@ public class Deckformat extends JPanel{
         c.ipady = 20;
         add(wrong,c);
 
-        FlashcardController flashcard = new FlashcardController(deck.getDeck().get(0));
-
+        JButton flashcard = new JButton("temp");
         c.gridy = 2;
         c.gridx = 1;
         c.weightx = 0.5;
@@ -66,6 +59,9 @@ public class Deckformat extends JPanel{
         c.ipady = 200;
 
         add(flashcard,c);
+
+
+
 
     }
 

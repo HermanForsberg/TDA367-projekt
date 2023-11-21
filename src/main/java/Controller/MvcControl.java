@@ -7,10 +7,6 @@ import javax.swing.*;
 public class MvcControl extends JPanel{
     private MvcModel model;
 
-    private FlashcardFeatureController flashcardFeatureController;
-
-    private TimerFeatureController timerFeatureController;
-
 
 
     public MvcControl(MvcModel model) {
@@ -22,8 +18,8 @@ public class MvcControl extends JPanel{
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         setSize(300,300);
 
-        this.flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
-        this.timerFeatureController = new TimerFeatureController(model.getTimerFeature());
+        FlashcardFeatureController flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
+        TimerFeatureController timerFeatureController = new TimerFeatureController(model.getTimerFeature());
 
         add(flashcardFeatureController);
         //add(timerFeatureController);
@@ -37,16 +33,12 @@ public class MvcControl extends JPanel{
 
     public void flashcardMenuActionPerformed(ActionEvent ae) {
 
-        removeAll();
-        add(flashcardFeatureController);
-        updateUI();
+        model.setState(State.FLASHCARDS);
     }
 
     public void timerMenuActionPerformed(ActionEvent ae) {
 
-        removeAll();
-        add(timerFeatureController);
-        updateUI();
+        model.setState(State.TIMER);
     }
 
 
