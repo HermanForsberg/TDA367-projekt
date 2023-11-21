@@ -4,48 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33bd7bfb-ef05-4f53-a4f1-3905baa14176" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/DeckButtonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/FlashcardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/TimerFeatureController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Model/TimerFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DeckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DeckController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/Deckformat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Deckformat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/FlashcardFeatureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/FlashcardFeatureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/MvcControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/MvcControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/FlashcardDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/FlashcardDeck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/FlashcardFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/FlashcardFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/MvcModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/MvcModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SwingMvcTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SwingMvcTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/FlashcardFeatureGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/FlashcardFeatureGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/MvcView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MvcView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/flashcardDeckguiTest.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/flashcardDeckguiTest.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/flashcardDeckguiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/flashcardDeckguiTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="33bd7bfb-ef05-4f53-a4f1-3905baa14176" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -60,17 +23,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Lerums Gymnasium\IdeaProjects\TDA367-projekt\src\main\java\Controller" />
-    </key>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

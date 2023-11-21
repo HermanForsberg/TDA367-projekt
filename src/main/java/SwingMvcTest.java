@@ -4,50 +4,22 @@ import Controller.*;
 import Model.Timer;
 import View.TimerGUI;
 import View.*;
-import Controller.flashcardDeckguiTest;
+import View.flashcardDeckguiTest;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SwingMvcTest {
-
     private static void createAndShowUI() {
 
-        Timer timer1 = new Timer(20);
+        HashMap<String ,FramesWithGet> views = new HashMap<>();
 
-        ArrayList<Timer> timersList = new ArrayList<>();
-        timersList.add(timer1);
+        MvcModel model = new MvcModel();
 
-        TimerFeature timerFeature = new TimerFeature(timersList);
-
-
-        Flashcard flashcard1 = new Flashcard("Swag2", "Gamer2");
-        Flashcard flashcard2 = new Flashcard("Swag", "Gamer");
-
-        FlashcardDeck deck = new FlashcardDeck("TestDeck");
-
-        deck.getDeck().add(flashcard1);
-        deck.getDeck().add(flashcard2);
-
-        FlashcardFeature flashcardFeature = new FlashcardFeature(deck);
-
-
-
-        MvcModel model = new MvcModel(flashcardFeature, timerFeature);
 
         MvcControl control = new MvcControl(model);
 
-
-        //HashMap<String ,JPanel> views = new HashMap<>();
-
-
-
-
-
-
-
         //gör hashmaps för decks också kanske och skicka med mapen till flashcardfeaturegui?
-/*
+        FlashcardDeck deck = new FlashcardDeck("TestDeck");
         flashcardDeckguiTest deckView = new flashcardDeckguiTest(deck);
         DeckController deckController = new DeckController(deck);
         deckView.setDeckController(deckController);
@@ -58,15 +30,15 @@ public class SwingMvcTest {
         TimerGUI timerGUI = new TimerGUI(timer, timerController);
 
 
-
+        FlashcardFeature flashcardFeature = new FlashcardFeature(deck);
         FlashcardFeatureController flashcardFeatureController = new FlashcardFeatureController(flashcardFeature);
         FlashcardFeatureGui flashcardFeatureGui = new FlashcardFeatureGui(flashcardFeature, deckView);
         flashcardFeatureGui.setController(flashcardFeatureController);
 
-*/
-        //views.put("Flashcards", flashcardFeature);
-        //views.put("Timers", timerFeature);
-        DrawPanel mainPanel = new DrawPanel(control);
+
+        views.put("Flashcard", flashcardFeatureGui);
+        views.put("Timer", timerGUI);
+        DrawPanel mainPanel = new DrawPanel(views);
 
 
         MvcView view = new MvcView(model, mainPanel);
@@ -76,7 +48,7 @@ public class SwingMvcTest {
 
 
         JFrame frame = new JFrame("Plugg");
-        frame.setSize(800,600);
+        frame.setSize(500,500);
         frame.getContentPane().add(view.getMainPanel());
 
         frame.setJMenuBar(menu.getMenuBar());
