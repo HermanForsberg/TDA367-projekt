@@ -20,6 +20,7 @@ public class FlashcardFeature extends JPanel {
 
         ListOfDecks.add(newDeck);
         newestDeck = newDeck;
+        newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
     }
 
     public ArrayList<FlashcardDeck> GetListOfDecks(){

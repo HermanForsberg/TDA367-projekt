@@ -23,10 +23,6 @@ public class MvcView {
                 System.out.println(evt.getNewValue().toString());
                 drawPanel.updateView(evt.getNewValue().toString());
 
-
-
-
-
             }
         });
 
@@ -35,8 +31,7 @@ public class MvcView {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
         mainPanel.setLayout(new BorderLayout(gap, gap));
         mainPanel.add(drawPanel.getViewPanel());
-        //mainPanel.add(deckTest.get());
-        //mainPanel.add(buttonPanel, BorderLayout.CENTER);
+
         mainPanel.setSize(300,300);
 
 

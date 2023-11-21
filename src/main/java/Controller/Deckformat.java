@@ -4,15 +4,20 @@ import Model.FlashcardDeck;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class Deckformat extends JPanel{
+
+    private JPanel panelForFlashcard;
+
+
     public Deckformat(FlashcardDeck deck) throws HeadlessException {
         //Set up the content pane.
-
-
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+        this.panelForFlashcard = new JPanel(new GridLayout(1, 0, 10 ,10));
 
         JButton next = new JButton("Next");
         next.setBackground(Color.CYAN);
@@ -23,6 +28,19 @@ public class Deckformat extends JPanel{
         c.ipady = 20;
         add(next, c);
 
+        next.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                deck.nextClicked();
+                panelForFlashcard.removeAll();
+                panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+                panelForFlashcard.updateUI();
+                updateUI();
+            }
+
+        });
+
         JButton prev = new JButton("Previous");
         prev.setBackground(Color.CYAN);
         c.gridx = 0;
@@ -31,6 +49,19 @@ public class Deckformat extends JPanel{
         c.ipadx = 50;
         c.ipady = 20;
         add(prev, c);
+
+        prev.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                deck.previousClicked();
+                panelForFlashcard.removeAll();
+                panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+                panelForFlashcard.updateUI();
+                updateUI();
+            }
+
+        });
 
         JButton correct = new JButton("Correct");
         correct.setBackground(Color.GREEN);
@@ -50,20 +81,20 @@ public class Deckformat extends JPanel{
         c.ipady = 20;
         add(wrong,c);
 
-        JButton flashcard = new JButton("temp");
+        FlashcardController flashcard = new FlashcardController(deck.getDeck().get(0));
+
         c.gridy = 2;
         c.gridx = 1;
         c.weightx = 0.5;
         c.insets = new Insets(100, 100, 40, 100);
         c.ipadx = 300;
         c.ipady = 200;
-
-        add(flashcard,c);
+        panelForFlashcard.add(flashcard);
+        add(panelForFlashcard,c);
 
 
 
 
     }
-
 
 }

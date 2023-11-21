@@ -10,8 +10,6 @@ import java.awt.event.ActionListener;
 
 public class FlashcardFeatureController extends JPanel {
 
-
-
     private JButton addButton = new JButton("Add Deck");
 
     private JPanel grid = new JPanel(new GridLayout(2, 0, 5, 5));
@@ -26,11 +24,11 @@ public class FlashcardFeatureController extends JPanel {
         add(grid);
         fill.add(addButton);
         grid.add(fill);
+
         //Deckformat deckformat = new Deckformat(model.getNewestDeck());
 
 
         for (FlashcardDeck deck : model.GetListOfDecks()) {
-
             DeckButtonController deckButtonController = new DeckButtonController(deck);
             Deckformat deckController = new Deckformat(deck);
 
