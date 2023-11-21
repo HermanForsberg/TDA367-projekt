@@ -110,8 +110,13 @@ public class Deckformat extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 String question = JOptionPane.showInputDialog("Question: ");
                 String answer = JOptionPane.showInputDialog("Answer: ");
-                Flashcard flash = new Flashcard(question, answer);
-                deck.addFlashcard(flash);
+                if(!question.isEmpty() && !answer.isEmpty()){
+                    Flashcard flash = new Flashcard(question, answer);
+                    deck.addFlashcard(flash);
+                }
+                else {
+                    JOptionPane.showMessageDialog(Deckformat.this, "Need input in both fields");
+                }
             }
 
         });

@@ -51,7 +51,8 @@ public class FlashcardFeatureController extends JPanel {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    model.addClicked("NewDeck");
+                    String name = JOptionPane.showInputDialog("name of deck: ");
+                    model.addClicked(name);
                     DeckButtonController deckButtonController = new DeckButtonController(model.getNewestDeck());
                     Deckformat deckController = new Deckformat(model.getNewestDeck());
                     grid.add(deckButtonController);
