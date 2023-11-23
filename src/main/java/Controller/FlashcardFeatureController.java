@@ -27,11 +27,12 @@ public class FlashcardFeatureController extends JPanel {
         setLayout(new BorderLayout(10,10));
         add(groundPanel);
         groundPanel.add(grid);
-        fill.add(addButton);
-        grid.add(fill);
+        grid.add(addButton);
+
+        //grid.add(fill);
 
 
-
+        //TODO På något sätt merga deckformat och deckbuttoncontroller till en fil "DeckController"
         //Deckformat deckformat = new Deckformat(model.getNewestDeck());
 
 
@@ -49,10 +50,11 @@ public class FlashcardFeatureController extends JPanel {
                 }
 
             });
+
             DeckButtonController deckButtonController = new DeckButtonController(deck);
             Deckformat deckController = new Deckformat(deck, backwardsButton);
 
-            grid.add(fill);
+            //grid.add(fill);
             grid.add(deckButtonController);
 
             deckButtonController.addActionListener(new ActionListener() {
@@ -116,6 +118,7 @@ public class FlashcardFeatureController extends JPanel {
             }
         });
     }
+
 
 
 
