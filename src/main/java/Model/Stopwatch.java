@@ -1,7 +1,7 @@
 package Model;
 
 
-public class Stopwatch extends Clock{
+public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
     public Stopwatch (){
         super(0);
     }
@@ -17,8 +17,10 @@ public class Stopwatch extends Clock{
 
     }
 
-    public static void main(String[] args){
-        Stopwatch timer = new Stopwatch();
-        timer.startClock();
-    }
+    public void resetClock(){
+        setRunning(false);
+        pauseClock();
+        setMinutes(0);
+        setSeconds(0);
+    };
 }

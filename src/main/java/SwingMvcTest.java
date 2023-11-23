@@ -2,23 +2,24 @@ import javax.swing.*;
 import Model.*;
 import Controller.*;
 import Model.Timer;
-import View.TimerGUI;
 import View.*;
-import Controller.flashcardDeckguiTest;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SwingMvcTest {
 
     private static void createAndShowUI() {
 
-        Timer timer1 = new Timer(20);
+        Clock manualTimer = new ManualTimer();
+        Clock stopwatch = new Stopwatch();
+        Clock pomodoro = new Pomodoro();
 
-        ArrayList<Timer> timersList = new ArrayList<>();
-        timersList.add(timer1);
+        ArrayList<Clock> clockList = new ArrayList<>();
+        clockList.add(manualTimer);
+        clockList.add(stopwatch);
+        clockList.add(pomodoro);
 
-        TimerFeature timerFeature = new TimerFeature(timersList);
+        ClockFeature clockFeature = new ClockFeature(clockList);
 
 
         Flashcard flashcard1 = new Flashcard("Swag2", "Gamer2");
@@ -41,7 +42,7 @@ public class SwingMvcTest {
 
 
 
-        MvcModel model = new MvcModel(flashcardFeature, timerFeature);
+        MvcModel model = new MvcModel(flashcardFeature, clockFeature);
 
         MvcControl control = new MvcControl(model);
 

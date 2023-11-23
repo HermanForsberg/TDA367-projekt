@@ -10,26 +10,39 @@ public abstract class Clock {
     private int minutes;
     private int seconds;
     private Timer timer;
-    public Clock(int minutes) {
+    private boolean isRunning;
 
+    public Clock(int minutes) {
         this.minutes = minutes;
         this.seconds = 0;
         this.timer = new Timer();
-
+        this.isRunning = false;
     }
 
-    TimerTask task = new TimerTask() {
-        @Override
-        public void run() {
-            calculateTime();
-        }
-    };
+
 
     public abstract void calculateTime();
     public void startClock(){
+        isRunning = true;
+        timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                calculateTime();
+            }
+        };
         timer.scheduleAtFixedRate(task, 0, 1000); // 1000ms = 1s
     }
-
+    public abstract void resetClock();
+    public void pauseClock(){
+        isRunning = false;
+        timer.cancel();
+        setMinutes(getMinutes());
+        setSeconds(getSeconds());
+    }
+    public int swapClock(int clockIndex){
+        return (clockIndex+1)%3;
+    }
     protected void setMinutes(int minutes) {
         this.minutes = minutes;
     }
@@ -37,7 +50,9 @@ public abstract class Clock {
     protected void setSeconds(int seconds) {
         this.seconds = seconds;
     }
-
+    public void setRunning(boolean running) {
+        isRunning = running;
+    }
     public int getMinutes() {
         return minutes;
     }
@@ -49,4 +64,8 @@ public abstract class Clock {
     public Timer getTimer() {
         return timer;
     }
+    public boolean isRunning() {
+        return isRunning;
+    }
+
 }

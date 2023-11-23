@@ -9,7 +9,7 @@ public class MvcControl extends JPanel{
 
     private FlashcardFeatureController flashcardFeatureController;
 
-    private TimerFeatureController timerFeatureController;
+    private ClockFeatureController clockFeatureController;
 
 
 
@@ -23,7 +23,7 @@ public class MvcControl extends JPanel{
         setSize(300,300);
 
         this.flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
-        this.timerFeatureController = new TimerFeatureController(model.getTimerFeature());
+        this.clockFeatureController = new ClockFeatureController(model.getClockFeature());
 
         add(flashcardFeatureController);
         //add(timerFeatureController);
@@ -45,7 +45,7 @@ public class MvcControl extends JPanel{
     public void timerMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
-        add(timerFeatureController);
+        add(clockFeatureController);
         updateUI();
     }
 

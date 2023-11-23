@@ -9,18 +9,18 @@ public class MvcModel {
 
     private FlashcardFeature flashcardFeature;
 
-    private TimerFeature timerFeature;
+    private ClockFeature clockFeature;
 
-    public MvcModel(FlashcardFeature flashcardFeature, TimerFeature timerFeature){
+    public MvcModel(FlashcardFeature flashcardFeature, ClockFeature clockFeature){
         this.flashcardFeature = flashcardFeature;
-        this.timerFeature = timerFeature;
+        this.clockFeature = clockFeature;
     }
     public FlashcardFeature getFlashcardFeature(){
         return this.flashcardFeature;
     }
 
-    public TimerFeature getTimerFeature(){
-        return this.timerFeature;
+    public ClockFeature getClockFeature(){
+        return this.clockFeature;
     }
 
     public void setState(State state) {

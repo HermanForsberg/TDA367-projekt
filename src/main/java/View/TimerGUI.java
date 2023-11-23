@@ -1,6 +1,6 @@
 package View;
 
-import Controller.TimerController;
+import Controller.ClockController;
 import Model.Timer;
 
 import javax.swing.*;
@@ -18,10 +18,10 @@ public class TimerGUI extends JPanel implements FramesWithGet{
 
     private Timer timer;
 
-    private TimerController controller;
+    private ClockController controller;
 
 
-    public TimerGUI(Timer timer, TimerController controller){
+    public TimerGUI(Timer timer, ClockController controller){
         this.controller = controller;
         this.timer = timer;
 
@@ -65,7 +65,7 @@ public class TimerGUI extends JPanel implements FramesWithGet{
 
 
     }
-    public void setController(TimerController controller){
+    public void setController(ClockController controller){
         this.controller = controller;
     }
     public JPanel get(){

@@ -1,8 +1,6 @@
 package Model;
 
-import java.util.TimerTask;
-
-public class ManualTimer extends Clock implements Rest {
+public class ManualTimer extends Clock implements Rest{ //Counts downwards.
     public ManualTimer() {
         super(20);
     }
@@ -22,13 +20,23 @@ public class ManualTimer extends Clock implements Rest {
         }
         System.out.printf("%02d:%02d%n", getMinutes(), getSeconds());
     }
-    @Override
+
     public void rest(){
 
     }
 
-    public static void main(String[] args){
-        ManualTimer timer = new ManualTimer();
-        timer.startClock();
+    public void addTime(){
+        setMinutes(getMinutes()+5);
     }
+    public void subtractTime(){
+        if (getMinutes() > 5) {
+            setMinutes(getMinutes() - 5);
+        }
+    }
+    public void resetClock(){
+        setRunning(false);
+        pauseClock();
+        setMinutes(20);
+        setSeconds(0);
+    };
 }

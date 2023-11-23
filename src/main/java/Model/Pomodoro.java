@@ -26,7 +26,7 @@ public class Pomodoro extends Clock implements Rest{
         }
         System.out.printf("%02d:%02d%n", getMinutes(), getSeconds());
     }
-    @Override
+
     public void rest(){
         if (timeToRest) {               //Time to rest
             if (intervalCounter < 4){   //Small rest
@@ -45,6 +45,12 @@ public class Pomodoro extends Clock implements Rest{
         }
     }
 
+    public void resetClock(){
+        setRunning(false);
+        pauseClock();
+        setMinutes(25);
+        setSeconds(0);
+    };
     public void startTimer(Clock pomodoro){
         pomodoro.startClock();
     }

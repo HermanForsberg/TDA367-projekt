@@ -2,10 +2,10 @@ package Controller;
 
 import Model.Timer;
 
-public class TimerController {
+public class ClockController {
 
     private Timer timerModel;
-        public TimerController(Timer timer){
+        public ClockController(Timer timer){
             this.timerModel = timer;
         }
 
