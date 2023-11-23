@@ -57,7 +57,7 @@ public class FlashcardFeatureController extends JPanel {
             //grid.add(fill);
             grid.add(deckButtonController);
 
-            deckButtonController.addActionListener(new ActionListener() {
+            deckButtonController.getClicked().addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
 
@@ -68,7 +68,18 @@ public class FlashcardFeatureController extends JPanel {
                 }
 
             });
-            //grid.add(fill)
+
+            deckButtonController.getDeleteButton().addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    int ans = JOptionPane.showConfirmDialog(null,
+                            "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
+                    if(ans == 0){
+
+                    }
+                }
+
+            });
 
         }
 
@@ -93,7 +104,7 @@ public class FlashcardFeatureController extends JPanel {
                         Deckformat deckController = new Deckformat(model.getNewestDeck(), backwardsButton);
                         grid.add(deckButtonController);
                         grid.updateUI();
-                        deckButtonController.addActionListener(new ActionListener() {
+                        deckButtonController.getClicked().addActionListener(new ActionListener() {
 
                             public void actionPerformed(ActionEvent e) {
 
@@ -103,6 +114,18 @@ public class FlashcardFeatureController extends JPanel {
                             }
 
                         });
+                        deckButtonController.getDeleteButton().addActionListener(new ActionListener() {
+
+                            public void actionPerformed(ActionEvent e) {
+                                int ans = JOptionPane.showConfirmDialog(null,
+                                        "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
+                                if(ans == 0){
+
+                                }
+                            }
+
+                        });
+
                     }else{
                         JOptionPane.showMessageDialog(FlashcardFeatureController.this,
                                 "You must enter a name");
