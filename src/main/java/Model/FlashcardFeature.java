@@ -9,8 +9,8 @@ public class FlashcardFeature extends JPanel {
 
     private FlashcardDeck newestDeck;
 
-    public FlashcardFeature(FlashcardDeck deck){
-        ListOfDecks.add(deck);
+    public FlashcardFeature(ArrayList<FlashcardDeck> deck){
+        ListOfDecks = deck;
     }
 
 

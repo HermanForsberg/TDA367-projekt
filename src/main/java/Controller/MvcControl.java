@@ -22,8 +22,8 @@ public class MvcControl extends JPanel{
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         setSize(300,300);
 
-        FlashcardFeatureController flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
-        TimerFeatureController timerFeatureController = new TimerFeatureController(model.getTimerFeature());
+        this.flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
+        this.timerFeatureController = new TimerFeatureController(model.getTimerFeature());
 
         add(flashcardFeatureController);
         //add(timerFeatureController);
@@ -47,6 +47,13 @@ public class MvcControl extends JPanel{
         removeAll();
         add(timerFeatureController);
         updateUI();
+    }
+
+    public void switchUI(JPanel viewPanel){
+        removeAll();
+        add(viewPanel);
+        updateUI();
+
     }
 
 

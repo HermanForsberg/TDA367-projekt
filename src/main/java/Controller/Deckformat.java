@@ -14,11 +14,13 @@ public class Deckformat extends JPanel{
     private JPanel panelForFlashcard;
 
 
-    public Deckformat(FlashcardDeck deck) throws HeadlessException {
+    public Deckformat(FlashcardDeck deck, JButton backwardsButton) throws HeadlessException {
         //Set up the content pane.
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         this.panelForFlashcard = new JPanel(new GridLayout(1, 0, 10 ,10));
+
+
 
         JButton next = new JButton("Next");
         next.setBackground(Color.CYAN);
@@ -120,6 +122,17 @@ public class Deckformat extends JPanel{
             }
 
         });
+
+
+        backwardsButton.setBackground(Color.BLACK);
+        backwardsButton.setForeground(Color.WHITE);
+        c.gridx = 0;
+        c.gridy = 1;
+        c.fill = GridBagConstraints.NONE;
+        c.insets = new Insets(0, 0, 0, 0);
+        c.ipadx = 50;
+        c.ipady = 20;
+        add(backwardsButton,c);
 
     }
 

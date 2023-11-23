@@ -25,11 +25,19 @@ public class SwingMvcTest {
         Flashcard flashcard2 = new Flashcard("Swag", "Gamer");
 
         FlashcardDeck deck = new FlashcardDeck("TestDeck");
+        FlashcardDeck deck2 = new FlashcardDeck("Testdeck2");
+
+        ArrayList<FlashcardDeck> deckList = new ArrayList<>();
+        deckList.add(deck);
+        deckList.add(deck2);
 
         deck.getDeck().add(flashcard1);
         deck.getDeck().add(flashcard2);
 
-        FlashcardFeature flashcardFeature = new FlashcardFeature(deck);
+        deck2.getDeck().add(flashcard1);
+        deck2.getDeck().add(flashcard2);
+
+        FlashcardFeature flashcardFeature = new FlashcardFeature(deckList);
 
 
 
