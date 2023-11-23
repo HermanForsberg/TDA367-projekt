@@ -74,11 +74,7 @@ public class FlashcardFeatureController extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                     String name = JOptionPane.showInputDialog("name of deck: ");
-                    model.addClicked(name);
-                    DeckButtonController deckButtonController = new DeckButtonController(model.getNewestDeck());
                     JButton backwardsButton = new JButton("Tillbaka");
-
-
                     backwardsButton.addActionListener(new ActionListener() {
 
                         public void actionPerformed(ActionEvent e) {
@@ -89,19 +85,27 @@ public class FlashcardFeatureController extends JPanel {
                         }
 
                     });
-                    Deckformat deckController = new Deckformat(model.getNewestDeck(), backwardsButton);
-                    grid.add(deckButtonController);
-                    grid.updateUI();
-                    deckButtonController.addActionListener(new ActionListener() {
+                    if (!name.isEmpty()){
+                        model.addClicked(name);
+                        DeckButtonController deckButtonController = new DeckButtonController(model.getNewestDeck());
+                        Deckformat deckController = new Deckformat(model.getNewestDeck(), backwardsButton);
+                        grid.add(deckButtonController);
+                        grid.updateUI();
+                        deckButtonController.addActionListener(new ActionListener() {
 
-                        public void actionPerformed(ActionEvent e) {
+                            public void actionPerformed(ActionEvent e) {
 
-                            removeAll();
-                            add(deckController);
-                            updateUI();
-                        }
+                                removeAll();
+                                add(deckController);
+                                updateUI();
+                            }
 
-                    });
+                        });
+                    }else{
+                        JOptionPane.showMessageDialog(FlashcardFeatureController.this,
+                                "You must enter a name");
+                    }
+
 
 
                 //lägg in att man byter till föregående flashcard här
