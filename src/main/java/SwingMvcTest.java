@@ -83,7 +83,7 @@ public class SwingMvcTest {
         MvcMenu menu = new MvcMenu(control);
 
 
-        JFrame frame = new JFrame("Plugg");
+        JFrame frame = new JFrame("MyPlugg");
         frame.setSize(800,600);
         frame.getContentPane().add(view.getMainPanel());
 
