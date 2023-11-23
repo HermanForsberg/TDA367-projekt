@@ -42,7 +42,11 @@ public class Deckformat extends JPanel{
 
                 deck.nextClicked();
                 panelForFlashcard.removeAll();
-                panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+                try {
+                    panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+                }catch(Exception e2){
+                    panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
+                }
                 panelForFlashcard.updateUI();
                 currentCard.setText((deck.getCurrentIndex()+1)+"/"+ deck.getSize());
                 updateUI();
@@ -63,7 +67,11 @@ public class Deckformat extends JPanel{
 
                 deck.previousClicked();
                 panelForFlashcard.removeAll();
-                panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+                try {
+                    panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+                }catch(Exception e2){
+                    panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
+                }
                 panelForFlashcard.updateUI();
                 currentCard.setText((deck.getCurrentIndex()+1)+"/"+ deck.getSize());
                 updateUI();
@@ -89,7 +97,14 @@ public class Deckformat extends JPanel{
         c.ipady = 20;
         add(wrong,c);
 
-        FlashcardController flashcard = new FlashcardController(deck.getDeck().get(0));
+        //shitcode men orkade inte göra bra :))))
+        FlashcardController flashcard = new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer"));
+        try {
+            flashcard = new FlashcardController(deck.getDeck().get(0));
+        }
+        catch (Exception e){
+
+        }
         c.gridy = 2;
         c.gridx = 1;
         c.weightx = 0;

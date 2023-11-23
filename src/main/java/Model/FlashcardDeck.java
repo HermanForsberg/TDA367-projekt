@@ -15,7 +15,7 @@ public class FlashcardDeck {
     public FlashcardDeck(String deckName) {
         this.deck = new ArrayList<>();
         this.deckName = deckName;
-        this.size = 2;
+        this.size = deck.size();
         this.currentIndex = 0;
 
     }
@@ -46,7 +46,11 @@ public class FlashcardDeck {
     }
 
     public void nextClicked(){
-        currentIndex = (currentIndex+1)%(deck.size());
+        try {
+            currentIndex = (currentIndex + 1) % (deck.size());
+        }catch(Exception e){
+            currentIndex = 0;
+        }
         System.out.println(currentIndex);
     }
 

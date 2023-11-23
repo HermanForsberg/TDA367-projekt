@@ -13,14 +13,18 @@ public class FlashcardFeature extends JPanel {
         ListOfDecks = deck;
     }
 
-
+    public void init(ArrayList<FlashcardDeck> decks){
+        for(FlashcardDeck deck: decks){
+            ListOfDecks.add(deck);
+        }
+    }
 
     public void addNewDeck(String name){
         FlashcardDeck newDeck = new FlashcardDeck(name);
 
         ListOfDecks.add(newDeck);
         newestDeck = newDeck;
-        newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
+        //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
     }
 
     public ArrayList<FlashcardDeck> GetListOfDecks(){
