@@ -17,6 +17,9 @@ public class ClockFeature extends JPanel {
     public ArrayList<Clock> getClocks(){
         return clockList;
     }
+    public void swapClock(){
+        clockIndex = (clockIndex+1)%3;
+    }
     public int getClockIndex(){
         return clockIndex;
     }

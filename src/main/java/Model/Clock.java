@@ -40,9 +40,6 @@ public abstract class Clock {
         setMinutes(getMinutes());
         setSeconds(getSeconds());
     }
-    public int swapClock(int clockIndex){
-        return (clockIndex+1)%3;
-    }
     protected void setMinutes(int minutes) {
         this.minutes = minutes;
     }

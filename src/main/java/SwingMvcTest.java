@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class SwingMvcTest {
 
     private static void createAndShowUI() {
-
+        //Clock
         Clock manualTimer = new ManualTimer();
         Clock stopwatch = new Stopwatch();
         Clock pomodoro = new Pomodoro();
@@ -20,8 +20,12 @@ public class SwingMvcTest {
         clockList.add(pomodoro);
 
         ClockFeature clockFeature = new ClockFeature(clockList);
-
-
+        /*
+        Watch watch = new Watch();
+        for (Clock clock : clockList) {
+            watch.addObserver(clock);
+        }*/
+        //Flashcard
         Flashcard flashcard1 = new Flashcard("Swag2", "Gamer2");
         Flashcard flashcard2 = new Flashcard("Swag", "Gamer");
 
