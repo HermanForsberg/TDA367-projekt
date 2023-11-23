@@ -21,20 +21,23 @@ public class FlashcardDeck {
     }
 
     public boolean addFlashcard(Flashcard flash){
-        boolean added = this.deck.add(flash);
+        //boolean added = deck.add(flash);
+        /*
         if(added){
             this.size ++;
-        }
-        return added;
+        }*/
+        return deck.add(flash);
     }
 
 
-    public boolean delete(Flashcard flash){
-        boolean deleted = this.deck.remove(flash);
+    public void delete(int index){
+        //boolean deleted = this.deck.remove(flash);
+        /*
         if(deleted){
             this.size --;
-        }
-        return deleted;
+        }*/
+
+        deck.remove(index);
     }
 
     public void previousClicked(){
@@ -43,7 +46,7 @@ public class FlashcardDeck {
     }
 
     public void nextClicked(){
-        currentIndex = (currentIndex+1)%size;
+        currentIndex = (currentIndex+1)%(deck.size());
         System.out.println(currentIndex);
     }
 
@@ -63,6 +66,6 @@ public class FlashcardDeck {
     }
 
     public int getSize() {
-        return size;
+        return deck.size();
     }
 }

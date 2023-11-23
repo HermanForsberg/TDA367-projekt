@@ -15,7 +15,7 @@ public class FlashcardFeature extends JPanel {
 
 
 
-    public void addClicked(String name){
+    public void addNewDeck(String name){
         FlashcardDeck newDeck = new FlashcardDeck(name);
 
         ListOfDecks.add(newDeck);

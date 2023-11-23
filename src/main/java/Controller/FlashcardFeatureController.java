@@ -37,7 +37,7 @@ public class FlashcardFeatureController extends JPanel {
 
 
         for (FlashcardDeck deck : model.GetListOfDecks()) {
-            JButton backwardsButton = new JButton("Tillbaka");
+            JButton backwardsButton = new JButton("<-------");
 
 
             backwardsButton.addActionListener(new ActionListener() {
@@ -76,7 +76,7 @@ public class FlashcardFeatureController extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                     String name = JOptionPane.showInputDialog("name of deck: ");
-                    JButton backwardsButton = new JButton("Tillbaka");
+                    JButton backwardsButton = new JButton("<-------");
                     backwardsButton.addActionListener(new ActionListener() {
 
                         public void actionPerformed(ActionEvent e) {
@@ -88,7 +88,7 @@ public class FlashcardFeatureController extends JPanel {
 
                     });
                     if (!name.isEmpty()){
-                        model.addClicked(name);
+                        model.addNewDeck(name);
                         DeckButtonController deckButtonController = new DeckButtonController(model.getNewestDeck());
                         Deckformat deckController = new Deckformat(model.getNewestDeck(), backwardsButton);
                         grid.add(deckButtonController);
