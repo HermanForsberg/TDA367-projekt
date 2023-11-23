@@ -75,7 +75,11 @@ public class FlashcardFeatureController extends JPanel {
                     int ans = JOptionPane.showConfirmDialog(null,
                             "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
                     if(ans == 0){
+                        grid.remove(deckButtonController);
+                        remove(deckButtonController);
+                        grid.updateUI();
 
+                        updateUI();
                     }
                 }
 
@@ -120,7 +124,11 @@ public class FlashcardFeatureController extends JPanel {
                                 int ans = JOptionPane.showConfirmDialog(null,
                                         "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
                                 if(ans == 0){
+                                    grid.remove(deckButtonController);
+                                    remove(deckButtonController);
+                                    grid.updateUI();
 
+                                    updateUI();
                                 }
                             }
 
