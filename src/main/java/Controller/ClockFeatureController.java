@@ -70,7 +70,9 @@ public class ClockFeatureController extends JPanel {
         });
         resetButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                currentClock.get(clockFeature.getClockIndex()).resetClock();
+                Clock cl = currentClock.get(clockFeature.getClockIndex());
+                cl.resetClock();
+                timeLabel.setText(cl.getMinutes() + ":" + cl.getSeconds());
             }
         });
         swapButton.addActionListener(new ActionListener() {
