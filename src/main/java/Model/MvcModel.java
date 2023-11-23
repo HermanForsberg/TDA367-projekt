@@ -2,7 +2,30 @@ package Model;
 
 import java.beans.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ResourceBundle;
+
+
 public class MvcModel {
+
+    private static MvcModel instance = null;
+
+    private final String DIRECTORY = ".plugg";
+    private final String FILE_NAME = "plugg.txt";
+    private final String SPLIT = ";";
+    private String path = "";
+
+    private ArrayList<FlashcardDeck> decks = new ArrayList();
+
     public static final String STATE_PROP_NAME = "State";
     private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
     private State state = State.NO_STATE;
@@ -11,8 +34,25 @@ public class MvcModel {
 
     private TimerFeature timerFeature;
 
-    public MvcModel(FlashcardFeature flashcardFeature, TimerFeature timerFeature){
+    public static MvcModel getInstance() {
+        if (instance == null) {
+            instance = new MvcModel();
+
+        }
+
+        return instance;
+    }
+
+    public MvcModel(){
+        this.init();
+    }
+
+    public void setFlashcardFeature(FlashcardFeature flashcardFeature){
         this.flashcardFeature = flashcardFeature;
+        flashcardFeature.init(decks);
+    }
+
+    public void setTimerFeature(TimerFeature timerFeature){
         this.timerFeature = timerFeature;
     }
     public FlashcardFeature getFlashcardFeature(){
@@ -46,6 +86,87 @@ public class MvcModel {
         pcSupport.addPropertyChangeListener(listener);
 
         System.out.println(listener);
+    }
+
+    //saveData ska definitivt vara private
+    public void saveData() {
+        this.decks = flashcardFeature.GetListOfDecks();
+        try {
+            FileOutputStream fos = new FileOutputStream(this.path);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
+            Iterator var3 = this.decks.iterator();
+
+            while(var3.hasNext()) {
+                FlashcardDeck c = (FlashcardDeck) var3.next();
+                String line = c.getDeckName() +";";
+                for (Flashcard card: c.getDeck()){
+                    line = line + card.getQuestion() + ";" + card.getSolution() + ";";
+                }
+                line = line + "\n";
+                //String line = c.getFirstName() + ";" + c.getLastName() + ";" + c.getPhone() + ";" + c.getEmail() + ";" + c.getAddress() + ";" + c.getPostCode() + ";" + c.getPostAddress() + ";" + "end\n";
+                osw.write(line);
+            }
+
+            osw.flush();
+            osw.close();
+        } catch (IOException var6) {
+            var6.printStackTrace();
+        }
+
+    }
+
+    private void parseLine(String line) {
+        String[] tokens = line.split(";");
+
+        FlashcardDeck c = new FlashcardDeck(tokens[0]);
+        for (int i = 1; i < tokens.length-1; i=i+2){
+            c.addFlashcard(new Flashcard(tokens[i],tokens[i+1]));
+        }
+        this.decks.add(c);
+        /*catch(Exception var){
+            System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
+        }*/
+
+        //System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
+    }
+
+    private void loadData() {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(this.path), "ISO-8859-1"));
+
+            String line;
+            while((line = reader.readLine()) != null) {
+                this.parseLine(line);
+            }
+
+            reader.close();
+        } catch (IOException var3) {
+            var3.printStackTrace();
+        }
+
+    }
+
+    private void init() {
+        this.path = System.getProperty("user.home") + File.separatorChar + ".plugg";
+
+        File contactsData;
+        try {
+            contactsData = new File(this.path);
+            if (!contactsData.exists()) {
+                contactsData.mkdir();
+            }
+        } catch (Exception var2) {
+            System.out.println("Model creating save directory: " + var2);
+        }
+
+        this.path = this.path + File.separatorChar + "plugg.txt";
+        contactsData = new File(this.path);
+        if (contactsData.exists()) {
+            this.loadData();
+        } else {
+            //this.contacts.add(new Contact());
+        }
+
     }
 
 }
