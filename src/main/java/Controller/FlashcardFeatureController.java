@@ -14,7 +14,7 @@ public class FlashcardFeatureController extends JPanel {
 
     private JPanel grid = new JPanel(new GridLayout(2, 0, 5, 5));
 
-    private JPanel fill = new JPanel(new GridLayout(1, 0, 0, 5));
+    //private JPanel fill = new JPanel(new GridLayout(1, 0, 0, 5));
 
     private JPanel groundPanel = new JPanel();
 

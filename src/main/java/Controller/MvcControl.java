@@ -15,6 +15,8 @@ public class MvcControl extends JPanel{
 
     public MvcControl(MvcModel model) {
 
+        this.model = model;
+
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setLayout(new BorderLayout(10, 10));
 
