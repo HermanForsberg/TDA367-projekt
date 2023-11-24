@@ -19,6 +19,10 @@ public class FlashcardFeature extends JPanel {
         }
     }
 
+    public void deleteDeck(FlashcardDeck deck){
+        ListOfDecks.remove(deck);
+    }
+
     public void addNewDeck(String name){
         FlashcardDeck newDeck = new FlashcardDeck(name);
 
