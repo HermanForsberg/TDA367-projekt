@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.TimerFeature;
-import View.TimerGUI;
 
 import javax.swing.*;
 

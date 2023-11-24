@@ -2,12 +2,9 @@ import javax.swing.*;
 import Model.*;
 import Controller.*;
 import Model.Timer;
-import View.TimerGUI;
 import View.*;
-import Controller.flashcardDeckguiTest;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SwingMvcTest {
 
@@ -38,8 +35,6 @@ public class SwingMvcTest {
         deck2.addFlashcard(flashcard2);*/
 
         FlashcardFeature flashcardFeature = new FlashcardFeature(deckList);
-
-
 
         MvcModel model = MvcModel.getInstance();
         model.setFlashcardFeature(flashcardFeature);
