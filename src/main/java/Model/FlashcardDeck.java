@@ -1,7 +1,5 @@
 package Model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.*;
 
 public class FlashcardDeck {
@@ -21,23 +19,16 @@ public class FlashcardDeck {
     }
 
     public boolean addFlashcard(Flashcard flash){
-        //boolean added = deck.add(flash);
-        /*
-        if(added){
-            this.size ++;
-        }*/
         return deck.add(flash);
     }
 
 
-    public void delete(int index){
-        //boolean deleted = this.deck.remove(flash);
-        /*
-        if(deleted){
-            this.size --;
-        }*/
-
+    public void deleteIndex(int index){
         deck.remove(index);
+    }
+
+    public void delete(Flashcard flash){
+        this.deck.remove(flash);
     }
 
     public void previousClicked(){

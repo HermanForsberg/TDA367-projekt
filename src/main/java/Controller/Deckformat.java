@@ -170,7 +170,7 @@ public class Deckformat extends JPanel{
                 int ans = JOptionPane.showConfirmDialog(null,
                         "Do you want to delete the card?","yes", JOptionPane.YES_NO_OPTION);
                 if(ans == 0){
-                    deck.delete(deck.getCurrentIndex());
+                    deck.deleteIndex(deck.getCurrentIndex());
                     deck.previousClicked();
                     panelForFlashcard.removeAll();
                     panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));

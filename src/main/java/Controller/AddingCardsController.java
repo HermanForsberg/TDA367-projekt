@@ -20,7 +20,7 @@ public class AddingCardsController extends JPanel {
                 if(!question.isEmpty() && !solution.isEmpty()){
                     Flashcard flash = new Flashcard(question, solution);
                     deck.addFlashcard(flash);
-                    add(new MiniFlashcard(flash));
+                    add(new MiniFlashcard(flash, deck, AddingCardsController.this));
                     updateUI();
                 }
                 else {
@@ -30,6 +30,7 @@ public class AddingCardsController extends JPanel {
             }
 
         });
+
 
         /*
         JScrollPane ScrollPane = new JScrollPane();
