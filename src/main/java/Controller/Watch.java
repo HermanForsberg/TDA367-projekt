@@ -13,7 +13,9 @@ public class Watch {
     public Watch() {
         observers = new HashSet<>();
         timer = new Timer(delay, e -> {
+
             for (Observer o : observers)
+
                 o.update();
         });
     }

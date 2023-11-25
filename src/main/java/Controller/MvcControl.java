@@ -56,5 +56,9 @@ public class MvcControl extends JPanel{
 
     }
 
+    public ClockFeatureController getTimer(){
+        return this.clockFeatureController;
+    }
+
 
 }

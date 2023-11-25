@@ -20,11 +20,12 @@ public class SwingMvcTest {
         clockList.add(pomodoro);
 
         ClockFeature clockFeature = new ClockFeature(clockList);
-        /*
+
         Watch watch = new Watch();
+
         for (Clock clock : clockList) {
             watch.addObserver(clock);
-        }*/
+        }
         //Flashcard
         Flashcard flashcard1 = new Flashcard("Swag2", "Gamer2");
         Flashcard flashcard2 = new Flashcard("Swag", "Gamer");
@@ -49,6 +50,12 @@ public class SwingMvcTest {
         MvcModel model = new MvcModel(flashcardFeature, clockFeature);
 
         MvcControl control = new MvcControl(model);
+
+        //TODO Lösa observer på bra sätt
+
+        watch.addObserver(control.getTimer());
+
+        watch.start();
 
 
         //HashMap<String ,JPanel> views = new HashMap<>();

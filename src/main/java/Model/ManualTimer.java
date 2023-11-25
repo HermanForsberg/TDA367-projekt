@@ -34,7 +34,6 @@ public class ManualTimer extends Clock implements Rest{ //Counts downwards.
         }
     }
     public void resetClock(){
-        setRunning(false);
         pauseClock();
         setMinutes(20);
         setSeconds(0);

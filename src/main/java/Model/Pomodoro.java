@@ -46,7 +46,6 @@ public class Pomodoro extends Clock implements Rest{
     }
 
     public void resetClock(){
-        setRunning(false);
         pauseClock();
         setMinutes(25);
         setSeconds(0);

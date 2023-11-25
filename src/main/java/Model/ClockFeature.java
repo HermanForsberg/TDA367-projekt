@@ -3,7 +3,7 @@ package Model;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class ClockFeature extends JPanel {
+public class ClockFeature extends JPanel{
 
     private ArrayList<Clock> clockList  = new ArrayList<Clock>();
     private int clockIndex;

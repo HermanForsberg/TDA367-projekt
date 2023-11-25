@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ClockFeatureController extends JPanel {
+public class ClockFeatureController extends JPanel implements Observer{
     private JPanel groundPanel = new JPanel();
     private JPanel grid = new JPanel(new GridLayout(4, 0, 20, 20));
     private JPanel gridForTime = new JPanel(new GridLayout(0, 3, 20, 20));
@@ -28,7 +28,7 @@ public class ClockFeatureController extends JPanel {
     private ArrayList<Clock> currentClock = new ArrayList<Clock>();
 
     public ClockFeatureController(ClockFeature clockFeature){
-        currentClock = clockFeature.getClocks();
+        this.currentClock = clockFeature.getClocks();
        /* groundPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         groundPanel.setLayout(new BorderLayout(10,10));
 
@@ -107,6 +107,12 @@ public class ClockFeatureController extends JPanel {
                 c
             }
         });*/
+    }
+
+    public void update(){
+        Clock cl = currentClock.get(0);
+
+        timeLabel.setText(cl.getMinutes() + ":" + cl.getSeconds());
     }
     private void resetClock(ClockFeature clockFeature){
         Clock cl = currentClock.get(clockFeature.getClockIndex());

@@ -18,7 +18,6 @@ public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
     }
 
     public void resetClock(){
-        setRunning(false);
         pauseClock();
         setMinutes(0);
         setSeconds(0);

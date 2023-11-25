@@ -1,9 +1,11 @@
 package Model;
 
+import Controller.Observer;
+
 import java.util.TimerTask;
 import java.util.Timer;
 
-public abstract class Clock {
+public abstract class Clock implements Observer {
     //Timer     = Keeps track of the time in a background thread.
     //TimerTask = Contains an abstract method called run(). When our Model.Timer reaches a certain time
     //            it will execute a task either once or repeatedly.
@@ -19,7 +21,9 @@ public abstract class Clock {
         this.isRunning = false;
     }
 
+    public void update(){
 
+    }
 
     public abstract void calculateTime();
     public void startClock(){
@@ -37,8 +41,6 @@ public abstract class Clock {
     public void pauseClock(){
         isRunning = false;
         timer.cancel();
-        setMinutes(getMinutes());
-        setSeconds(getSeconds());
     }
     protected void setMinutes(int minutes) {
         this.minutes = minutes;
