@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class Deckformat extends JPanel{
@@ -105,6 +106,7 @@ public class Deckformat extends JPanel{
         catch (Exception e){
 
         }
+
         c.gridy = 2;
         c.gridx = 1;
         c.weightx = 0;
@@ -125,9 +127,23 @@ public class Deckformat extends JPanel{
         c.ipadx = 50;
         c.ipady = 20;
         add(addNewCard,c);
+
+
         addNewCard.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                AddingCardsController adder = new AddingCardsController(deck, Deckformat.this);
+                Component[] test = getComponents();
+                for (Component test2: test) {
+                    test2.setVisible(false);
+                }
+                c.fill = GridBagConstraints.BOTH;
+                c.weighty = 0.5;
+                c.weightx = 0.5;
+                add(adder,c);
+                updateUI();
+
+                /*
                 String question = JOptionPane.showInputDialog("Question: ");
                 String answer = JOptionPane.showInputDialog("Answer: ");
                 if(!question.isEmpty() && !answer.isEmpty()){
@@ -138,7 +154,7 @@ public class Deckformat extends JPanel{
                 }
                 else {
                     JOptionPane.showMessageDialog(Deckformat.this, "Need input in both fields");
-                }
+                }*/
             }
 
         });
@@ -165,7 +181,6 @@ public class Deckformat extends JPanel{
         c.ipady = 20;
         add(deleteButton,c);
         deleteButton.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 int ans = JOptionPane.showConfirmDialog(null,
                         "Do you want to delete the card?","yes", JOptionPane.YES_NO_OPTION);

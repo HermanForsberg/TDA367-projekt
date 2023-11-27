@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MiniFlashcard extends JPanel {
+public class MiniFlashcard extends JComponent {
     public MiniFlashcard(Flashcard flashcard, FlashcardDeck deck, AddingCardsController grid) {
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
