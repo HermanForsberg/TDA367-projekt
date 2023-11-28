@@ -5,6 +5,8 @@ import java.util.Set;
 
 public class StatisticModel {
 
+    private StatsDayModel currentDay;
+
     private int lastWeekHours;
 
     private int lastWeekFlashcards;
@@ -21,6 +23,21 @@ public class StatisticModel {
         week.add(new StatsDayModel("Sunday"));
     }
 
+    public void setDay(StatsDayModel currentDay){
+        this.currentDay=currentDay;
+    }
+
+    public void addHours(float newHours){
+        currentDay.addHours(newHours);
+    }
+
+    public void addFlashCardsDone(int amount){
+        currentDay.addFlashcardsDone(amount);
+    }
+
+    public String getCurrentDay(){
+        return "api";
+    }
 
 
 }

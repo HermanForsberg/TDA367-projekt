@@ -42,6 +42,13 @@ public class MvcControl extends JPanel{
         updateUI();
     }
 
+    public void statMenuActionPerformed(ActionEvent ae) {
+
+        removeAll();
+        //add(statFeatureController);
+        updateUI();
+    }
+
     public void timerMenuActionPerformed(ActionEvent ae) {
 
         removeAll();

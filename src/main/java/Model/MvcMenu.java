@@ -27,6 +27,20 @@ public class MvcMenu {
             }
         });
 
+        JButton statistics = new JButton("Statistics");
+
+        statistics.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                if (control != null) {
+
+                    control.flashcardMenuActionPerformed(e); // e.g., here
+
+                }
+            }
+        });
+
         JButton timers = new JButton("Timers");
 
         timers.addActionListener(new ActionListener() {

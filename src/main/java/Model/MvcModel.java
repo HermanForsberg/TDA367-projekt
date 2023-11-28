@@ -88,6 +88,10 @@ public class MvcModel {
         System.out.println(listener);
     }
 
+
+
+
+    //Vet inte om detta skall ligga i MVCModel
     //saveData ska definitivt vara private
     public void saveData() {
         this.decks = flashcardFeature.GetListOfDecks();

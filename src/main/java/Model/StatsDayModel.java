@@ -20,7 +20,7 @@ public class StatsDayModel {
         hoursLapsed += newHours;
     }
 
-    public void setFlashcardsDone(int newFlashcards){
+    public void addFlashcardsDone(int newFlashcards){
         flashcardsDone += newFlashcards;
     }
 
