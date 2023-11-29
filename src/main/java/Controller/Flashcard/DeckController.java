@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Flashcard;
 
 import Model.Flashcard;
 import Model.FlashcardDeck;
@@ -7,15 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 
-public class Deckformat extends JPanel{
+public class DeckController extends JPanel{
 
     private JPanel panelForFlashcard;
 
 
-    public Deckformat(FlashcardDeck deck, JButton backwardsButton) throws HeadlessException {
+    public DeckController(FlashcardDeck deck, JButton backwardsButton) throws HeadlessException {
         //Set up the content pane.
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -63,13 +62,11 @@ public class Deckformat extends JPanel{
         c.ipady = 20;
         add(prev, c);
         prev.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
-
                 deck.previousClicked();
                 panelForFlashcard.removeAll();
                 try {
-                    panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+                    panelForFlashcard.add(new FlashcardController(deck.getCurrentFlashcard()));
                 }catch(Exception e2){
                     panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
                 }
@@ -77,7 +74,6 @@ public class Deckformat extends JPanel{
                 currentCard.setText((deck.getCurrentIndex()+1)+"/"+ deck.getSize());
                 updateUI();
             }
-
         });
 
         JButton correct = new JButton("Correct");
@@ -88,6 +84,13 @@ public class Deckformat extends JPanel{
         c.ipadx = 50;
         c.ipady = 20;
         add(correct,c);
+        correct.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Flashcard flashcard = deck.getCurrentFlashcard();
+                flashcard.setCorrect(true);
+            }
+
+        });
 
         JButton wrong = new JButton("Wrong");
         wrong.setBackground(Color.RED);
@@ -97,6 +100,13 @@ public class Deckformat extends JPanel{
         c.ipadx = 50;
         c.ipady = 20;
         add(wrong,c);
+        wrong.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Flashcard flashcard = deck.getCurrentFlashcard();
+                flashcard.setCorrect(false);
+            }
+
+        });
 
         //shitcode men orkade inte göra bra :))))
         FlashcardController flashcard = new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer"));
@@ -132,7 +142,7 @@ public class Deckformat extends JPanel{
         addNewCard.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                AddingCardsController adder = new AddingCardsController(deck, Deckformat.this);
+                AddMenu adder = new AddMenu(deck, DeckController.this);
                 Component[] test = getComponents();
                 for (Component test2: test) {
                     test2.setVisible(false);

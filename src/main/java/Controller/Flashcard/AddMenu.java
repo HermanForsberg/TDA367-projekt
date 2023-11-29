@@ -1,18 +1,27 @@
-package Controller;
+package Controller.Flashcard;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import Model.*;
-public class AddingCardsController extends JPanel {
-    public AddingCardsController(FlashcardDeck deck, Deckformat grid) {
-        setLayout(new GridLayout(4,4,10,10));
-
+public class AddMenu extends JPanel {
+    public AddMenu(FlashcardDeck deck, DeckController deckController) {
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        JPanel grid = new JPanel();
+        grid.setLayout(new GridLayout(5, 5, 10,10));
+        c.gridy = 2;
+        c.gridwidth = 5;
+        c.gridheight = 5;
+        add(grid, c);
         JButton addButton = new JButton("Add Card");
-        add(addButton);
+        c.gridy = 0;
+        c.gridx = 0;
+        c.gridheight = 2;
+        c.gridwidth = 3;
+        add(addButton,c);
         addButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -21,29 +30,27 @@ public class AddingCardsController extends JPanel {
                 if(!question.isEmpty() && !solution.isEmpty()){
                     Flashcard flash = new Flashcard(question, solution);
                     deck.addFlashcard(flash);
-                    add(new MiniFlashcard(flash, deck, AddingCardsController.this));
-                    updateUI();
+                    grid.add(new AddMenuCard(flash, deck, grid));
+                    grid.updateUI();
                 }
                 else {
-                    JOptionPane.showMessageDialog(AddingCardsController.this, "Need input in both fields");
+                    JOptionPane.showMessageDialog(AddMenu.this, "Need input in both fields");
                 }
 
             }
 
         });
 
-        for(Flashcard card : deck.getDeck()){
-            add(new MiniFlashcard(card, deck, AddingCardsController.this));
-        }
-        updateUI();
-
-        JButton test = new JButton("test");
-        add(test);
-        test.addActionListener(new ActionListener() {
+        JButton backButton = new JButton("Finished");
+        c.gridx = 3;
+        c.gridheight = 2;
+        c.gridwidth = 2;
+        add(backButton,c);
+        backButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 removeAll();
-                Component[] test = grid.getComponents();
+                Component[] test = deckController.getComponents();
                 for (Component test2: test) {
                     test2.setVisible(true);
                 }
@@ -52,9 +59,15 @@ public class AddingCardsController extends JPanel {
 
         });
 
-        /*
-        JScrollPane ScrollPane = new JScrollPane();
-        add(ScrollPane);*/
+        for(Flashcard card : deck.getDeck()){
+            grid.add(new AddMenuCard(card, deck, grid));
+        }
+        updateUI();
+
+
+
+
+
     }
 
     /*

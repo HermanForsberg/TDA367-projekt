@@ -5,15 +5,11 @@ import java.util.*;
 public class FlashcardDeck {
     private ArrayList<Flashcard> deck;
     private String deckName;
-    private int size;
-
-
     private int currentIndex;
 
     public FlashcardDeck(String deckName) {
         this.deck = new ArrayList<>();
         this.deckName = deckName;
-        this.size = deck.size();
         this.currentIndex = 0;
 
     }
@@ -63,4 +59,8 @@ public class FlashcardDeck {
     public int getSize() {
         return deck.size();
     }
+
+    public Flashcard getCurrentFlashcard(){
+        return deck.get(getCurrentIndex());
+    };
 }

@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Flashcard;
 
 import Model.FlashcardDeck;
 import Model.FlashcardFeature;
@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FlashcardFeatureController extends JPanel {
+public class DeckCollectionController extends JPanel {
 
     private JButton addButton = new JButton("Add Deck");
 
@@ -18,7 +18,7 @@ public class FlashcardFeatureController extends JPanel {
 
     private JPanel groundPanel = new JPanel();
 
-    public FlashcardFeatureController(FlashcardFeature model) {
+    public DeckCollectionController(FlashcardFeature model) {
 
         groundPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         groundPanel.setLayout(new BorderLayout(10,10));
@@ -51,8 +51,8 @@ public class FlashcardFeatureController extends JPanel {
 
             });
 
-            DeckButtonController deckButtonController = new DeckButtonController(deck);
-            Deckformat deckController = new Deckformat(deck, backwardsButton);
+            DeckButton deckButtonController = new DeckButton(deck);
+            DeckController deckController = new DeckController(deck, backwardsButton);
 
             //grid.add(fill);
             grid.add(deckButtonController);
@@ -105,8 +105,8 @@ public class FlashcardFeatureController extends JPanel {
                     });
                     if (!name.isEmpty()){
                         model.addNewDeck(name);
-                        DeckButtonController deckButtonController = new DeckButtonController(model.getNewestDeck());
-                        Deckformat deckController = new Deckformat(model.getNewestDeck(), backwardsButton);
+                        DeckButton deckButtonController = new DeckButton(model.getNewestDeck());
+                        DeckController deckController = new DeckController(model.getNewestDeck(), backwardsButton);
                         grid.add(deckButtonController);
                         grid.updateUI();
                         deckButtonController.getClicked().addActionListener(new ActionListener() {
@@ -136,7 +136,7 @@ public class FlashcardFeatureController extends JPanel {
                         });
 
                     }else{
-                        JOptionPane.showMessageDialog(FlashcardFeatureController.this,
+                        JOptionPane.showMessageDialog(DeckCollectionController.this,
                                 "You must enter a name");
                     }
 

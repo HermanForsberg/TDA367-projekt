@@ -1,16 +1,14 @@
-package Controller;
+package Controller.Flashcard;
 
 import Model.FlashcardDeck;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class DeckButtonController extends JPanel {
+public class DeckButton extends JPanel {
     private final JButton clicked;
     private final JButton delete;
-    public DeckButtonController(FlashcardDeck model){
+    public DeckButton(FlashcardDeck model){
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         clicked = new JButton(model.getDeckName());

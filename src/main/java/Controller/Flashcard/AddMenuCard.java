@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Flashcard;
 
 import Model.Flashcard;
 import Model.FlashcardDeck;
@@ -8,8 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MiniFlashcard extends JComponent {
-    public MiniFlashcard(Flashcard flashcard, FlashcardDeck deck, AddingCardsController grid) {
+public class AddMenuCard extends JComponent {
+    public AddMenuCard(Flashcard flashcard, FlashcardDeck deck, JPanel grid) {
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         setBorder(BorderFactory.createLineBorder(Color.black));
@@ -33,8 +33,9 @@ public class MiniFlashcard extends JComponent {
                 System.out.println(deck.getDeck().toString());
                 deck.delete(flashcard);
                 System.out.println(deck.getDeck().toString());
-                grid.remove(MiniFlashcard.this);
+                grid.remove(AddMenuCard.this);
                 grid.updateUI();
+
             }
 
         });

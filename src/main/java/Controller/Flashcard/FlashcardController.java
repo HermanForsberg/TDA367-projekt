@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Flashcard;
 import Model.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;

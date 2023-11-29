@@ -2,12 +2,14 @@ package Controller;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
+import Controller.Flashcard.DeckCollectionController;
 import Model.*;
 import javax.swing.*;
 public class MvcControl extends JPanel{
     private MvcModel model;
 
-    private FlashcardFeatureController flashcardFeatureController;
+    private DeckCollectionController flashcardFeatureController;
 
     private TimerFeatureController timerFeatureController;
 
@@ -24,7 +26,7 @@ public class MvcControl extends JPanel{
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         setSize(300,300);
 
-        this.flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
+        this.flashcardFeatureController = new DeckCollectionController(model.getFlashcardFeature());
         this.timerFeatureController = new TimerFeatureController(model.getTimerFeature());
 
         add(flashcardFeatureController);

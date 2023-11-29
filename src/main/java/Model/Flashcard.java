@@ -6,17 +6,16 @@ public class Flashcard {
     private boolean flipped;
     private boolean correct;
 
-    public String getSolution() {
-        return solution;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
     public Flashcard(String question, String solution){
         this.question = question;
         this.solution = solution;
+    }
+
+    public String getSolution() {
+        return solution;
+    }
+    public String getQuestion() {
+        return question;
     }
 
     public void setSolution(String solution) {
