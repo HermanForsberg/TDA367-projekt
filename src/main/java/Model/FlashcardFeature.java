@@ -3,7 +3,7 @@ package Model;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class FlashcardFeature extends JPanel {
+public class FlashcardFeature{
 
     private ArrayList<FlashcardDeck> ListOfDecks = new ArrayList<FlashcardDeck>();
 

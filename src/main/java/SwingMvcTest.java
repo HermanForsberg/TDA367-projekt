@@ -24,8 +24,13 @@ public class SwingMvcTest {
         ArrayList<FlashcardDeck> deckList = new ArrayList<>();
         FlashcardFeature flashcardFeature = new FlashcardFeature(deckList);
 
+        //Profile
+        Profile currentProfile = new Profile();
+        currentProfile.setStatisticModel(statisticModel);
+
         //Main Model
         MvcModel model = MvcModel.getInstance();
+        model.setProfile(currentProfile);
         model.setFlashcardFeature(flashcardFeature);
         model.setTimerFeature(timerFeature);
 

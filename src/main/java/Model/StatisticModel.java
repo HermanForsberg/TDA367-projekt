@@ -21,6 +21,7 @@ public class StatisticModel {
         week.add(new StatsDayModel("Friday"));
         week.add(new StatsDayModel("Saturday"));
         week.add(new StatsDayModel("Sunday"));
+
     }
 
     public void setDay(StatsDayModel currentDay){

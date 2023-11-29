@@ -24,6 +24,8 @@ public class MvcModel {
     private final String SPLIT = ";";
     private String path = "";
 
+    private Profile currentProfile;
+
     private ArrayList<FlashcardDeck> decks = new ArrayList();
 
     public static final String STATE_PROP_NAME = "State";
@@ -44,17 +46,21 @@ public class MvcModel {
     }
 
     public MvcModel(){
-        this.init();
+
     }
 
     public void setFlashcardFeature(FlashcardFeature flashcardFeature){
         this.flashcardFeature = flashcardFeature;
-        flashcardFeature.init(decks);
+        flashcardFeature.init(currentProfile.getListOfDecks());
     }
 
     public void setTimerFeature(TimerFeature timerFeature){
         this.timerFeature = timerFeature;
     }
+
+    public void setProfile(Profile profile){
+        this.currentProfile= profile;
+    };
     public FlashcardFeature getFlashcardFeature(){
         return this.flashcardFeature;
     }
@@ -94,7 +100,8 @@ public class MvcModel {
     //Vet inte om detta skall ligga i MVCModel
     //saveData ska definitivt vara private
     public void saveData() {
-        this.decks = flashcardFeature.GetListOfDecks();
+        this.path = currentProfile.getPath();
+        this.decks = currentProfile.getListOfDecks();
         try {
             FileOutputStream fos = new FileOutputStream(this.path);
             OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
@@ -119,7 +126,7 @@ public class MvcModel {
 
     }
 
-    private void parseLine(String line) {
+    /*private void parseLine(String line) {
         String[] tokens = line.split(";");
 
         FlashcardDeck c = new FlashcardDeck(tokens[0]);
@@ -129,7 +136,7 @@ public class MvcModel {
         this.decks.add(c);
         /*catch(Exception var){
             System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
-        }*/
+        }
 
         //System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
     }
@@ -171,6 +178,6 @@ public class MvcModel {
             //this.contacts.add(new Contact());
         }
 
-    }
+    }*/
 
 }
