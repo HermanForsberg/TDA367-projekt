@@ -10,9 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DeckCollectionController extends JPanel implements Observer {
-
-
+public class DeckCollectionController extends JPanel {
 
     private JButton addButton = new JButton("Add Deck");
 
@@ -57,6 +55,7 @@ public class DeckCollectionController extends JPanel implements Observer {
 
             grid.add(deckButtonController);
 
+            //TODO borde dessa två action-listeners vara någon annanstans?
             deckButtonController.getClicked().addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -67,7 +66,6 @@ public class DeckCollectionController extends JPanel implements Observer {
                 }
 
             });
-
             deckButtonController.getDeleteButton().addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -90,22 +88,13 @@ public class DeckCollectionController extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent e) {
                     String name = JOptionPane.showInputDialog("name of deck: ");
-                    JButton backwardsButton = new JButton("<-------");
-                    backwardsButton.addActionListener(new ActionListener() {
 
-                        public void actionPerformed(ActionEvent e) {
-
-                            removeAll();
-                            add(groundPanel);
-                            updateUI();
-                        }
-
-                    });
                     if (!name.isEmpty()){
                         model.addNewDeck(name);
                         DeckButton deckButtonController = new DeckButton(model.getNewestDeck());
                         grid.add(deckButtonController);
                         grid.updateUI();
+                        //TODO borde dessa två action-listeners vara någon annanstans?
                         deckButtonController.getClicked().addActionListener(new ActionListener() {
 
                             public void actionPerformed(ActionEvent e) {
@@ -120,7 +109,7 @@ public class DeckCollectionController extends JPanel implements Observer {
 
                             public void actionPerformed(ActionEvent e) {
                                 int ans = JOptionPane.showConfirmDialog(null,
-                                        "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
+                                        "Do you want to delete the deck?","Delete", JOptionPane.YES_NO_OPTION);
                                 if(ans == 0){
                                     grid.remove(deckButtonController);
                                     remove(deckButtonController);
@@ -148,10 +137,7 @@ public class DeckCollectionController extends JPanel implements Observer {
         });
     }
 
-    @Override
-    public void update() {
 
-    }
 
 
 

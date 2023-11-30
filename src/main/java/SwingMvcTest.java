@@ -40,7 +40,7 @@ public class SwingMvcTest {
 
         Updater updater = new Updater();
         updater.addObserver(control);
-        updater.addObserver(control.getDeckCollection());
+        //updater.addObserver(control);
 
         JFrame frame = new JFrame("Plugg");
         frame.setSize(800,600);
