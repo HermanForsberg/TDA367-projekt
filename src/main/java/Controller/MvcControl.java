@@ -9,7 +9,7 @@ import javax.swing.*;
 public class MvcControl extends JPanel implements Observer{
     private MvcModel model;
 
-    private DeckCollectionController flashcardFeatureController;
+    private DeckCollectionController deckCollection;
 
     private TimerFeatureController timerFeatureController;
 
@@ -26,18 +26,21 @@ public class MvcControl extends JPanel implements Observer{
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         setSize(300,300);
 
-        this.flashcardFeatureController = new DeckCollectionController(model.getFlashcardFeature());
+        this.deckCollection = new DeckCollectionController(model.getFlashcardFeature());
         this.timerFeatureController = new TimerFeatureController(model.getTimerFeature());
 
-        add(flashcardFeatureController);
+        add(deckCollection);
         //add(timerFeatureController);
     }
 
+    public DeckCollectionController getDeckCollection() {
+        return deckCollection;
+    }
 
     public void flashcardMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
-        add(flashcardFeatureController);
+        add(deckCollection);
         updateUI();
     }
 

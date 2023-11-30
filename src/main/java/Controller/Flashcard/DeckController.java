@@ -13,8 +13,14 @@ public class DeckController extends JPanel{
 
     private JPanel panelForFlashcard;
 
+    private FlashcardDeck deck = new FlashcardDeck("temp");
 
-    public DeckController(FlashcardDeck deck, JButton backwardsButton) throws HeadlessException {
+    public void setDeck(FlashcardDeck deck) {
+        this.deck = deck;
+    }
+
+    public DeckController(JButton backwardsButton) throws HeadlessException {
+
         //Set up the content pane.
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -29,7 +35,7 @@ public class DeckController extends JPanel{
         c.ipady = 20;
         add(currentCard, c);
 
-        JButton next = new NextButton("Next");
+        JButton next = new JButton("Next");
         next.setBackground(Color.CYAN);
         c.gridx = 2;
         c.gridy = 2;

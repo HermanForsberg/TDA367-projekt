@@ -8,10 +8,10 @@ import java.awt.*;
 public class DeckButton extends JPanel {
     private final JButton clicked;
     private final JButton delete;
-    public DeckButton(FlashcardDeck model){
+    public DeckButton(FlashcardDeck deck){
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        clicked = new JButton(model.getDeckName());
+        clicked = new JButton(deck.getDeckName());
         clicked.setBackground(Color.cyan);
         c.gridx = 0;
         c.gridy = 0;

@@ -1,5 +1,7 @@
 package Controller.Flashcard;
 
+import Controller.Observer;
+import Controller.Updater;
 import Model.FlashcardDeck;
 import Model.FlashcardFeature;
 
@@ -8,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DeckCollectionController extends JPanel {
+public class DeckCollectionController extends JPanel implements Observer {
 
 
 
@@ -31,41 +33,36 @@ public class DeckCollectionController extends JPanel {
         groundPanel.add(grid);
         grid.add(addButton);
 
-        //grid.add(fill);
 
 
         //TODO På något sätt merga deckformat och deckbuttoncontroller till en fil "DeckController"
         //Deckformat deckformat = new Deckformat(model.getNewestDeck());
+        JButton backwardsButton = new JButton("<-------");
+        backwardsButton.addActionListener(new ActionListener() {
 
+            public void actionPerformed(ActionEvent e) {
+
+                removeAll();
+                add(groundPanel);
+                updateUI();
+            }
+
+        });
+
+        DeckController deckController = new DeckController(backwardsButton);
 
         for (FlashcardDeck deck : model.GetListOfDecks()) {
-            JButton backwardsButton = new JButton("<-------");
-
-
-            backwardsButton.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-
-                    removeAll();
-                    add(groundPanel);
-                    updateUI();
-                }
-
-            });
 
             DeckButton deckButtonController = new DeckButton(deck);
-            DeckController deckController = new DeckController(deck, backwardsButton);
 
-            //grid.add(fill);
             grid.add(deckButtonController);
 
             deckButtonController.getClicked().addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-
                     removeAll();
-
                     add(deckController);
+                    deckController.setDeck(deck);
                     updateUI();
                 }
 
@@ -81,7 +78,6 @@ public class DeckCollectionController extends JPanel {
                         grid.remove(deckButtonController);
                         remove(deckButtonController);
                         grid.updateUI();
-
                         updateUI();
                     }
                 }
@@ -108,7 +104,6 @@ public class DeckCollectionController extends JPanel {
                     if (!name.isEmpty()){
                         model.addNewDeck(name);
                         DeckButton deckButtonController = new DeckButton(model.getNewestDeck());
-                        DeckController deckController = new DeckController(model.getNewestDeck(), backwardsButton);
                         grid.add(deckButtonController);
                         grid.updateUI();
                         deckButtonController.getClicked().addActionListener(new ActionListener() {
@@ -151,6 +146,11 @@ public class DeckCollectionController extends JPanel {
 
             }
         });
+    }
+
+    @Override
+    public void update() {
+
     }
 
 
