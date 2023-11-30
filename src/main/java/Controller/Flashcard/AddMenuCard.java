@@ -24,7 +24,7 @@ public class AddMenuCard extends JComponent {
 
         JButton deleteButton = new JButton("delete");
         deleteButton.setBackground(Color.RED);
-        c.gridx = 2;
+        c.gridy = 2;
         c.fill = GridBagConstraints.BOTH;
         add(deleteButton,c);
         deleteButton.addActionListener(new ActionListener() {

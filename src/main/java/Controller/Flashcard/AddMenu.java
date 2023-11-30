@@ -15,10 +15,13 @@ public class AddMenu extends JPanel {
         c.gridy = 2;
         c.gridwidth = 5;
         c.gridheight = 5;
+        c.fill = GridBagConstraints.BOTH;
         add(grid, c);
         JButton addButton = new JButton("Add Card");
         c.gridy = 0;
         c.gridx = 0;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.5;
         c.gridheight = 2;
         c.gridwidth = 3;
         add(addButton,c);
@@ -45,6 +48,8 @@ public class AddMenu extends JPanel {
         c.gridx = 3;
         c.gridheight = 2;
         c.gridwidth = 2;
+        c.weightx = 0.3;
+        c.fill = GridBagConstraints.HORIZONTAL;
         add(backButton,c);
         backButton.addActionListener(new ActionListener() {
 

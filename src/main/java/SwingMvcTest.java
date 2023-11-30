@@ -10,6 +10,7 @@ public class SwingMvcTest {
 
     private static void createAndShowUI() {
 
+        //TIMER_____________________
         Timer timer1 = new Timer(20);
 
         ArrayList<Timer> timersList = new ArrayList<>();
@@ -17,22 +18,8 @@ public class SwingMvcTest {
 
         TimerFeature timerFeature = new TimerFeature(timersList);
 
-
-        //Flashcard flashcard1 = new Flashcard("Swag2", "Gamer2");
-        //Flashcard flashcard2 = new Flashcard("Swag", "Gamer");
-
-        //FlashcardDeck deck = new FlashcardDeck("TestDeck");
-        //FlashcardDeck deck2 = new FlashcardDeck("Testdeck2");
-
+        //FLASHCARDS_____________________
         ArrayList<FlashcardDeck> deckList = new ArrayList<>();
-        //deckList.add(deck);
-        //deckList.add(deck2);
-
-        /*deck.addFlashcard(flashcard1);
-        deck.addFlashcard(flashcard2);
-
-        deck2.addFlashcard(flashcard1);
-        deck2.addFlashcard(flashcard2);*/
 
         FlashcardFeature flashcardFeature = new FlashcardFeature(deckList);
 
@@ -51,6 +38,8 @@ public class SwingMvcTest {
         view.setGuiControl(control);
         MvcMenu menu = new MvcMenu(control);
 
+        Updater updater = new Updater();
+        updater.addObserver(control);
 
         JFrame frame = new JFrame("Plugg");
         frame.setSize(800,600);
@@ -58,7 +47,6 @@ public class SwingMvcTest {
 
         frame.setJMenuBar(menu.getMenuBar());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

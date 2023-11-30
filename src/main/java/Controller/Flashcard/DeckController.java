@@ -20,7 +20,7 @@ public class DeckController extends JPanel{
         GridBagConstraints c = new GridBagConstraints();
         this.panelForFlashcard = new JPanel(new GridLayout(1, 0, 10 ,10));
 
-        JLabel currentCard = new JLabel((deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+        JLabel currentCard = new JLabel("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
         c.gridx = 0;
         c.gridy = 4;
         c.insets = new Insets(0, 0, 0, 0);
@@ -29,7 +29,7 @@ public class DeckController extends JPanel{
         c.ipady = 20;
         add(currentCard, c);
 
-        JButton next = new JButton("Next");
+        JButton next = new NextButton("Next");
         next.setBackground(Color.CYAN);
         c.gridx = 2;
         c.gridy = 2;
@@ -39,7 +39,6 @@ public class DeckController extends JPanel{
         add(next, c);
         next.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 deck.nextClicked();
                 panelForFlashcard.removeAll();
                 try {
@@ -48,7 +47,7 @@ public class DeckController extends JPanel{
                     panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
                 }
                 panelForFlashcard.updateUI();
-                currentCard.setText((deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+                currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
                 updateUI();
             }
         });
@@ -71,7 +70,7 @@ public class DeckController extends JPanel{
                     panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
                 }
                 panelForFlashcard.updateUI();
-                currentCard.setText((deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+                currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
                 updateUI();
             }
         });
@@ -127,19 +126,17 @@ public class DeckController extends JPanel{
         panelForFlashcard.add(flashcard);
         add(panelForFlashcard,c);
 
-        JButton addNewCard = new JButton("Add Card");
-        addNewCard.setBackground(Color.BLUE);
-        addNewCard.setForeground(Color.WHITE);
+        JButton addCards = new JButton("Add Cards");
+        addCards.setBackground(Color.BLUE);
+        addCards.setForeground(Color.WHITE);
         c.gridx = 1;
         c.gridy = 1;
         c.fill = GridBagConstraints.NONE;
         c.insets = new Insets(0, 0, 0, 0);
         c.ipadx = 50;
         c.ipady = 20;
-        add(addNewCard,c);
-
-
-        addNewCard.addActionListener(new ActionListener() {
+        add(addCards,c);
+        addCards.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 AddMenu adder = new AddMenu(deck, DeckController.this);
@@ -200,7 +197,7 @@ public class DeckController extends JPanel{
                     panelForFlashcard.removeAll();
                     panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
                     panelForFlashcard.updateUI();
-                    currentCard.setText((deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+                    currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
                     updateUI();
                 }
             }

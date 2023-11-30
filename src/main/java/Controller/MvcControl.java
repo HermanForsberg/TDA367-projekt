@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import Controller.Flashcard.DeckCollectionController;
 import Model.*;
 import javax.swing.*;
-public class MvcControl extends JPanel{
+public class MvcControl extends JPanel implements Observer{
     private MvcModel model;
 
     private DeckCollectionController flashcardFeatureController;
@@ -34,11 +34,6 @@ public class MvcControl extends JPanel{
     }
 
 
-    public void startButtonActionPerformed(ActionEvent ae) {
-
-        model.setState(State.FLASHCARDS);
-    }
-
     public void flashcardMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
@@ -61,4 +56,8 @@ public class MvcControl extends JPanel{
     }
 
 
+    @Override
+    public void update() {
+
+    }
 }
