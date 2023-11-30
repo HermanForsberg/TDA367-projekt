@@ -1,7 +1,6 @@
 import javax.swing.*;
 import Model.*;
 import Controller.*;
-import Model.Timer;
 import View.*;
 
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public class SwingMvcTest {
 
         //TODO Lösa observer på bra sätt
 
-        watch.addObserver(control.getTimer());
+        watch.addObserver(control.getClockController());
 
         watch.start();
 

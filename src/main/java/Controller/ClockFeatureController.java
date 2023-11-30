@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Clock;
 import Model.ClockFeature;
-import Model.ManualTimer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,114 +9,126 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ClockFeatureController extends JPanel implements Observer{
-    private JPanel groundPanel = new JPanel();
-    private JPanel grid = new JPanel(new GridLayout(4, 0, 20, 20));
-    private JPanel gridForTime = new JPanel(new GridLayout(0, 3, 20, 20));
-    private JPanel gridForActions = new JPanel(new GridLayout(0, 2, 20, 20));
-    private JButton swapButton = new JButton("Swap clock");
-    private JButton startOrPauseButton = new JButton("Start");
-    private JButton resetButton = new JButton("Reset");
-    private JButton addTimeButton = new JButton("+5");
-    private JButton subtractTimeButton = new JButton("-5");
-    private JLabel timeLabel = new JLabel("00:00", SwingConstants.CENTER);
-    private ImageIcon manualTimerImage = new ImageIcon("src/main/img/hourglass_64.png");
-    private ImageIcon stopwatchImage = new ImageIcon("src/main/img/stopwatch_64.png");
-    private ImageIcon pomodoroImage = new ImageIcon("src/main/img/tomato_64.png");
-    private JLabel imageLabel = new JLabel(manualTimerImage);
-    private ArrayList<Clock> currentClock = new ArrayList<Clock>();
+public class ClockFeatureController extends JPanel{
+    private ArrayList<Clock> clocks;
+    private Clock clock;
+    private JPanel sideBar = new JPanel();
+    private JPanel mainPanel = new JPanel();
+
+    //Buttons, Images etc.
+    private ImageIcon manualTimerImageSmall = new ImageIcon("src/main/img/hourglass_32.png");
+    private ImageIcon stopwatchImageSmall = new ImageIcon("src/main/img/stopwatch_32.png");
+    private ImageIcon pomodoroImageSmall = new ImageIcon("src/main/img/tomato_32.png");
+    private ImageIcon manualTimerImageBig = new ImageIcon("src/main/img/hourglass_128.png");
+    private ImageIcon stopwatchImageBig = new ImageIcon("src/main/img/stopwatch_128.png");
+    private ImageIcon pomodoroImageBig = new ImageIcon("src/main/img/tomato_128.png");
+    private JButton manualTimerButton = new JButton("Timer", manualTimerImageSmall);
+    private JButton stopwatchButton = new JButton("Stopwatch", stopwatchImageSmall);
+    private JButton pomodoroButton = new JButton("Pomodoro", pomodoroImageSmall);
+    private JLabel imageLabel = new JLabel(manualTimerImageBig);
+    private ClockController clockController;
 
     public ClockFeatureController(ClockFeature clockFeature){
-        this.currentClock = clockFeature.getClocks();
-       /* groundPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        groundPanel.setLayout(new BorderLayout(10,10));
-
-        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        setLayout(new BorderLayout(10,10));
-
-
-        add(groundPanel);
-        groundPanel.add(grid);
-        fill.add(startButton);
-        grid.add(fill);*/
+        clocks = clockFeature.getClocks();
+        clock = clocks.get(clockFeature.getClockIndex());
 
         //Sets the grid.
-        add(groundPanel);
-        groundPanel.add(grid);
-        grid.add(gridForTime);
-        grid.add(imageLabel);
-        grid.add(swapButton);
-        grid.add(gridForActions);
-
-        gridForTime.add(subtractTimeButton);
-        gridForTime.add(timeLabel);
-        gridForTime.add(addTimeButton);
-
-        gridForActions.add(startOrPauseButton);
-        gridForActions.add(resetButton);
-
-
-        startOrPauseButton.addActionListener(new ActionListener() {
+        createGrid();
+         manualTimerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Clock cl = currentClock.get(clockFeature.getClockIndex());
-                if (cl.isRunning()){
-                    cl.pauseClock();
-                    startOrPauseButton.setText("Start");
-                    timeLabel.setText(cl.getMinutes() + ":" + cl.getSeconds());
-                }
-                else {
-                    cl.startClock();
-                    startOrPauseButton.setText("Pause");
-                    timeLabel.setText(cl.getMinutes() + ":" + cl.getSeconds());
-                }
+                clockFeature.setClockIndex(0);
+                swapClock(clockFeature);
             }
         });
-        resetButton.addActionListener(new ActionListener() {
+        stopwatchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                resetClock(clockFeature);
+                clockFeature.setClockIndex(1);
+                swapClock(clockFeature);
             }
         });
-        swapButton.addActionListener(new ActionListener() {
+        pomodoroButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                resetClock(clockFeature);
-
-                clockFeature.swapClock();
-                System.out.println(clockFeature.getClockIndex());
-                switch (clockFeature.getClockIndex()) {
-                    case 0:
-                        imageLabel.setIcon(manualTimerImage);
-                        addTimeButton.setVisible(true);
-                        subtractTimeButton.setVisible(true);
-                        break;
-                    case 1:
-                        imageLabel.setIcon(stopwatchImage);
-                        addTimeButton.setVisible(false);
-                        subtractTimeButton.setVisible(false);
-                        break;
-                    case 2:
-                        imageLabel.setIcon(pomodoroImage);
-                        break;
-                }
+                clockFeature.setClockIndex(2);
+                swapClock(clockFeature);
             }
         });
-
-        /*addTimeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Clock cl = currentClock.get(clockFeature.getClockIndex());
-                c
-            }
-        });*/
     }
 
-    public void update(){
-        Clock cl = currentClock.get(0);
+    private void swapClock(ClockFeature clockFeature){
+        clock.resetClock();
+        clock = clocks.get(clockFeature.getClockIndex());
 
-        timeLabel.setText(cl.getMinutes() + ":" + cl.getSeconds());
+        //Resets everything
+        removeAll();
+        revalidate();
+        mainPanel.removeAll();
+        mainPanel.revalidate();
+        sideBar.removeAll();
+        sideBar.revalidate();
+        repaint();
+        createGrid();
+
+        //Updates image to show the current clock
+        switch (clockFeature.getClockIndex()) {
+            case 0 -> imageLabel.setIcon(manualTimerImageBig);
+            case 1 -> imageLabel.setIcon(stopwatchImageBig);
+            case 2 -> imageLabel.setIcon(pomodoroImageBig);
+        }
     }
-    private void resetClock(ClockFeature clockFeature){
-        Clock cl = currentClock.get(clockFeature.getClockIndex());
-        cl.resetClock();
-        startOrPauseButton.setText("Start");
-        timeLabel.setText(cl.getMinutes() + ":" + cl.getSeconds()); //Temp
+
+    private void createGrid(){
+        //TODO Ska vara i View? + Göra om koden
+        //setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        //setLayout(new BorderLayout(10,10));
+        final int gap = 20;
+
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        //gbc.insets = new Insets(5,5,5,5);
+
+        setBackground(Color.WHITE);
+        mainPanel.setBackground(Color.WHITE);
+        sideBar.setBackground(Color.WHITE);
+
+        clockController = new ClockController(clock, imageLabel);
+        mainPanel.add(clockController);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(mainPanel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(sideBar, gbc);
+
+        sideBar.setLayout(new GridBagLayout());
+        GridBagConstraints gbcSideBar = new GridBagConstraints();
+        gbcSideBar.insets = new Insets(gap, gap, gap, gap);
+
+        gbcSideBar.gridx = 0;
+        gbcSideBar.gridy = 0;
+        gbcSideBar.weightx = 1;
+        gbcSideBar.fill = GridBagConstraints.HORIZONTAL;
+        sideBar.add(manualTimerButton, gbcSideBar);
+
+        gbcSideBar.gridx = 0;
+        gbcSideBar.gridy = 1;
+        sideBar.add(stopwatchButton, gbcSideBar);
+
+        gbcSideBar.gridx = 0;
+        gbcSideBar.gridy = 2;
+        sideBar.add(pomodoroButton, gbcSideBar);
     }
+
+    public ClockController getClockController() {
+        return clockController;
+    }
+
 }

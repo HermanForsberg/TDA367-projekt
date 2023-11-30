@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class ClockFeature extends JPanel{
 
     private ArrayList<Clock> clockList  = new ArrayList<Clock>();
+
     private int clockIndex;
 
 
@@ -17,10 +18,11 @@ public class ClockFeature extends JPanel{
     public ArrayList<Clock> getClocks(){
         return clockList;
     }
-    public void swapClock(){
-        clockIndex = (clockIndex+1)%3;
-    }
+
     public int getClockIndex(){
         return clockIndex;
+    }
+    public void setClockIndex(int clockIndex) {
+        this.clockIndex = clockIndex;
     }
 }

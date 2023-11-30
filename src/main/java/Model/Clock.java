@@ -43,6 +43,7 @@ public abstract class Clock implements Observer {
         timer.cancel();
     }
     protected void setMinutes(int minutes) {
+
         this.minutes = minutes;
     }
 
