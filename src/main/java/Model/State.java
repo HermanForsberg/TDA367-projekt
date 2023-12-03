@@ -1,7 +1,7 @@
 package Model;
 
 public enum State {
-    NO_STATE("No State"), FLASHCARDS("Flashcard"), TIMER("Timer");
+    NO_STATE("No State"), FLASHCARDS("Flashcard"), TIMER("Timer"), PROFILESWITCH("ProfileSwitch");
     private String text;
 
     private State(String text) {

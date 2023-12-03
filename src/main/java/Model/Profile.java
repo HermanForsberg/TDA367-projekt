@@ -1,7 +1,10 @@
 package Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Profile {
 
@@ -9,22 +12,27 @@ public class Profile {
 
     private ArrayList<FlashcardDeck> decks;
 
+    private State state = State.NO_STATE;
+
+    public static final String STATE_PROP_NAME = "State";
+
     private float exp;
 
     private FlashcardFeature flashcardFeature;
     private TimerFeature timerFeature;
 
-    private final String DIRECTORY = ".plugg";
-    private final String FILE_NAME = "plugg.txt";
-    private final String SPLIT = ";";
+    private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
+
     private String path = "";
 
     private StatisticModel statisticModel;
 
+    private FlashcardDeck newestDeck;
 
-    public Profile(){
 
-        this.name = "temp";
+    public Profile(String name){
+
+        this.name = name;
         this.decks = new ArrayList<FlashcardDeck>();
         this.init();
     }
@@ -41,16 +49,39 @@ public class Profile {
     }
 
 
+    public String getName(){
+        return name;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcSupport.addPropertyChangeListener(listener);
+
+        System.out.println(listener);
+    }
+
+    public void setState(State state) {
+        State oldState = this.state;
+        this.state = state;
+        // notify all listeners that the state property has changed
+
+        pcSupport.firePropertyChange(STATE_PROP_NAME, oldState, state);
+
+    }
+
 
 
     private void parseLine(String line) {
         String[] tokens = line.split(";");
-
-        FlashcardDeck c = new FlashcardDeck(tokens[0]);
-        for (int i = 1; i < tokens.length-1; i=i+2){
-            c.addFlashcard(new Flashcard(tokens[i],tokens[i+1]));
+        try {
+            FlashcardDeck c = new FlashcardDeck(tokens[0]);
+            for (int i = 1; i < tokens.length - 1; i = i + 2) {
+                c.addFlashcard(new Flashcard(tokens[i], tokens[i + 1]));
+            }
+            this.decks.add(c);
         }
-        this.decks.add(c);
+        catch(Exception e){
+
+        }
         /*catch(Exception var){
             System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
         }*/
@@ -74,8 +105,56 @@ public class Profile {
 
     }
 
+    public ArrayList<FlashcardDeck> GetListOfDecks(){
+        return decks;
+    }
+
+    public void deleteDeck(FlashcardDeck deck){
+        decks.remove(deck);
+    }
+
+    public FlashcardDeck getNewestDeck(){
+        return newestDeck;
+    }
+
+    public void addNewDeck(String name){
+        FlashcardDeck newDeck = new FlashcardDeck(name);
+        decks.add(newDeck);
+        newestDeck = newDeck;
+        //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
+    }
+
+    public void saveData() {
+        this.path = getPath();
+        this.decks = getListOfDecks();
+
+        System.out.println(getPath());
+        try {
+            FileOutputStream fos = new FileOutputStream(this.path);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
+            Iterator var3 = this.decks.iterator();
+
+            while(var3.hasNext()) {
+                FlashcardDeck c = (FlashcardDeck) var3.next();
+                String line = c.getDeckName() +";";
+                for (Flashcard card: c.getDeck()){
+                    line = line + card.getQuestion() + ";" + card.getSolution() + ";";
+                }
+                line = line + "\n";
+                //String line = c.getFirstName() + ";" + c.getLastName() + ";" + c.getPhone() + ";" + c.getEmail() + ";" + c.getAddress() + ";" + c.getPostCode() + ";" + c.getPostAddress() + ";" + "end\n";
+                osw.write(line);
+            }
+
+            osw.flush();
+            osw.close();
+        } catch (IOException var6) {
+            var6.printStackTrace();
+        }
+
+    }
+
     private void init() {
-        this.path = System.getProperty("user.home") + File.separatorChar + ".plugg";
+        this.path = System.getProperty("user.home") + File.separatorChar + "." + getName();
 
         File contactsData;
         try {

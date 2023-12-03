@@ -55,6 +55,20 @@ public class MvcMenu {
             }
         });
 
+        JButton profile = new JButton("Profile");
+
+        profile.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                if (control != null) {
+
+                    control.profileMenuActionPerformed(e); // e.g., here
+
+                }
+            }
+        });
+        menuBar.add(profile);
         menuBar.add(timers);
         menuBar.add(flashcards);
     }

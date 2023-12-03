@@ -20,16 +20,23 @@ public class SwingMvcTest {
         timersList.add(timer1);
         TimerFeature timerFeature = new TimerFeature(timersList);
 
-        //Flashcards
-        ArrayList<FlashcardDeck> deckList = new ArrayList<>();
-        FlashcardFeature flashcardFeature = new FlashcardFeature(deckList);
+
 
         //Profile
-        Profile currentProfile = new Profile();
+        ArrayList<Profile> profileList = new ArrayList<>();
+        Profile currentProfile = new Profile("Profile1");
+        Profile currentProfile2 = new Profile("Profile2");
+        profileList.add(currentProfile);
+        profileList.add(currentProfile2);
         currentProfile.setStatisticModel(statisticModel);
+
+        //Flashcards
+        FlashcardFeature flashcardFeature = new FlashcardFeature();
+
 
         //Main Model
         MvcModel model = MvcModel.getInstance();
+        model.setProfileList(profileList);
         model.setProfile(currentProfile);
         model.setFlashcardFeature(flashcardFeature);
         model.setTimerFeature(timerFeature);
@@ -69,7 +76,7 @@ public class SwingMvcTest {
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
-                MvcModel.getInstance().saveData();
+                MvcModel.getInstance().getCurrentProfile().saveData();
             }
         }));
     }

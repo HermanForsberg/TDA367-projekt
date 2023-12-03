@@ -9,14 +9,15 @@ public class FlashcardFeature{
 
     private FlashcardDeck newestDeck;
 
-    public FlashcardFeature(ArrayList<FlashcardDeck> deck){
-        ListOfDecks = deck;
+    private Profile currentProfile;
+
+    public FlashcardFeature(){
+
     }
 
-    public void init(ArrayList<FlashcardDeck> decks){
-        for(FlashcardDeck deck: decks){
-            ListOfDecks.add(deck);
-        }
+    public void init(Profile profile){
+        currentProfile = profile;
+
     }
 
     public void deleteDeck(FlashcardDeck deck){

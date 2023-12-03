@@ -2,11 +2,14 @@ package Controller;
 
 import Model.FlashcardDeck;
 import Model.FlashcardFeature;
+import Model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class FlashcardFeatureController extends JPanel {
 
@@ -18,7 +21,12 @@ public class FlashcardFeatureController extends JPanel {
 
     private JPanel groundPanel = new JPanel();
 
-    public FlashcardFeatureController(FlashcardFeature model) {
+    public FlashcardFeatureController(Profile model) {
+
+
+
+
+
 
         groundPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         groundPanel.setLayout(new BorderLayout(10,10));

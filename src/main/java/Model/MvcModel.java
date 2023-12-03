@@ -17,6 +17,12 @@ import java.util.ResourceBundle;
 
 public class MvcModel {
 
+    private Profile oldProfile;
+
+    private CurrentProfileState cProfState;
+    public static final String CSTATE_PROP_NAME = "CurrentProfileState";
+
+    private CurrentProfileState currentProfileState = CurrentProfileState.PROFILE1;
     private static MvcModel instance = null;
 
     private final String DIRECTORY = ".plugg";
@@ -29,12 +35,16 @@ public class MvcModel {
     private ArrayList<FlashcardDeck> decks = new ArrayList();
 
     public static final String STATE_PROP_NAME = "State";
+
+    private PropertyChangeSupport profileSupport = new PropertyChangeSupport(this);
     private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
     private State state = State.NO_STATE;
 
     private FlashcardFeature flashcardFeature;
 
     private TimerFeature timerFeature;
+
+    private ArrayList<Profile> listOfProfiles;
 
     public static MvcModel getInstance() {
         if (instance == null) {
@@ -49,9 +59,29 @@ public class MvcModel {
 
     }
 
+    public ArrayList<Profile> getProfiles(){
+        return listOfProfiles;
+    }
+
+    public void saveDataForCurrentProfile(){
+        currentProfile.saveData();
+    }
+
+    public void switchProfile(CurrentProfileState state, Profile profile){
+
+        currentProfile=profile;
+
+        CurrentProfileState oldState = this.currentProfileState;
+
+        this.currentProfileState = state;
+
+        profileSupport.firePropertyChange(CSTATE_PROP_NAME, oldState, state);
+
+    }
+
     public void setFlashcardFeature(FlashcardFeature flashcardFeature){
         this.flashcardFeature = flashcardFeature;
-        flashcardFeature.init(currentProfile.getListOfDecks());
+        flashcardFeature.init(currentProfile);
     }
 
     public void setTimerFeature(TimerFeature timerFeature){
@@ -67,6 +97,14 @@ public class MvcModel {
 
     public TimerFeature getTimerFeature(){
         return this.timerFeature;
+    }
+
+    public void setProfileList(ArrayList<Profile> list){
+        listOfProfiles = list;
+    }
+
+    public void setCurrentProfile(Profile newProfile){
+        currentProfile = newProfile;
     }
 
     public void setState(State state) {
@@ -94,36 +132,21 @@ public class MvcModel {
         System.out.println(listener);
     }
 
+    public void addProfilePropertyChangeListener(PropertyChangeListener listener) {
+        profileSupport.addPropertyChangeListener(listener);
+
+        System.out.println(listener);
+    }
+
 
 
 
     //Vet inte om detta skall ligga i MVCModel
     //saveData ska definitivt vara private
-    public void saveData() {
-        this.path = currentProfile.getPath();
-        this.decks = currentProfile.getListOfDecks();
-        try {
-            FileOutputStream fos = new FileOutputStream(this.path);
-            OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
-            Iterator var3 = this.decks.iterator();
 
-            while(var3.hasNext()) {
-                FlashcardDeck c = (FlashcardDeck) var3.next();
-                String line = c.getDeckName() +";";
-                for (Flashcard card: c.getDeck()){
-                    line = line + card.getQuestion() + ";" + card.getSolution() + ";";
-                }
-                line = line + "\n";
-                //String line = c.getFirstName() + ";" + c.getLastName() + ";" + c.getPhone() + ";" + c.getEmail() + ";" + c.getAddress() + ";" + c.getPostCode() + ";" + c.getPostAddress() + ";" + "end\n";
-                osw.write(line);
-            }
 
-            osw.flush();
-            osw.close();
-        } catch (IOException var6) {
-            var6.printStackTrace();
-        }
-
+    public Profile getCurrentProfile(){
+        return currentProfile;
     }
 
     /*private void parseLine(String line) {
