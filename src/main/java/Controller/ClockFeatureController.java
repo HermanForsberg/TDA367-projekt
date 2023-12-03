@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Clock;
 import Model.ClockFeature;
+import Model.ManualTimer;
+import Model.Stopwatch;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,29 +27,45 @@ public class ClockFeatureController extends JPanel{
     private JButton manualTimerButton = new JButton("Timer", manualTimerImageSmall);
     private JButton stopwatchButton = new JButton("Stopwatch", stopwatchImageSmall);
     private JButton pomodoroButton = new JButton("Pomodoro", pomodoroImageSmall);
-    private JLabel imageLabel = new JLabel(manualTimerImageBig);
-    private ClockController clockController;
+    private JLabel imageLabel;
+
+    private ArrayList<ClockController> clockControllers = new ArrayList<>();
 
     public ClockFeatureController(ClockFeature clockFeature){
         clocks = clockFeature.getClocks();
         clock = clocks.get(clockFeature.getClockIndex());
 
+        for (Clock c : clocks){
+            switch (c.getClass().getSimpleName()) {
+                case "ManualTimer" -> imageLabel = new JLabel(manualTimerImageBig);
+                case "Stopwatch" -> imageLabel = new JLabel(stopwatchImageBig);
+                case "Pomodoro" -> imageLabel = new JLabel(pomodoroImageBig);
+            }
+            clockControllers.add(new ClockController(c, imageLabel));
+        }
+
         //Sets the grid.
-        createGrid();
+        createGrid(clockFeature.getClockIndex());
          manualTimerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //Måste göra något åt denna rad v
+                clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
                 clockFeature.setClockIndex(0);
                 swapClock(clockFeature);
             }
         });
         stopwatchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //Måste göra något åt denna rad v
+                clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
                 clockFeature.setClockIndex(1);
                 swapClock(clockFeature);
             }
         });
         pomodoroButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //Måste göra något åt denna rad v
+                clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
                 clockFeature.setClockIndex(2);
                 swapClock(clockFeature);
             }
@@ -66,33 +84,22 @@ public class ClockFeatureController extends JPanel{
         sideBar.removeAll();
         sideBar.revalidate();
         repaint();
-        createGrid();
+        createGrid(clockFeature.getClockIndex());
 
-        //Updates image to show the current clock
-        switch (clockFeature.getClockIndex()) {
-            case 0 -> imageLabel.setIcon(manualTimerImageBig);
-            case 1 -> imageLabel.setIcon(stopwatchImageBig);
-            case 2 -> imageLabel.setIcon(pomodoroImageBig);
-        }
     }
 
-    private void createGrid(){
-        //TODO Ska vara i View? + Göra om koden
-        //setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        //setLayout(new BorderLayout(10,10));
+    private void createGrid(int index){
+        //Ska vara i View?
         final int gap = 20;
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        //gbc.insets = new Insets(5,5,5,5);
-
         setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
         sideBar.setBackground(Color.WHITE);
 
-        clockController = new ClockController(clock, imageLabel);
-        mainPanel.add(clockController);
+        mainPanel.add(clockControllers.get(index));
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -127,8 +134,8 @@ public class ClockFeatureController extends JPanel{
         sideBar.add(pomodoroButton, gbcSideBar);
     }
 
-    public ClockController getClockController() {
-        return clockController;
+    public ArrayList<ClockController> getClockControllers() {
+        return clockControllers;
     }
 
 }

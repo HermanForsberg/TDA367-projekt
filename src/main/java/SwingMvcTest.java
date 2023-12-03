@@ -52,7 +52,9 @@ public class SwingMvcTest {
 
         //TODO Lösa observer på bra sätt
 
-        watch.addObserver(control.getClockController());
+        for (ClockController clockController : control.getClockControllers()) {
+            watch.addObserver(clockController);
+        }
 
         watch.start();
 

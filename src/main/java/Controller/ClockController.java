@@ -2,17 +2,16 @@ package Controller;
 
 import Model.Clock;
 import Model.ManualTimer;
-import Model.Pomodoro;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class ClockController extends JPanel implements Observer{
     private JLabel timeLabel = new JLabel("00:00", SwingConstants.CENTER);
     private Clock clock;
+    private JButton startOrPauseButton = new JButton("Start");
     public ClockController(Clock clock, JLabel imageLabel){
         this.clock = clock;
         final int gap = 10;
@@ -21,7 +20,6 @@ public class ClockController extends JPanel implements Observer{
         timeLabel.setFont(new Font("Calibri", Font.BOLD, 24));
 
         //All the buttons
-        JButton startOrPauseButton = new JButton("Start");
         JButton resetButton = new JButton("Reset");
         JButton addTimeButton = new JButton("+5");
         JButton subtractTimeButton = new JButton("-5");
@@ -83,12 +81,10 @@ public class ClockController extends JPanel implements Observer{
                 if (clock.isRunning()){
                     clock.pauseClock();
                     startOrPauseButton.setText("Start");
-                    timeLabel.setText(clock.getMinutes() + ":" + clock.getSeconds());
                 }
                 else {
                     clock.startClock();
                     startOrPauseButton.setText("Pause");
-                    timeLabel.setText(clock.getMinutes() + ":" + clock.getSeconds());
                 }
             }
         });
@@ -96,6 +92,7 @@ public class ClockController extends JPanel implements Observer{
             public void actionPerformed(ActionEvent e) {
                 clock.resetClock();
                 startOrPauseButton.setText("Start");
+                formatTimeLabel();
             }
         });
         addTimeButton.addActionListener(new ActionListener() {
@@ -115,6 +112,28 @@ public class ClockController extends JPanel implements Observer{
     }
 
     public void update(){
-        timeLabel.setText(clock.getMinutes() + ":" + clock.getSeconds());
+        formatTimeLabel();
+    }
+
+    private void formatTimeLabel(){
+        String text = "";
+        if (clock.getMinutes() < 10){
+            text = ("0" + clock.getMinutes() + ":");
+        }
+        else {
+            text += (clock.getMinutes() + ":");
+        }
+
+        if (clock.getSeconds() < 10){
+            text += ("0" + clock.getSeconds());
+        }
+        else {
+            text += clock.getSeconds();
+        }
+
+        timeLabel.setText(text);
+    }
+    public JButton getStartOrPauseButton() {
+        return startOrPauseButton;
     }
 }

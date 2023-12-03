@@ -2,6 +2,8 @@ package Controller;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
 import Model.*;
 import javax.swing.*;
 public class MvcControl extends JPanel{
@@ -56,8 +58,8 @@ public class MvcControl extends JPanel{
 
     }
 
-    public ClockController getClockController(){
-        return clockFeatureController.getClockController();
+    public ArrayList<ClockController> getClockControllers(){
+        return clockFeatureController.getClockControllers();
     }
 
 
