@@ -51,7 +51,11 @@ public class MvcModel {
 
     public void setFlashcardFeature(FlashcardFeature flashcardFeature){
         this.flashcardFeature = flashcardFeature;
-        flashcardFeature.init(currentProfile.getListOfDecks());
+
+    }
+
+    public Profile getCurrentProfile(){
+        return currentProfile;
     }
 
     public void setTimerFeature(TimerFeature timerFeature){
@@ -100,29 +104,7 @@ public class MvcModel {
     //Vet inte om detta skall ligga i MVCModel
     //saveData ska definitivt vara private
     public void saveData() {
-        this.path = currentProfile.getPath();
-        this.decks = currentProfile.getListOfDecks();
-        try {
-            FileOutputStream fos = new FileOutputStream(this.path);
-            OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
-            Iterator var3 = this.decks.iterator();
-
-            while(var3.hasNext()) {
-                FlashcardDeck c = (FlashcardDeck) var3.next();
-                String line = c.getDeckName() +";";
-                for (Flashcard card: c.getDeck()){
-                    line = line + card.getQuestion() + ";" + card.getSolution() + ";";
-                }
-                line = line + "\n";
-                //String line = c.getFirstName() + ";" + c.getLastName() + ";" + c.getPhone() + ";" + c.getEmail() + ";" + c.getAddress() + ";" + c.getPostCode() + ";" + c.getPostAddress() + ";" + "end\n";
-                osw.write(line);
-            }
-
-            osw.flush();
-            osw.close();
-        } catch (IOException var6) {
-            var6.printStackTrace();
-        }
+        currentProfile.saveData();
 
     }
 

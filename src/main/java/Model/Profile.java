@@ -2,6 +2,7 @@ package Model;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Profile {
 
@@ -21,6 +22,8 @@ public class Profile {
 
     private StatisticModel statisticModel;
 
+    private FlashcardDeck newestDeck;
+
 
     public Profile(){
 
@@ -29,12 +32,36 @@ public class Profile {
         this.init();
     }
 
+    public FlashcardDeck getNewestDeck(){
+        return newestDeck;
+    }
+
+    public ArrayList<FlashcardDeck> GetListOfDecks(){
+        return decks;
+    }
+
+    public void removeDeck(FlashcardDeck deck){
+        this.decks.remove(deck);
+    }
+
+    public void addNewDeck(String name){
+        FlashcardDeck newDeck = new FlashcardDeck(name);
+
+        decks.add(newDeck);
+        newestDeck = newDeck;
+        //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
+    }
+
     public void setStatisticModel(StatisticModel statisticModel) {
         this.statisticModel = statisticModel;
     }
 
     public String getPath(){
         return this.path;
+    }
+
+    public String getName(){
+        return name;
     }
     public ArrayList<FlashcardDeck> getListOfDecks(){
        return decks;
@@ -58,6 +85,34 @@ public class Profile {
         //System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
     }
 
+    public void saveData() {
+
+        System.out.println(this.path);
+
+        try {
+            FileOutputStream fos = new FileOutputStream(this.path);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
+            Iterator var3 = this.decks.iterator();
+
+            while(var3.hasNext()) {
+                FlashcardDeck c = (FlashcardDeck) var3.next();
+                String line = c.getDeckName() +";";
+                for (Flashcard card: c.getDeck()){
+                    line = line + card.getQuestion() + ";" + card.getSolution() + ";";
+                }
+                line = line + "\n";
+                //String line = c.getFirstName() + ";" + c.getLastName() + ";" + c.getPhone() + ";" + c.getEmail() + ";" + c.getAddress() + ";" + c.getPostCode() + ";" + c.getPostAddress() + ";" + "end\n";
+                osw.write(line);
+            }
+
+            osw.flush();
+            osw.close();
+        } catch (IOException var6) {
+            var6.printStackTrace();
+        }
+
+    }
+
     private void loadData() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(this.path), "ISO-8859-1"));
@@ -75,7 +130,7 @@ public class Profile {
     }
 
     private void init() {
-        this.path = System.getProperty("user.home") + File.separatorChar + ".plugg";
+        this.path = System.getProperty("user.home") + File.separatorChar + "." + getName();
 
         File contactsData;
         try {

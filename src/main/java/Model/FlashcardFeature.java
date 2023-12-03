@@ -7,17 +7,13 @@ public class FlashcardFeature{
 
     private ArrayList<FlashcardDeck> ListOfDecks = new ArrayList<FlashcardDeck>();
 
-    private FlashcardDeck newestDeck;
+    private Profile currentProfile;
 
-    public FlashcardFeature(ArrayList<FlashcardDeck> deck){
-        ListOfDecks = deck;
+    public FlashcardFeature(Profile currentProfile){
+        this.currentProfile = currentProfile;
     }
 
-    public void init(ArrayList<FlashcardDeck> decks){
-        for(FlashcardDeck deck: decks){
-            ListOfDecks.add(deck);
-        }
-    }
+
 
     public void deleteDeck(FlashcardDeck deck){
         ListOfDecks.remove(deck);
@@ -27,7 +23,7 @@ public class FlashcardFeature{
         FlashcardDeck newDeck = new FlashcardDeck(name);
 
         ListOfDecks.add(newDeck);
-        newestDeck = newDeck;
+
         //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
     }
 
@@ -36,6 +32,6 @@ public class FlashcardFeature{
     }
 
     public FlashcardDeck getNewestDeck(){
-        return newestDeck;
+        return currentProfile.getNewestDeck();
     }
 }

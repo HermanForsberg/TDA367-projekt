@@ -22,7 +22,7 @@ public class MvcControl extends JPanel{
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         setSize(300,300);
 
-        this.flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
+        this.flashcardFeatureController = new FlashcardFeatureController(model.getCurrentProfile());
         this.timerFeatureController = new TimerFeatureController(model.getTimerFeature());
 
         add(flashcardFeatureController);
@@ -34,6 +34,8 @@ public class MvcControl extends JPanel{
 
         model.setState(State.FLASHCARDS);
     }
+
+
 
     public void flashcardMenuActionPerformed(ActionEvent ae) {
 

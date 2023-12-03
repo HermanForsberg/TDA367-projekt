@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 
 public class Deckformat extends JPanel{
@@ -16,6 +18,9 @@ public class Deckformat extends JPanel{
 
     public Deckformat(FlashcardDeck deck, JButton backwardsButton) throws HeadlessException {
         //Set up the content pane.
+        //Kanske att det enda som ska ligga här är flashcardbuttonen but idk
+
+
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         this.panelForFlashcard = new JPanel(new GridLayout(1, 0, 10 ,10));
@@ -37,6 +42,23 @@ public class Deckformat extends JPanel{
         c.ipadx = 50;
         c.ipady = 20;
         add(next, c);
+
+        deck.addPropertyChangeListener(new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent evt) {
+                System.out.println(evt.getNewValue().toString());
+                panelForFlashcard.removeAll();
+                try {
+                    panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+                }catch(Exception e2){
+                    panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
+                }
+                panelForFlashcard.updateUI();
+                currentCard.setText((deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+                updateUI();
+
+            }
+        });
+
         next.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 

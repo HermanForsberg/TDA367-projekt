@@ -2,6 +2,7 @@ package Controller;
 
 import Model.FlashcardDeck;
 import Model.FlashcardFeature;
+import Model.Profile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class FlashcardFeatureController extends JPanel {
 
     private JPanel groundPanel = new JPanel();
 
-    public FlashcardFeatureController(FlashcardFeature model) {
+    public FlashcardFeatureController(Profile model) {
 
         groundPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         groundPanel.setLayout(new BorderLayout(10,10));
@@ -75,7 +76,7 @@ public class FlashcardFeatureController extends JPanel {
                     int ans = JOptionPane.showConfirmDialog(null,
                             "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
                     if(ans == 0){
-                        model.deleteDeck(deck);
+                        model.removeDeck(deck);
                         grid.remove(deckButtonController);
                         remove(deckButtonController);
                         grid.updateUI();
