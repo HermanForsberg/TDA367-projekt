@@ -9,6 +9,19 @@ public class FlashcardDeck {
     private String deckName;
     private int size;
 
+    private int oldCurrentIndex;
+
+    //Man får skapa observer i flashcardDeck
+
+    //Lägg till timer i flashcard skärmen
+
+
+
+
+    public static final String STATE_PROP_NAME = "State";
+    private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
+    private State state = State.NO_STATE;
+
 
     private int currentIndex;
 
@@ -46,12 +59,29 @@ public class FlashcardDeck {
     }
 
     public void nextClicked(){
+
         try {
             currentIndex = (currentIndex + 1) % (deck.size());
         }catch(Exception e){
             currentIndex = 0;
         }
         System.out.println(currentIndex);
+        pcSupport.firePropertyChange(STATE_PROP_NAME, oldCurrentIndex,currentIndex);
+    }
+
+    public void setState(State state) {
+        State oldState = this.state;
+        this.state = state;
+        // notify all listeners that the state property has changed
+
+
+
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcSupport.addPropertyChangeListener(listener);
+
+        System.out.println(listener);
     }
 
     public int getCurrentIndex(){

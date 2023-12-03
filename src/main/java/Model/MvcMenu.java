@@ -10,7 +10,7 @@ public class MvcMenu {
     private JMenuBar menuBar = new JMenuBar();
     private MvcControl control;
 
-    @SuppressWarnings("serial")
+    //Ska inte ligga i model alls.
     public MvcMenu(MvcControl cntrl) {
         this.control = cntrl;
         JButton flashcards = new JButton("Flashcards");

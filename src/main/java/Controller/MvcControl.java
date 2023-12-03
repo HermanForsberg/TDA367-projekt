@@ -57,6 +57,8 @@ public class MvcControl extends JPanel{
         model.setState(State.FLASHCARDS);
     }
 
+
+
     public void flashcardMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
