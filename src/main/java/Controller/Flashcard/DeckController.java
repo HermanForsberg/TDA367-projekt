@@ -35,28 +35,7 @@ public class DeckController extends JPanel{
         c.ipady = 20;
         add(currentCard, c);
 
-        JButton next = new JButton("Next");
-        next.setBackground(Color.CYAN);
-        c.gridx = 2;
-        c.gridy = 2;
-        c.insets = new Insets(0, 0, 0, 100);
-        c.ipadx = 50;
-        c.ipady = 20;
-        add(next, c);
-        next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                deck.nextClicked();
-                panelForFlashcard.removeAll();
-                try {
-                    panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
-                }catch(Exception e2){
-                    panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
-                }
-                panelForFlashcard.updateUI();
-                currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
-                updateUI();
-            }
-        });
+        createNextButton();
 
         JButton prev = new JButton("Previous");
         prev.setBackground(Color.CYAN);
@@ -212,4 +191,29 @@ public class DeckController extends JPanel{
 
     }
 
+    public void createNextButton(){
+        JButton next = new JButton("Next");
+        next.setBackground(Color.CYAN);
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 2;
+        c.gridy = 2;
+        c.insets = new Insets(0, 0, 0, 100);
+        c.ipadx = 50;
+        c.ipady = 20;
+        add(next, c);
+        next.addActionListener(this::nextActionPerformed);
+    }
+
+    public void nextActionPerformed(ActionEvent e) {
+        deck.nextClicked();
+        panelForFlashcard.removeAll();
+        try {
+            panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+        }catch(Exception e2){
+            panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
+        }
+        panelForFlashcard.updateUI();
+        //currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+        updateUI();
+    }
 }
