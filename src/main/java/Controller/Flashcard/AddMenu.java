@@ -75,15 +75,4 @@ public class AddMenu extends JPanel {
 
     }
 
-    /*
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setSize(new Dimension(600, 600));
-        FlashcardDeck deck = new FlashcardDeck("deck");
-        frame.add(new AddingCardsController(deck,));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }*/
 }
