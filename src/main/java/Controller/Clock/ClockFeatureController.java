@@ -1,9 +1,7 @@
-package Controller;
+package Controller.Clock;
 
-import Model.Clock;
-import Model.ClockFeature;
-import Model.ManualTimer;
-import Model.Stopwatch;
+import Model.Clock.Clock;
+import Model.Clock.ClockFeature;
 
 import javax.swing.*;
 import java.awt.*;

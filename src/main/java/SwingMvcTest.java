@@ -1,6 +1,9 @@
 import javax.swing.*;
+
+import Controller.Clock.ClockController;
 import Model.*;
 import Controller.*;
+import Model.Clock.*;
 import View.*;
 
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 public class SwingMvcTest {
 
     private static void createAndShowUI() {
-        //Clock
+        //Controller.Clock
         Clock manualTimer = new ManualTimer();
         Clock stopwatch = new Stopwatch();
         Clock pomodoro = new Pomodoro();

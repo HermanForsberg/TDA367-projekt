@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+import Controller.Clock.ClockController;
+import Controller.Clock.ClockFeatureController;
 import Controller.Flashcard.*;
 import Model.*;
 import javax.swing.*;

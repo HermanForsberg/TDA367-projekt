@@ -1,4 +1,4 @@
-package Model;
+package Model.Clock;
 
 import javax.swing.*;
 import java.util.ArrayList;

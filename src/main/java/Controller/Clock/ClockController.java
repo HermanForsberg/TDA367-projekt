@@ -1,14 +1,15 @@
-package Controller;
+package Controller.Clock;
 
-import Model.Clock;
-import Model.ManualTimer;
+import Controller.Observer;
+import Model.Clock.Clock;
+import Model.Clock.ManualTimer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ClockController extends JPanel implements Observer{
+public class ClockController extends JPanel implements Observer {
     private JLabel timeLabel = new JLabel("00:00", SwingConstants.CENTER);
     private Clock clock;
     private JButton startOrPauseButton = new JButton("Start");
