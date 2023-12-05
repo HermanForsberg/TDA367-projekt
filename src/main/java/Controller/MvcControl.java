@@ -4,12 +4,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+import Controller.Flashcard.*;
 import Model.*;
 import javax.swing.*;
 public class MvcControl extends JPanel{
     private MvcModel model;
 
-    private FlashcardFeatureController flashcardFeatureController;
+    private DeckCollectionController deckCollection;
 
     private ClockFeatureController clockFeatureController;
 
@@ -26,23 +27,18 @@ public class MvcControl extends JPanel{
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         setSize(300,300);
 
-        this.flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
+        this.deckCollection = new DeckCollectionController(model.getFlashcardFeature());
         this.clockFeatureController = new ClockFeatureController(model.getClockFeature());
 
-        add(flashcardFeatureController);
+        add(deckCollection);
         //add(timerFeatureController);
     }
 
 
-    public void startButtonActionPerformed(ActionEvent ae) {
-
-        model.setState(State.FLASHCARDS);
-    }
-
     public void flashcardMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
-        add(flashcardFeatureController);
+        add(deckCollection);
         updateUI();
     }
 
