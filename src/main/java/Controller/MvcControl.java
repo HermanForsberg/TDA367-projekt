@@ -2,16 +2,16 @@ package Controller;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
-import Controller.Flashcard.DeckCollectionController;
 import Model.*;
 import javax.swing.*;
-public class MvcControl extends JPanel implements Observer{
+public class MvcControl extends JPanel{
     private MvcModel model;
 
-    private DeckCollectionController deckCollection;
+    private FlashcardFeatureController flashcardFeatureController;
 
-    private TimerFeatureController timerFeatureController;
+    private ClockFeatureController clockFeatureController;
 
 
 
@@ -26,28 +26,30 @@ public class MvcControl extends JPanel implements Observer{
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         setSize(300,300);
 
-        this.deckCollection = new DeckCollectionController(model.getFlashcardFeature());
-        this.timerFeatureController = new TimerFeatureController(model.getTimerFeature());
+        this.flashcardFeatureController = new FlashcardFeatureController(model.getFlashcardFeature());
+        this.clockFeatureController = new ClockFeatureController(model.getClockFeature());
 
-        add(deckCollection);
+        add(flashcardFeatureController);
         //add(timerFeatureController);
     }
 
-    public DeckCollectionController getDeckCollection() {
-        return deckCollection;
+
+    public void startButtonActionPerformed(ActionEvent ae) {
+
+        model.setState(State.FLASHCARDS);
     }
 
     public void flashcardMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
-        add(deckCollection);
+        add(flashcardFeatureController);
         updateUI();
     }
 
     public void timerMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
-        add(timerFeatureController);
+        add(clockFeatureController);
         updateUI();
     }
 
@@ -58,9 +60,9 @@ public class MvcControl extends JPanel implements Observer{
 
     }
 
-
-    @Override
-    public void update() {
-
+    public ArrayList<ClockController> getClockControllers(){
+        return clockFeatureController.getClockControllers();
     }
+
+
 }

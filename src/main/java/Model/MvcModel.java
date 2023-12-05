@@ -32,7 +32,7 @@ public class MvcModel {
 
     private FlashcardFeature flashcardFeature;
 
-    private TimerFeature timerFeature;
+    private ClockFeature clockFeature;
 
     public static MvcModel getInstance() {
         if (instance == null) {
@@ -52,15 +52,15 @@ public class MvcModel {
         flashcardFeature.init(decks);
     }
 
-    public void setTimerFeature(TimerFeature timerFeature){
-        this.timerFeature = timerFeature;
+    public void setClockFeature(ClockFeature clockFeature){
+        this.clockFeature = clockFeature;
     }
     public FlashcardFeature getFlashcardFeature(){
         return this.flashcardFeature;
     }
 
-    public TimerFeature getTimerFeature(){
-        return this.timerFeature;
+    public ClockFeature getClockFeature(){
+        return this.clockFeature;
     }
 
     // allow addition of listeners or observers

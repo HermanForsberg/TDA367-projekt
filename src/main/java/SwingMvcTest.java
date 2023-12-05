@@ -1,7 +1,6 @@
 import javax.swing.*;
 import Model.*;
 import Controller.*;
-import Model.Timer;
 import View.*;
 
 import java.util.ArrayList;
@@ -9,25 +8,53 @@ import java.util.ArrayList;
 public class SwingMvcTest {
 
     private static void createAndShowUI() {
+        //Clock
+        Clock manualTimer = new ManualTimer();
+        Clock stopwatch = new Stopwatch();
+        Clock pomodoro = new Pomodoro();
 
-        //TIMER_____________________
-        Timer timer1 = new Timer(20);
+        ArrayList<Clock> clockList = new ArrayList<>();
+        clockList.add(manualTimer);
+        clockList.add(stopwatch);
+        clockList.add(pomodoro);
 
-        ArrayList<Timer> timersList = new ArrayList<>();
-        timersList.add(timer1);
+        ClockFeature clockFeature = new ClockFeature(clockList);
 
-        TimerFeature timerFeature = new TimerFeature(timersList);
+        Watch watch = new Watch();
 
-        //FLASHCARDS_____________________
+        for (Clock clock : clockList) {
+            watch.addObserver(clock);
+        }
+        //Flashcard
+
+        //FlashcardDeck deck = new FlashcardDeck("TestDeck");
+        //FlashcardDeck deck2 = new FlashcardDeck("Testdeck2");
+
         ArrayList<FlashcardDeck> deckList = new ArrayList<>();
+        //deckList.add(deck);
+        //deckList.add(deck2);
+
+        /*deck.addFlashcard(flashcard1);
+        deck.addFlashcard(flashcard2);
+
+        deck2.addFlashcard(flashcard1);
+        deck2.addFlashcard(flashcard2);*/
 
         FlashcardFeature flashcardFeature = new FlashcardFeature(deckList);
 
         MvcModel model = MvcModel.getInstance();
         model.setFlashcardFeature(flashcardFeature);
-        model.setTimerFeature(timerFeature);
+        model.setClockFeature(clockFeature);
 
         MvcControl control = new MvcControl(model);
+
+        //TODO Lösa observer på bra sätt
+
+        for (ClockController clockController : control.getClockControllers()) {
+            watch.addObserver(clockController);
+        }
+
+        watch.start();
 
 
         DrawPanel mainPanel = new DrawPanel(control);
@@ -38,16 +65,14 @@ public class SwingMvcTest {
         view.setGuiControl(control);
         MvcMenu menu = new MvcMenu(control);
 
-        Updater updater = new Updater();
-        updater.addObserver(control);
-        //updater.addObserver(control);
 
-        JFrame frame = new JFrame("Plugg");
+        JFrame frame = new JFrame("MyPlugg");
         frame.setSize(800,600);
         frame.getContentPane().add(view.getMainPanel());
 
         frame.setJMenuBar(menu.getMenuBar());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

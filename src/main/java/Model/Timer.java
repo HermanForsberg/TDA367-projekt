@@ -44,6 +44,14 @@ public class Timer {
         timer.cancel();
     }
 
+    public void addTime(){
+        setMinutes(minutes+5);
+    }
+    public void subtractTime(){
+        if (minutes > 5) {
+            setMinutes(minutes - 5);
+        }
+    }
     private void setMinutes(int minutes) {
         this.minutes = minutes;
     }
