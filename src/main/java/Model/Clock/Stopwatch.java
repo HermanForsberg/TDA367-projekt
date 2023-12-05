@@ -13,10 +13,7 @@ public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
         else{
             setSeconds(getSeconds() + 1);
         }
-        System.out.printf("%02d:%02d%n", getMinutes(), getSeconds());
-
     }
-
     public void resetClock(){
         pauseClock();
         setMinutes(0);

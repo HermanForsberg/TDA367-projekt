@@ -82,10 +82,12 @@ public class ClockController extends JPanel implements Observer {
                 if (clock.isRunning()){
                     clock.pauseClock();
                     startOrPauseButton.setText("Start");
+                    clock.playSound("src/main/sound/Stop_Clock.wav");
                 }
                 else {
                     clock.startClock();
                     startOrPauseButton.setText("Pause");
+                    clock.playSound("src/main/sound/Start_Clock.wav");
                 }
             }
         });

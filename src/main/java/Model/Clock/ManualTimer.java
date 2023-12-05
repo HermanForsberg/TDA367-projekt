@@ -1,7 +1,5 @@
 package Model.Clock;
 
-import Model.Rest;
-
 public class ManualTimer extends Clock implements Rest { //Counts downwards.
     public ManualTimer() {
         super(20);
@@ -20,7 +18,6 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
                 setSeconds(getSeconds() - 1);
             }
         }
-        System.out.printf("%02d:%02d%n", getMinutes(), getSeconds());
     }
 
     public void rest(){

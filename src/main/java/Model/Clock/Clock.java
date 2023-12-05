@@ -5,6 +5,9 @@ import Controller.Observer;
 import java.util.TimerTask;
 import java.util.Timer;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 public abstract class Clock implements Observer {
     //Timer     = Keeps track of the time in a background thread.
     //TimerTask = Contains an abstract method called run(). When our Model.Timer reaches a certain time
@@ -47,6 +50,17 @@ public abstract class Clock implements Observer {
         this.minutes = minutes;
     }
 
+    // @param path to sound file that will be played.
+    public void playSound(String soundFilePath){
+        try {
+            File soundFile = new File(soundFilePath);
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(soundFile));
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     protected void setSeconds(int seconds) {
         this.seconds = seconds;
     }
@@ -56,11 +70,9 @@ public abstract class Clock implements Observer {
     public int getMinutes() {
         return minutes;
     }
-
     public int getSeconds() {
         return seconds;
     }
-
     public Timer getTimer() {
         return timer;
     }

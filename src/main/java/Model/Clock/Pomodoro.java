@@ -1,7 +1,5 @@
 package Model.Clock;
 
-import Model.Rest;
-
 public class Pomodoro extends Clock implements Rest {
     boolean timeToRest;
     int intervalCounter;
@@ -24,7 +22,6 @@ public class Pomodoro extends Clock implements Rest {
                 setSeconds(getSeconds() - 1);
             }
         }
-        System.out.printf("%02d:%02d%n", getMinutes(), getSeconds());
     }
 
     public void rest(){
