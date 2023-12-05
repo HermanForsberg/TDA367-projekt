@@ -44,7 +44,7 @@ public class SwingMvcTest {
 
         MvcModel model = MvcModel.getInstance();
         model.setFlashcardFeature(flashcardFeature);
-        model.setTimerFeature(timerFeature);
+        model.setClockFeature(clockFeature);
 
         MvcControl control = new MvcControl(model);
 

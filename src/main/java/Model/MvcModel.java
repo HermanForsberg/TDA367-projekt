@@ -52,8 +52,8 @@ public class MvcModel {
         flashcardFeature.init(decks);
     }
 
-    public void setTimerFeature(TimerFeature timerFeature){
-        this.timerFeature = timerFeature;
+    public void setClockFeature(ClockFeature clockFeature){
+        this.clockFeature = clockFeature;
     }
     public FlashcardFeature getFlashcardFeature(){
         return this.flashcardFeature;
