@@ -32,7 +32,7 @@ public class MvcModel {
 
     private FlashcardFeature flashcardFeature;
 
-    private TimerFeature timerFeature;
+    private ClockFeature clockFeature;
 
     public static MvcModel getInstance() {
         if (instance == null) {
@@ -59,8 +59,8 @@ public class MvcModel {
         return this.flashcardFeature;
     }
 
-    public TimerFeature getTimerFeature(){
-        return this.timerFeature;
+    public ClockFeature getClockFeature(){
+        return this.clockFeature;
     }
 
     public void setState(State state) {
