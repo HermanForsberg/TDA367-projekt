@@ -20,7 +20,7 @@ public class ProfileFeatureController extends JPanel {
 
 
                 model.getCurrentProfile().saveData();
-                model.switchProfile(CurrentProfileState.PROFILE1, model.getProfiles().get(0));
+                model.switchProfile(model.getProfiles().get(0));
             }
 
         });
@@ -29,7 +29,7 @@ public class ProfileFeatureController extends JPanel {
 
             public void actionPerformed(ActionEvent e) {
                 model.getCurrentProfile().saveData();
-                model.switchProfile(CurrentProfileState.PROFILE2, model.getProfiles().get(1));
+                model.switchProfile(model.getProfiles().get(1));
             }
 
         });

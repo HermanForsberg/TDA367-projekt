@@ -1,5 +1,8 @@
 package Model;
 
+import Controller.Observer;
+import Controller.ObserverHandler;
+
 import java.beans.*;
 
 import java.io.BufferedReader;
@@ -19,15 +22,14 @@ public class MvcModel {
 
     private Profile oldProfile;
 
-    private CurrentProfileState cProfState;
+
     public static final String CSTATE_PROP_NAME = "CurrentProfileState";
 
-    private CurrentProfileState currentProfileState = CurrentProfileState.PROFILE1;
+
+
     private static MvcModel instance = null;
 
-    private final String DIRECTORY = ".plugg";
-    private final String FILE_NAME = "plugg.txt";
-    private final String SPLIT = ";";
+
     private String path = "";
 
     private Profile currentProfile;
@@ -36,7 +38,7 @@ public class MvcModel {
 
     public static final String STATE_PROP_NAME = "State";
 
-    private PropertyChangeSupport profileSupport = new PropertyChangeSupport(this);
+
     private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
     private State state = State.NO_STATE;
 
@@ -45,6 +47,8 @@ public class MvcModel {
     private TimerFeature timerFeature;
 
     private ArrayList<Profile> listOfProfiles;
+
+    private ObserverHandler observerHandler = new ObserverHandler();
 
     public static MvcModel getInstance() {
         if (instance == null) {
@@ -59,6 +63,10 @@ public class MvcModel {
 
     }
 
+    public void addObserver(Observer observer){
+        observerHandler.addObserver(observer);
+    }
+
     public ArrayList<Profile> getProfiles(){
         return listOfProfiles;
     }
@@ -67,15 +75,13 @@ public class MvcModel {
         currentProfile.saveData();
     }
 
-    public void switchProfile(CurrentProfileState state, Profile profile){
+    public void switchProfile(Profile profile){
 
         currentProfile=profile;
 
-        CurrentProfileState oldState = this.currentProfileState;
+        observerHandler.updateObservers();
 
-        this.currentProfileState = state;
-
-        profileSupport.firePropertyChange(CSTATE_PROP_NAME, oldState, state);
+        //profileSupport.firePropertyChange(CSTATE_PROP_NAME, oldState, state);
 
     }
 
@@ -132,11 +138,7 @@ public class MvcModel {
         System.out.println(listener);
     }
 
-    public void addProfilePropertyChangeListener(PropertyChangeListener listener) {
-        profileSupport.addPropertyChangeListener(listener);
 
-        System.out.println(listener);
-    }
 
 
 

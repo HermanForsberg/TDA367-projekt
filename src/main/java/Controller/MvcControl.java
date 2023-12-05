@@ -7,7 +7,7 @@ import java.beans.PropertyChangeListener;
 
 import Model.*;
 import javax.swing.*;
-public class MvcControl extends JPanel{
+public class MvcControl extends JPanel implements Observer{
     private MvcModel model;
 
     private FlashcardFeatureController flashcardFeatureController;
@@ -32,25 +32,20 @@ public class MvcControl extends JPanel{
         add(flashcardFeatureController);
         //add(timerFeatureController);
 
-        model.addProfilePropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                System.out.println(evt.getNewValue().toString());
-                if(evt.getNewValue().toString().equals("Profile1") || evt.getNewValue().toString().equals("Profile2") );
-                System.out.println(model.getCurrentProfile());
-                flashcardFeatureController = new FlashcardFeatureController(model.getCurrentProfile());
-                removeAll();
-                add(flashcardFeatureController);
-                updateUI();
-                //updateProfile();
 
-            }
-        });
-
+        model.addObserver(this);
 
     }
 
 
+    public void update(){
 
+        System.out.println(model.getInstance().getCurrentProfile());
+        flashcardFeatureController = new FlashcardFeatureController(model.getInstance().getCurrentProfile());
+        removeAll();
+        add(flashcardFeatureController);
+        updateUI();
+    }
 
     public void startButtonActionPerformed(ActionEvent ae) {
 
