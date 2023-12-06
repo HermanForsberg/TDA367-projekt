@@ -1,5 +1,8 @@
 package Model;
 
+import Controller.Observer;
+import Controller.ObserverHandler;
+
 import java.util.*;
 
 public class FlashcardDeck {
@@ -7,11 +10,18 @@ public class FlashcardDeck {
     private String deckName;
     private int currentIndex;
 
+    private ObserverHandler observerHandler = new ObserverHandler();
+
     public FlashcardDeck(String deckName) {
         this.deck = new ArrayList<>();
         this.deckName = deckName;
         this.currentIndex = 0;
 
+
+    }
+
+    public void addObserver(Observer observer){
+        observerHandler.addObserver(observer);
     }
 
     public boolean addFlashcard(Flashcard flash){
@@ -39,6 +49,7 @@ public class FlashcardDeck {
             currentIndex = 0;
         }
         System.out.println(currentIndex);
+        observerHandler.updateObservers();
     }
 
     public int getCurrentIndex(){

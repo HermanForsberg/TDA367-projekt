@@ -1,5 +1,6 @@
 package Controller.Flashcard;
 
+import Controller.Observer;
 import Model.Flashcard;
 import Model.FlashcardDeck;
 
@@ -7,9 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.Set;
 
 
-public class DeckController extends JPanel{
+public class DeckController extends JPanel implements Observer {
 
     private JPanel panelForFlashcard;
 
@@ -18,8 +21,11 @@ public class DeckController extends JPanel{
     private final GridBagConstraints c = new GridBagConstraints();
     private final JLabel currentCard = new JLabel("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
 
-    public void setDeck(FlashcardDeck deck) {
+    private Set<JButton> updates = new HashSet<>();
+
+    public void setDeck(FlashcardDeck deck){
         this.deck = deck;
+        deck.addObserver(this);
     }
 
     public DeckController(JButton backwardsButton) throws HeadlessException {
@@ -70,7 +76,17 @@ public class DeckController extends JPanel{
 
     }
 
-
+    public void update(){
+        panelForFlashcard.removeAll();
+        try {
+            panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
+        }catch(Exception e2){
+            panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
+        }
+        panelForFlashcard.updateUI();
+        currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+        updateUI();
+    }
     private void createDeleteButton() {
         JButton deleteButton = new JButton("Delete Card");
         deleteButton.setBackground(Color.BLUE);
@@ -98,7 +114,8 @@ public class DeckController extends JPanel{
     }
 
     public void createNextButton(){
-        JButton next = new JButton("Next");
+        NextButton next = new NextButton();
+
         next.setBackground(Color.CYAN);
         c.gridx = 2;
         c.gridy = 2;
@@ -107,10 +124,11 @@ public class DeckController extends JPanel{
         c.ipady = 20;
         add(next, c);
         next.addActionListener(this::nextActionPerformed);
+        updates.add(next);
     }
     public void nextActionPerformed(ActionEvent e) {
         deck.nextClicked();
-        panelForFlashcard.removeAll();
+        /*panelForFlashcard.removeAll();
         try {
             panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
         }catch(Exception e2){
@@ -118,7 +136,7 @@ public class DeckController extends JPanel{
         }
         panelForFlashcard.updateUI();
         currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
-        updateUI();
+        updateUI();*/
     }
 
     public void createPreviousButton(){
