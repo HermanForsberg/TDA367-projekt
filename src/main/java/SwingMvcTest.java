@@ -4,6 +4,7 @@ import Controller.Clock.ClockController;
 import Model.*;
 import Controller.*;
 import Model.Clock.*;
+import Model.DailyQuests.DailyQuests;
 import View.*;
 
 import java.util.ArrayList;
@@ -28,6 +29,11 @@ public class SwingMvcTest {
         for (Clock clock : clockList) {
             watch.addObserver(clock);
         }
+
+        //Daily Quests
+        DailyQuests dq = new DailyQuests();
+        System.out.println(dq.getQuests());
+
         //Flashcard
 
         //FlashcardDeck deck = new FlashcardDeck("TestDeck");
