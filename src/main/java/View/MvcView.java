@@ -15,22 +15,17 @@ public class MvcView {
     private JPanel mainPanel = new JPanel();
     private int gap = 10;
 
-    public MvcView(MvcModel model, DrawPanel drawPanel) {
+    public MvcView(MvcModel model) {
 
 
-        model.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                System.out.println(evt.getNewValue().toString());
-                drawPanel.updateView(evt.getNewValue().toString());
 
-            }
-        });
 
         //mainPanel.add(deckTest.get());
-        mainPanel.add(drawPanel.getViewPanel());
+
+
         mainPanel.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
         mainPanel.setLayout(new BorderLayout(gap, gap));
-        mainPanel.add(drawPanel.getViewPanel());
+
 
         mainPanel.setSize(300,300);
 
@@ -43,6 +38,7 @@ public class MvcView {
 
     public void setGuiControl(MvcControl control) {
         this.control = control;
+        mainPanel.add(control);
     }
 
 

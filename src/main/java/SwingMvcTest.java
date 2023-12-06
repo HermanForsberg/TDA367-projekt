@@ -28,26 +28,23 @@ public class SwingMvcTest {
         for (Clock clock : clockList) {
             watch.addObserver(clock);
         }
-        //Flashcard
 
-        //FlashcardDeck deck = new FlashcardDeck("TestDeck");
-        //FlashcardDeck deck2 = new FlashcardDeck("Testdeck2");
 
-        ArrayList<FlashcardDeck> deckList = new ArrayList<>();
-        //deckList.add(deck);
-        //deckList.add(deck2);
 
-        /*deck.addFlashcard(flashcard1);
-        deck.addFlashcard(flashcard2);
+        //Profile
+        ArrayList<Profile> profileList = new ArrayList<>();
+        //Profile currentProfile = new Profile("Profile1");
+        //Profile currentProfile2 = new Profile("Profile2");
+        //profileList.add(currentProfile);
+        //profileList.add(currentProfile2);
+        //currentProfile.setStatisticModel(statisticModel);
 
-        deck2.addFlashcard(flashcard1);
-        deck2.addFlashcard(flashcard2);*/
 
-        FlashcardFeature flashcardFeature = new FlashcardFeature(deckList);
-
+        //Main model
         MvcModel model = MvcModel.getInstance();
-        model.setFlashcardFeature(flashcardFeature);
+        //model.setProfileList(profileList);
         model.setClockFeature(clockFeature);
+        //model.setCurrentProfile(currentProfile);
 
         MvcControl control = new MvcControl(model);
 
@@ -60,10 +57,7 @@ public class SwingMvcTest {
         watch.start();
 
 
-        DrawPanel mainPanel = new DrawPanel(control);
-
-
-        MvcView view = new MvcView(model, mainPanel);
+        MvcView view = new MvcView(model);
 
         view.setGuiControl(control);
         MvcMenu menu = new MvcMenu(control);

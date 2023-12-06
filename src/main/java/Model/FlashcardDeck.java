@@ -1,11 +1,16 @@
 package Model;
 
+import Controller.ObserverHandler;
+import Controller.Observer;
+
 import java.util.*;
 
 public class FlashcardDeck {
     private ArrayList<Flashcard> deck;
     private String deckName;
     private int currentIndex;
+
+    private ObserverHandler observerHandler = new ObserverHandler();
 
     public FlashcardDeck(String deckName) {
         this.deck = new ArrayList<>();
@@ -30,6 +35,11 @@ public class FlashcardDeck {
     public void previousClicked(){
         currentIndex = Math.max(currentIndex-1,0);
         System.out.println(currentIndex);
+        observerHandler.updateObservers();
+    }
+
+    public void deckSet(){
+        observerHandler.updateObservers();
     }
 
     public void nextClicked(){
@@ -39,6 +49,11 @@ public class FlashcardDeck {
             currentIndex = 0;
         }
         System.out.println(currentIndex);
+        observerHandler.updateObservers();
+    }
+
+    public void addObserver(Observer observer){
+        observerHandler.addObserver(observer);
     }
 
     public int getCurrentIndex(){

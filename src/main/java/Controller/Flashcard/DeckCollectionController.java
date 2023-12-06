@@ -4,6 +4,7 @@ import Controller.Observer;
 import Controller.Updater;
 import Model.FlashcardDeck;
 import Model.FlashcardFeature;
+import Model.Profile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,7 @@ public class DeckCollectionController extends JPanel {
 
     private JPanel groundPanel = new JPanel();
 
-    public DeckCollectionController(FlashcardFeature model) {
+    public DeckCollectionController(Profile model) {
 
         groundPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         groundPanel.setLayout(new BorderLayout(10,10));
@@ -101,6 +102,7 @@ public class DeckCollectionController extends JPanel {
                             public void actionPerformed(ActionEvent e) {
 
                                 removeAll();
+                                deckController.setDeck(model.getNewestDeck());
                                 add(deckController);
                                 updateUI();
                             }

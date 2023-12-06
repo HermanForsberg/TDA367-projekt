@@ -9,12 +9,15 @@ import Controller.Clock.ClockFeatureController;
 import Controller.Flashcard.*;
 import Model.*;
 import javax.swing.*;
-public class MvcControl extends JPanel{
+public class MvcControl extends JPanel implements Observer{
     private MvcModel model;
 
     private DeckCollectionController deckCollection;
 
     private ClockFeatureController clockFeatureController;
+
+
+    private ProfileFeatureController profileFeatureController;
 
 
 
@@ -29,13 +32,32 @@ public class MvcControl extends JPanel{
         //mainPanel.add(buttonPanel, BorderLayout.CENTER);
         setSize(300,300);
 
-        this.deckCollection = new DeckCollectionController(model.getFlashcardFeature());
+        this.deckCollection = new DeckCollectionController(model.getCurrentProfile());
         this.clockFeatureController = new ClockFeatureController(model.getClockFeature());
 
+        this.profileFeatureController = new ProfileFeatureController(model);
+
         add(deckCollection);
+        model.addObserver(this);
         //add(timerFeatureController);
     }
 
+    public void update(){
+
+        System.out.println(model.getInstance().getCurrentProfile());
+        deckCollection = new DeckCollectionController(model.getInstance().getCurrentProfile());
+        removeAll();
+        add(deckCollection);
+        updateUI();
+    }
+
+
+    public void profileMenuActionPerformed(ActionEvent ae) {
+
+        removeAll();
+        add(profileFeatureController);
+        updateUI();
+    }
 
     public void flashcardMenuActionPerformed(ActionEvent ae) {
 
