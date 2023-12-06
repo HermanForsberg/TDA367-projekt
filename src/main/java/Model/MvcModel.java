@@ -85,7 +85,11 @@ public class MvcModel {
             System.out.println(profil);
             listOfProfiles.add(new Profile(profil));
         }
-        setCurrentProfile(listOfProfiles.get(0));
+        try{
+        setCurrentProfile(listOfProfiles.get(0));}
+        catch(Exception e){
+            setCurrentProfile(new Profile("TemporaryProfile"));
+        }
 
     }
     public void addProfile(Profile profile){
