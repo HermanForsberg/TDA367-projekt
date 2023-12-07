@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Clock.ClockFeature;
+import Model.Quests.QuestFeature;
 
 import java.beans.*;
 
@@ -34,6 +35,8 @@ public class MvcModel {
 
     private ClockFeature clockFeature;
 
+    private QuestFeature questFeature;
+
     public static MvcModel getInstance() {
         if (instance == null) {
             instance = new MvcModel();
@@ -55,12 +58,21 @@ public class MvcModel {
     public void setClockFeature(ClockFeature clockFeature){
         this.clockFeature = clockFeature;
     }
+
+    public void setQuestFeature(QuestFeature questFeature) {
+        this.questFeature = questFeature;
+    }
+
     public FlashcardFeature getFlashcardFeature(){
         return this.flashcardFeature;
     }
 
     public ClockFeature getClockFeature(){
         return this.clockFeature;
+    }
+
+    public QuestFeature getQuestFeature() {
+        return questFeature;
     }
 
     // allow addition of listeners or observers

@@ -4,7 +4,8 @@ import Controller.Clock.ClockController;
 import Model.*;
 import Controller.*;
 import Model.Clock.*;
-import Model.DailyQuests.DailyQuests;
+import Model.Quests.QuestFactory;
+import Model.Quests.QuestFeature;
 import View.*;
 
 import java.util.ArrayList;
@@ -31,8 +32,7 @@ public class SwingMvcTest {
         }
 
         //Daily Quests
-        DailyQuests dq = new DailyQuests();
-        System.out.println(dq.getQuests());
+        QuestFeature questFeature = new QuestFeature();
 
         //Flashcard
 
@@ -54,6 +54,7 @@ public class SwingMvcTest {
         MvcModel model = MvcModel.getInstance();
         model.setFlashcardFeature(flashcardFeature);
         model.setClockFeature(clockFeature);
+        model.setQuestFeature(questFeature);
 
         MvcControl control = new MvcControl(model);
 

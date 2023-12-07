@@ -1,4 +1,4 @@
-package Model.DailyQuests;
+package Model.Quests;
 
 import java.util.Random;
 import java.lang.Math;
@@ -9,6 +9,7 @@ public class Quest {
     private int xpGain;
     private int difficulty;
     private int amount;
+    private int progress;
     private boolean isCompleted;
 
     public Quest(String topic, String description, int difficulty, int xpGain, int amount) {
@@ -17,6 +18,7 @@ public class Quest {
         this.difficulty = difficulty;
         this.xpGain = xpGain;
         this.amount = amount;
+        this.progress = 0;
         this.isCompleted = false;
     }
 
@@ -52,8 +54,24 @@ public class Quest {
         int amount = -1;
         switch (topic) {
             case "Clock"     -> amount = difficulty * 20 + 40;
-            case "Flashcard" -> amount = difficulty;
+            case "Flashcard" -> amount = difficulty * 10;
         }
         return amount;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getXpGain() {
+        return xpGain;
+    }
+
+    public int getProgress() {
+        return progress;
     }
 }

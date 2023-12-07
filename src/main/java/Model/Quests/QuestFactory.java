@@ -1,18 +1,19 @@
-package Model.DailyQuests;
+package Model.Quests;
 
 import java.util.ArrayList;
 
-import static Model.DailyQuests.Quest.generateRandomQuest;
+import static Model.Quests.Quest.generateRandomQuest;
 
-public class DailyQuests {
+public class QuestFactory {
     ArrayList<String> listOfTopics = new ArrayList<>(); //Venne vart denna borde ligga
     ArrayList<Quest> quests = new ArrayList<>();
-    public DailyQuests() {
+    public QuestFactory() {
         createTopics();
         createQuests();
     }
 
     private void createTopics(){
+        listOfTopics.add("Clock");
         listOfTopics.add("Clock");
         listOfTopics.add("Flashcard");
     }
