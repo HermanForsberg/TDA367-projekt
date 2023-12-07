@@ -96,12 +96,14 @@ public class ClockController extends JPanel implements Observer {
                 clock.resetClock();
                 startOrPauseButton.setText("Start");
                 formatTimeLabel();
+                clock.playSound("src/main/sound/Reset_Clock.wav");
             }
         });
         addTimeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (clock instanceof ManualTimer){
                     ((ManualTimer) clock).addTime();
+                    clock.playSound("src/main/sound/Click_Sound.wav");
                 }
             }
         });
@@ -109,6 +111,7 @@ public class ClockController extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {
                 if (clock instanceof ManualTimer){
                     ((ManualTimer) clock).subtractTime();
+                    clock.playSound("src/main/sound/Click_Sound.wav");
                 }
             }
         });

@@ -73,6 +73,7 @@ public class ClockFeatureController extends JPanel{
     private void swapClock(ClockFeature clockFeature){
         clock.resetClock();
         clock = clocks.get(clockFeature.getClockIndex());
+        clock.playSound("src/main/sound/Click_Sound.wav");
 
         //Resets everything
         removeAll();
@@ -83,7 +84,6 @@ public class ClockFeatureController extends JPanel{
         sideBar.revalidate();
         repaint();
         createGrid(clockFeature.getClockIndex());
-
     }
 
     private void createGrid(int index){
