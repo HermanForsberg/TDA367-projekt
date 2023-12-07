@@ -6,7 +6,6 @@ import Model.FlashcardDeck;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 
 public class DeckController extends JPanel implements Observer{
@@ -91,11 +90,6 @@ public class DeckController extends JPanel implements Observer{
             if(ans == 0){
                 deck.deleteIndex(deck.getCurrentIndex());
                 deck.previousClicked();
-                /*panelForFlashcard.removeAll();
-                panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
-                panelForFlashcard.updateUI();
-                currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
-                updateUI();*/
             }
         });
     }
@@ -122,20 +116,28 @@ public class DeckController extends JPanel implements Observer{
         c.ipadx = 50;
         c.ipady = 20;
         add(next, c);
-        next.addActionListener(this::nextActionPerformed);
-    }
-    public void nextActionPerformed(ActionEvent e) {
-        deck.nextClicked();
-        /*
-        panelForFlashcard.removeAll();
-        try {
-            panelForFlashcard.add(new FlashcardController(deck.getDeck().get(deck.getCurrentIndex())));
-        }catch(Exception e2){
-            panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
-        }
-        panelForFlashcard.updateUI();
-        currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
-        updateUI();*/
+        next.addActionListener(e -> {
+            if(deck.getCurrentIndex() < deck.getSize()-2){
+                deck.nextClicked();
+            }else if(deck.getCurrentIndex() == deck.getSize()-2){
+                deck.nextClicked();
+                next.setText("Finish");
+                next.setBackground(Color.MAGENTA);
+                updateUI();
+            }else if(deck.getCurrentIndex() > deck.getSize()-2){
+                int numberOfCorrect = deck.getNumberOfCorrect();
+                panelForFlashcard.removeAll();
+                panelForFlashcard.add(new JLabel("Number of correct: " + numberOfCorrect + " out of " + deck.getSize()));
+                panelForFlashcard.add(new JLabel("Number of wrong: " + (deck.getSize()-numberOfCorrect) + " out of " + deck.getSize()));
+                panelForFlashcard.updateUI();
+                next.setText("next");
+                next.setBackground(Color.CYAN);
+                deck.resetAnswers();
+            }
+            else{
+
+            }
+        });
     }
 
     public void createPreviousButton(){
@@ -149,16 +151,6 @@ public class DeckController extends JPanel implements Observer{
         add(prev, c);
         prev.addActionListener(e -> {
             deck.previousClicked();
-
-            /*
-            try {
-                panelForFlashcard.add(new FlashcardController(deck.getCurrentFlashcard()));
-            }catch(Exception e2){
-                panelForFlashcard.add(new FlashcardController(new Flashcard("PlaceHolder", "PlaceHolderAnswer")));
-            }
-            panelForFlashcard.updateUI();
-            currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
-            updateUI();*/
         });
     }
 
@@ -183,7 +175,7 @@ public class DeckController extends JPanel implements Observer{
         add(correct,c);
         correct.addActionListener(e -> {
             Flashcard flashcard = deck.getCurrentFlashcard();
-            flashcard.setCorrect(true);
+            flashcard.setAnswer(Flashcard.correct);
         });
     }
 
@@ -198,7 +190,7 @@ public class DeckController extends JPanel implements Observer{
         add(wrong,c);
         wrong.addActionListener(e -> {
             Flashcard flashcard = deck.getCurrentFlashcard();
-            flashcard.setCorrect(false);
+            flashcard.setAnswer(Flashcard.wrong);
         });
     }
 

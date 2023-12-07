@@ -16,7 +16,6 @@ public class FlashcardDeck {
         this.deck = new ArrayList<>();
         this.deckName = deckName;
         this.currentIndex = 0;
-
     }
 
     public boolean addFlashcard(Flashcard flash){
@@ -44,12 +43,16 @@ public class FlashcardDeck {
 
     public void nextClicked(){
         try {
-            currentIndex = (currentIndex + 1) % (deck.size());
+            incrementCurrentIndex();
         }catch(Exception e){
             currentIndex = 0;
         }
         System.out.println(currentIndex);
         observerHandler.updateObservers();
+    }
+
+    public void incrementCurrentIndex(){
+        currentIndex = (currentIndex + 1) % (deck.size());
     }
 
     public void addObserver(Observer observer){
@@ -59,6 +62,7 @@ public class FlashcardDeck {
     public int getCurrentIndex(){
         return currentIndex;
     }
+
     public void setDeckName(String deckName) {
         this.deckName = deckName;
     }
@@ -78,4 +82,21 @@ public class FlashcardDeck {
     public Flashcard getCurrentFlashcard(){
         return deck.get(getCurrentIndex());
     };
+
+    public int getNumberOfCorrect(){
+        int count = 0;
+        for(Flashcard card: deck){
+            int answer = card.getAnswer();
+            if(answer == Flashcard.correct){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void resetAnswers(){
+        for(Flashcard card: deck){
+            card.setAnswer(Flashcard.reset);
+        }
+    }
 }
