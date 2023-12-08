@@ -1,6 +1,6 @@
 package Model;
 
-import Model.Clock.ClockFeature;
+import Model.Clock.*;
 import Controller.ObserverHandler;
 import Controller.Observer;
 import Model.Quests.QuestFeature;
@@ -54,9 +54,9 @@ public class MvcModel {
     }
 
     public MvcModel(){
-
-    init();
-
+        init();
+        initClock();
+        initQuests();
     }
 
 
@@ -95,6 +95,26 @@ public class MvcModel {
         }
 
     }
+
+    public void initClock(){
+        Clock manualTimer = new ManualTimer();
+        Clock stopwatch = new Stopwatch();
+        Clock pomodoro = new Pomodoro();
+
+        ArrayList<Clock> clockList = new ArrayList<>();
+        clockList.add(manualTimer);
+        clockList.add(stopwatch);
+        clockList.add(pomodoro);
+
+        ClockFeature clockFeature = new ClockFeature(clockList);
+        setClockFeature(clockFeature);
+    }
+
+    public void initQuests(){
+        QuestFeature questFeature = new QuestFeature();
+        setQuestFeature(questFeature);
+    }
+
     public void addProfile(Profile profile){
         listOfProfiles.add(profile);
     }
