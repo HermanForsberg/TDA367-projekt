@@ -51,7 +51,7 @@ public class DeckCollectionController extends JPanel {
 
         DeckController deckController = new DeckController(backwardsButton);
 
-        for (FlashcardDeck deck : model.GetListOfDecks()) {
+        for (FlashcardDeck deck : model.getListOfDecks()) {
 
             DeckButton deckButtonController = new DeckButton(deck);
 

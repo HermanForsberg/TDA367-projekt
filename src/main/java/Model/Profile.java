@@ -22,7 +22,6 @@ public class Profile {
 
     private FlashcardDeck newestDeck;
 
-
     public Profile(String name){
         this.name = name;
         this.exp = 0;
@@ -33,7 +32,6 @@ public class Profile {
     public void setStatisticModel(StatisticModel statisticModel) {
         this.statisticModel = statisticModel;
     }
-
     public String getPath(){
         return this.path;
     }
@@ -46,14 +44,11 @@ public class Profile {
     }
 
 
+
     public String getName(){
         return name;
     }
 
-
-    public ArrayList<FlashcardDeck> GetListOfDecks(){
-        return decks;
-    }
 
     public void deleteDeck(FlashcardDeck deck){
         decks.remove(deck);

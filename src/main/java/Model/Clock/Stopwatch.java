@@ -9,6 +9,7 @@ public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
         if (getSeconds() == 59){
             setSeconds(0);
             setMinutes(getMinutes() + 1);
+            addOneMinutesPassed();
         }
         else{
             setSeconds(getSeconds() + 1);

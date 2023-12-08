@@ -25,4 +25,8 @@ public class ClockFeature extends JPanel{
     public void setClockIndex(int clockIndex) {
         this.clockIndex = clockIndex;
     }
+
+    public Clock getClock(){
+        return clockList.get(clockIndex);
+    }
 }

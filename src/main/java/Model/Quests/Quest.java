@@ -34,7 +34,8 @@ public class Quest {
         String text = "No description found...";
         switch (topic) {
             case "Clock"     -> text = "Study for a total of " + amount + " minutes.";
-            case "Flashcard" -> text = "Complete " + amount + " decks of flashcards.";
+            case "Flashcard" -> text = "Complete " + amount + " of flashcards.";
+            case "Level"     -> text = "Level up " + amount + " level(s)";
         }
         return text;
     }
@@ -55,6 +56,7 @@ public class Quest {
         switch (topic) {
             case "Clock"     -> amount = difficulty * 20 + 40;
             case "Flashcard" -> amount = difficulty * 10;
+            case "Level"     -> amount = Math.max(difficulty / 3, 1);
         }
         return amount;
     }

@@ -14,8 +14,8 @@ public class QuestFactory {
 
     private void createTopics(){
         listOfTopics.add("Clock");
-        listOfTopics.add("Clock");
         listOfTopics.add("Flashcard");
+        listOfTopics.add("Level");
     }
 
     private void createQuests() {

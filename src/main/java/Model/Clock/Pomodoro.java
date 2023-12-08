@@ -17,6 +17,7 @@ public class Pomodoro extends Clock implements Rest {
             if (getSeconds() == 0){
                 setMinutes(getMinutes() - 1);
                 setSeconds(59);
+                addOneMinutesPassed();
             }
             else {
                 setSeconds(getSeconds() - 1);

@@ -13,6 +13,7 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
             if (getSeconds() == 0){
                 setMinutes(getMinutes() - 1);
                 setSeconds(59);
+                addOneMinutesPassed();
             }
             else {
                 setSeconds(getSeconds() - 1);
@@ -36,5 +37,6 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
         pauseClock();
         setMinutes(20);
         setSeconds(0);
-    };
+    }
+
 }
