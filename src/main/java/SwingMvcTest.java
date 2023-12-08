@@ -4,6 +4,8 @@ import Controller.Clock.ClockController;
 import Model.*;
 import Controller.*;
 import Model.Clock.*;
+import Model.Quests.QuestFactory;
+import Model.Quests.QuestFeature;
 import View.*;
 
 import java.util.ArrayList;
@@ -29,6 +31,11 @@ public class SwingMvcTest {
             watch.addObserver(clock);
         }
 
+        //Daily Quests
+        QuestFeature questFeature = new QuestFeature();
+
+        //Flashcard
+
 
 
         //Profile
@@ -45,6 +52,7 @@ public class SwingMvcTest {
         //model.setProfileList(profileList);
         model.setClockFeature(clockFeature);
         //model.setCurrentProfile(currentProfile);
+        model.setQuestFeature(questFeature);
 
         MvcControl control = new MvcControl(model);
 

@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import Controller.Clock.ClockController;
 import Controller.Clock.ClockFeatureController;
 import Controller.Flashcard.*;
+import Controller.QuestsController.*;
 import Model.*;
+import Model.Quests.QuestFeature;
+
 import javax.swing.*;
 public class MvcControl extends JPanel implements Observer{
     private MvcModel model;
@@ -15,6 +18,8 @@ public class MvcControl extends JPanel implements Observer{
     private DeckCollectionController deckCollection;
 
     private ClockFeatureController clockFeatureController;
+
+    private QuestsController questController;
 
 
     private ProfileFeatureController profileFeatureController;
@@ -34,6 +39,7 @@ public class MvcControl extends JPanel implements Observer{
 
         this.deckCollection = new DeckCollectionController(model.getCurrentProfile());
         this.clockFeatureController = new ClockFeatureController(model.getClockFeature());
+        this.questController = new QuestsController(model.getQuestFeature());
 
         this.profileFeatureController = new ProfileFeatureController(model);
 
@@ -70,6 +76,13 @@ public class MvcControl extends JPanel implements Observer{
 
         removeAll();
         add(clockFeatureController);
+        updateUI();
+    }
+
+    public void questMenuActionPerformed(ActionEvent ae) {
+
+        removeAll();
+        add(questController);
         updateUI();
     }
 

@@ -55,6 +55,21 @@ public class MvcMenu {
         });
         menuBar.add(profile);
 
+        JButton quests = new JButton("Quests");
+
+        quests.addActionListener(new ActionListener() {
+            // all the buttons do is call methods of the control
+            public void actionPerformed(ActionEvent e) {
+
+                if (control != null) {
+
+                    control.questMenuActionPerformed(e); // e.g., here
+
+                }
+            }
+        });
+
+        menuBar.add(quests);
         menuBar.add(timers);
         menuBar.add(flashcards);
     }

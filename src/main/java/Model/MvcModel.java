@@ -3,6 +3,7 @@ package Model;
 import Model.Clock.ClockFeature;
 import Controller.ObserverHandler;
 import Controller.Observer;
+import Model.Quests.QuestFeature;
 
 import java.beans.*;
 
@@ -34,6 +35,8 @@ public class MvcModel {
 
 
     private ClockFeature clockFeature;
+
+    private QuestFeature questFeature;
 
     private ArrayList<Profile> listOfProfiles = new ArrayList<>();
 
@@ -132,11 +135,24 @@ public class MvcModel {
         this.clockFeature = clockFeature;
     }
 
+    public void setQuestFeature(QuestFeature questFeature) {
+        this.questFeature = questFeature;
+    }
+
+
+
     public ClockFeature getClockFeature(){
         return this.clockFeature;
     }
 
 
+    public QuestFeature getQuestFeature() {
+        return questFeature;
+    }
+
+    // allow addition of listeners or observers
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcSupport.addPropertyChangeListener(listener);
 
 
 
@@ -221,4 +237,5 @@ public class MvcModel {
 
     }*/
 
+    }
 }
