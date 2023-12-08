@@ -10,14 +10,20 @@ import java.util.ArrayList;
 public class QuestsController extends JPanel {
     private JLabel dailyLabel = new JLabel("Daily", SwingConstants.CENTER);
     private JLabel weeklyLabel = new JLabel("Weekly", SwingConstants.CENTER);
+    private ImageIcon flameImage = new ImageIcon("src/main/img/flame_64.png");
+    private JLabel dailyStreakLabel = new JLabel("Streak 56", SwingConstants.CENTER);
+    private JLabel weeklyStreakLabel = new JLabel("Streak 2", SwingConstants.CENTER);
     ArrayList<Quest> dailyQuests;
     public QuestsController(QuestFeature questFeature) {
-        setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-        setLayout(new GridLayout(4,2, 10, 10));
+        setBorder(BorderFactory.createEmptyBorder(20,50,20,50));
+        setLayout(new GridLayout(5,2,50,10));
         setBackground(Color.WHITE);
 
-        dailyLabel.setFont(new Font("Calibri", Font.BOLD, 24));
-        weeklyLabel.setFont(new Font("Calibri", Font.BOLD, 24));
+        Font font = new Font("Calibri", Font.BOLD, 24);
+        dailyLabel.setFont(font);
+        weeklyLabel.setFont(font);
+        dailyStreakLabel.setFont(font);
+        weeklyStreakLabel.setFont(font);
 
         dailyQuests = questFeature.getDailyQuests();
 
@@ -36,5 +42,8 @@ public class QuestsController extends JPanel {
 
         add(new QuestCard(dailyQuests.get(2)));
         add(new QuestCard(dailyQuests.get(2)));
+
+        add(dailyStreakLabel);
+        add(weeklyStreakLabel);
     }
 }

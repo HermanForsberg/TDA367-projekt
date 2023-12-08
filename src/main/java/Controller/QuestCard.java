@@ -11,7 +11,7 @@ public class QuestCard extends JPanel {
     private JLabel description = new JLabel("", SwingConstants.CENTER);
     private JLabel progress = new JLabel("", SwingConstants.CENTER);
     public QuestCard(Quest quest) {
-        setLayout(new GridLayout(3,0,5,5));
+        setLayout(new GridLayout(3,0,0,0));
         Color customColor = new Color(186, 231, 255);
         setBackground(customColor);
 
