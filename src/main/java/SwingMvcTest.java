@@ -86,7 +86,7 @@ public class SwingMvcTest {
 
         views.put("deckCollection",deckCollectionWindow);
 
-        FlashcardFeatureWindows flashcardFeatureWindows = new FlashcardFeatureWindows();
+        FlashcardFeatureWindows flashcardFeatureWindows = new FlashcardFeatureWindows(currentViewController);
 
         views.put("flashcardFeature",flashcardFeatureWindows);
 

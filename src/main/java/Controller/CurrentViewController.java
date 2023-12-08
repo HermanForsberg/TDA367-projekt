@@ -3,7 +3,7 @@ package Controller;
 import Model.CurrentView;
 import Windows.Window;
 
-public class CurrentViewController implements DeckButtonListener{
+public class CurrentViewController implements DeckButtonListener, BackwardsButtonListener{
 
     private CurrentView currentView;
     public CurrentViewController(CurrentView newCurrentView){
@@ -17,6 +17,11 @@ public class CurrentViewController implements DeckButtonListener{
 
     @Override
     public void onDeckButtonClicked(String viewName) {
+        setView(viewName);
+    }
+
+    @Override
+    public void onBackwardsClicked(String viewName) {
         setView(viewName);
     }
 }

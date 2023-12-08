@@ -1,5 +1,7 @@
 package Windows;
 
+import Controller.BackwardsButtonListener;
+import Controller.CurrentViewController;
 import Controller.Flashcard.DeckController;
 import Controller.Flashcard.FlashcardController;
 import Controller.Observer;
@@ -9,9 +11,10 @@ import Model.FlashcardDeck;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
-    public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
+public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private JButton forFlashcard = new JButton("Placeholder");
 
@@ -25,6 +28,10 @@ import java.awt.event.ActionEvent;
 
         private final GridBagConstraints c = new GridBagConstraints();
         private final JLabel currentCard = new JLabel("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+
+        private JButton backwardsButton;
+
+        private CurrentViewController currentViewController;
 
         public void setDeck(FlashcardDeck deck) {
             this.deck = deck;
@@ -42,13 +49,15 @@ import java.awt.event.ActionEvent;
         }
 
 
-        public FlashcardFeatureWindows() throws HeadlessException {
+        public FlashcardFeatureWindows(CurrentViewController newCurrentViewController) throws HeadlessException {
             //TODO backwardsButton
             //Set up the content pane.
 
-
+            currentViewController = newCurrentViewController;
             setLayout(new GridBagLayout());
             this.panelForFlashcard = new JPanel(new GridLayout(1, 0, 10 ,10));
+
+
 
             addCardCounter();
             createNextButton();
@@ -75,19 +84,31 @@ import java.awt.event.ActionEvent;
             add(panelForFlashcard,c);
 
 
-
-            //backwardsButton.setBackground(Color.BLACK);
-            //backwardsButton.setForeground(Color.WHITE);
+            backwardsButton = new JButton("<-------");
+            addButtonListenerToBackwardsButton(currentViewController);
+            backwardsButton.setBackground(Color.BLACK);
+            backwardsButton.setForeground(Color.WHITE);
             c.gridx = 0;
             c.gridy = 1;
             c.fill = GridBagConstraints.NONE;
             c.insets = new Insets(0, 0, 0, 0);
             c.ipadx = 50;
             c.ipady = 20;
-            //add(backwardsButton,c);
+
+            add(backwardsButton,c);
 
 
         }
+
+    public void addButtonListenerToBackwardsButton(BackwardsButtonListener buttonListener){
+        backwardsButton.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                buttonListener.onBackwardsClicked("deckCollection");
+
+            }
+        });
+    }
 
 
         private void createDeleteButton() {
