@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.Observer;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
@@ -12,9 +14,7 @@ public class Profile {
 
     private ArrayList<FlashcardDeck> decks;
 
-    private float exp;
-
-
+    private int exp;
 
     private String path = "";
 
@@ -24,8 +24,8 @@ public class Profile {
 
 
     public Profile(String name){
-
         this.name = name;
+        this.exp = 0;
         this.decks = new ArrayList<FlashcardDeck>();
         this.init();
     }
@@ -41,11 +41,34 @@ public class Profile {
         return decks;
     }
 
+    public void addExp(int expGain){
+        exp += expGain;
+    }
+
 
     public String getName(){
         return name;
     }
 
+
+    public ArrayList<FlashcardDeck> GetListOfDecks(){
+        return decks;
+    }
+
+    public void deleteDeck(FlashcardDeck deck){
+        decks.remove(deck);
+    }
+
+    public FlashcardDeck getNewestDeck(){
+        return newestDeck;
+    }
+
+    public void addNewDeck(String name){
+        FlashcardDeck newDeck = new FlashcardDeck(name);
+        decks.add(newDeck);
+        newestDeck = newDeck;
+        //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
+    }
 
 
 
@@ -87,24 +110,6 @@ public class Profile {
 
     }
 
-    public ArrayList<FlashcardDeck> GetListOfDecks(){
-        return decks;
-    }
-
-    public void deleteDeck(FlashcardDeck deck){
-        decks.remove(deck);
-    }
-
-    public FlashcardDeck getNewestDeck(){
-        return newestDeck;
-    }
-
-    public void addNewDeck(String name){
-        FlashcardDeck newDeck = new FlashcardDeck(name);
-        decks.add(newDeck);
-        newestDeck = newDeck;
-        //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
-    }
 
     public void saveData() {
         this.path = getPath();

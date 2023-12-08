@@ -1,7 +1,7 @@
 package Controller.Flashcard;
 
 import Controller.Observer;
-import Controller.Updater;
+
 import Model.FlashcardDeck;
 import Model.FlashcardFeature;
 import Model.Profile;
