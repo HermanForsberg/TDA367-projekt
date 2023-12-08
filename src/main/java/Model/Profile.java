@@ -1,10 +1,13 @@
 package Model;
 
+import Controller.ObserverHandler;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import Controller.Observer;
 
 public class Profile {
 
@@ -14,13 +17,15 @@ public class Profile {
 
     private float exp;
 
-
+    private ObserverHandler observerHandler = new ObserverHandler();
 
     private String path = "";
 
     private StatisticModel statisticModel;
 
     private FlashcardDeck newestDeck;
+
+    private FlashcardDeck deckInFocus;
 
 
     public Profile(String name){
@@ -45,6 +50,17 @@ public class Profile {
     public String getName(){
         return name;
     }
+
+    public void setDeckInFocus(FlashcardDeck deck){
+        deckInFocus = deck;
+        observerHandler.updateObservers();
+    }
+
+    public void addObserver(Observer observer){
+        observerHandler.addObserver(observer);
+    }
+
+
 
 
 
@@ -93,6 +109,7 @@ public class Profile {
 
     public void deleteDeck(FlashcardDeck deck){
         decks.remove(deck);
+        observerHandler.updateObservers();
     }
 
     public FlashcardDeck getNewestDeck(){
@@ -103,6 +120,7 @@ public class Profile {
         FlashcardDeck newDeck = new FlashcardDeck(name);
         decks.add(newDeck);
         newestDeck = newDeck;
+        observerHandler.updateObservers();
         //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
     }
 

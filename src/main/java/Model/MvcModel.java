@@ -31,8 +31,6 @@ public class MvcModel {
     private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
 
 
-
-
     private ClockFeature clockFeature;
 
     private ArrayList<Profile> listOfProfiles = new ArrayList<>();
@@ -86,7 +84,7 @@ public class MvcModel {
             listOfProfiles.add(new Profile(profil));
         }
         try{
-        setCurrentProfile(listOfProfiles.get(0));}
+            setCurrentProfile(listOfProfiles.get(0));}
         catch(Exception e){
             setCurrentProfile(new Profile("TemporaryProfile"));
         }
@@ -136,89 +134,5 @@ public class MvcModel {
         return this.clockFeature;
     }
 
-
-
-
-
-    //saveData ska definitivt vara private
-    /*public void saveData() {
-        this.decks = flashcardFeature.GetListOfDecks();
-        try {
-            FileOutputStream fos = new FileOutputStream(this.path);
-            OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
-            Iterator var3 = this.decks.iterator();
-
-            while(var3.hasNext()) {
-                FlashcardDeck c = (FlashcardDeck) var3.next();
-                String line = c.getDeckName() +";";
-                for (Flashcard card: c.getDeck()){
-                    line = line + card.getQuestion() + ";" + card.getSolution() + ";";
-                }
-                line = line + "\n";
-                //String line = c.getFirstName() + ";" + c.getLastName() + ";" + c.getPhone() + ";" + c.getEmail() + ";" + c.getAddress() + ";" + c.getPostCode() + ";" + c.getPostAddress() + ";" + "end\n";
-                osw.write(line);
-            }
-
-            osw.flush();
-            osw.close();
-        } catch (IOException var6) {
-            var6.printStackTrace();
-        }
-
-    }
-
-    private void parseLine(String line) {
-        String[] tokens = line.split(";");
-
-        FlashcardDeck c = new FlashcardDeck(tokens[0]);
-        for (int i = 1; i < tokens.length-1; i=i+2){
-            c.addFlashcard(new Flashcard(tokens[i],tokens[i+1]));
-        }
-        this.decks.add(c);
-        /*catch(Exception var){
-            System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
-        }*/
-
-        //System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
-    /*}
-
-    /*private void loadData() {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(this.path), "ISO-8859-1"));
-
-            String line;
-            while((line = reader.readLine()) != null) {
-                this.parseLine(line);
-            }
-
-            reader.close();
-        } catch (IOException var3) {
-            var3.printStackTrace();
-        }
-
-    }
-
-    /*private void init() {
-        this.path = System.getProperty("user.home") + File.separatorChar + ".plugg";
-
-        File contactsData;
-        try {
-            contactsData = new File(this.path);
-            if (!contactsData.exists()) {
-                contactsData.mkdir();
-            }
-        } catch (Exception var2) {
-            System.out.println("Model creating save directory: " + var2);
-        }
-
-        this.path = this.path + File.separatorChar + "plugg.txt";
-        contactsData = new File(this.path);
-        if (contactsData.exists()) {
-            this.loadData();
-        } else {
-            //this.contacts.add(new Contact());
-        }
-
-    }*/
 
 }

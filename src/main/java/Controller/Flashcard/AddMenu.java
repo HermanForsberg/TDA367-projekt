@@ -8,9 +8,11 @@ import java.awt.event.ActionListener;
 import Model.*;
 public class AddMenu extends JPanel {
     public AddMenu(FlashcardDeck deck, DeckController deckController) {
+
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         JPanel grid = new JPanel();
+
         grid.setLayout(new GridLayout(5, 5, 10,10));
         c.gridy = 2;
         c.gridwidth = 5;
@@ -25,6 +27,7 @@ public class AddMenu extends JPanel {
         c.gridheight = 2;
         c.gridwidth = 3;
         add(addButton,c);
+
         addButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +54,7 @@ public class AddMenu extends JPanel {
         c.weightx = 0.3;
         c.fill = GridBagConstraints.HORIZONTAL;
         add(backButton,c);
-        backButton.addActionListener(new ActionListener() {
+        /*backButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 removeAll();
@@ -62,7 +65,7 @@ public class AddMenu extends JPanel {
                 updateUI();
             }
 
-        });
+        });*/
 
         for(Flashcard card : deck.getDeck()){
             grid.add(new AddMenuCard(card, deck, grid));

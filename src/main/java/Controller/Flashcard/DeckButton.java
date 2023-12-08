@@ -1,14 +1,24 @@
 package Controller.Flashcard;
 
+import Controller.DeckButtonListener;
+import Controller.DeleteButtonListener;
 import Model.FlashcardDeck;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DeckButton extends JPanel {
     private final JButton clicked;
     private final JButton delete;
-    public DeckButton(FlashcardDeck deck){
+
+    private DeckController deckController;
+
+    private FlashcardDeck deck;
+    public DeckButton(FlashcardDeck newDeck){
+        deck = newDeck;
+
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         clicked = new JButton(deck.getDeckName());
@@ -46,17 +56,37 @@ public class DeckButton extends JPanel {
     public JButton getClicked() {
         return clicked;
     }
-    /*
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setSize(new Dimension(600, 600));
-        FlashcardDeck deck = new FlashcardDeck("deck");
-        frame.add(new DeckButtonController(deck));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
 
+    public void addButtonListenerToClickedButton(DeckButtonListener buttonListener){
 
-    }*/
+        getClicked().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                    buttonListener.onDeckButtonClicked("flashcardFeature");
+
+            }
+
+        });
+
+    }
+
+    public void addButtonListenerToDeleteButton(DeleteButtonListener buttonListener){
+
+        getDeleteButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int ans = JOptionPane.showConfirmDialog(null,
+                        "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
+                if(ans == 0){
+
+                buttonListener.onDeleteButtonClicked(deck);
+            }
+        }
+
+    });
+
 }
+}
+

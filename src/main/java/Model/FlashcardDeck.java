@@ -10,6 +10,10 @@ public class FlashcardDeck {
     private String deckName;
     private int currentIndex;
 
+    private Flashcard flashcardInFocus;
+
+    private boolean inFocus;
+
     private ObserverHandler observerHandler = new ObserverHandler();
 
     public FlashcardDeck(String deckName) {
@@ -17,6 +21,12 @@ public class FlashcardDeck {
         this.deckName = deckName;
         this.currentIndex = 0;
 
+    }
+
+
+
+    public void setFlashcardInFocus(Flashcard card){
+        flashcardInFocus = card;
     }
 
     public boolean addFlashcard(Flashcard flash){
