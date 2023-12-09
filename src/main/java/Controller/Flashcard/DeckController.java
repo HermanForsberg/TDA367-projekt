@@ -124,7 +124,7 @@ public class DeckController extends JPanel implements Observer{
                 next.setText("Finish");
                 next.setBackground(Color.MAGENTA);
                 updateUI();
-            }else if(deck.getCurrentIndex() > deck.getSize()-2){
+            }else if(deck.getCurrentIndex() == deck.getSize()-1){
                 int numberOfCorrect = deck.getNumberOfCorrect();
                 panelForFlashcard.removeAll();
                 panelForFlashcard.add(new JLabel("Number of correct: " + numberOfCorrect + " out of " + deck.getSize()));
@@ -134,10 +134,12 @@ public class DeckController extends JPanel implements Observer{
                 next.setBackground(Color.CYAN);
                 deck.resetAnswers();
             }
-            else{
 
-            }
         });
+    }
+
+    public void createFinishButton(){
+
     }
 
     public void createPreviousButton(){

@@ -47,12 +47,13 @@ public class FlashcardDeck {
         }catch(Exception e){
             currentIndex = 0;
         }
-        System.out.println(currentIndex);
+
         observerHandler.updateObservers();
     }
 
     public void incrementCurrentIndex(){
         currentIndex = (currentIndex + 1) % (deck.size());
+        System.out.println(currentIndex);
     }
 
     public void addObserver(Observer observer){
