@@ -9,6 +9,8 @@ public class Flashcard {
     public static final int wrong = 0;
     public static final int reset = -1;
 
+    public static final int expGain = 1;
+
     public Flashcard(String question, String solution){
         this.question = question;
         this.solution = solution;

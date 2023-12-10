@@ -2,6 +2,7 @@ package Model.Clock;
 
 import Controller.Observer;
 import Controller.ObserverHandler;
+import Model.Mediator;
 import Model.Observable;
 import Model.Profile;
 
@@ -11,7 +12,7 @@ import java.util.Timer;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
-public abstract class Clock implements Observable {
+public abstract class Clock implements Observable{
     //Timer     = Keeps track of the time in a background thread.
     //TimerTask = Contains an abstract method called run(). When our Model.Timer reaches a certain time
     //            it will execute a task either once or repeatedly.
@@ -22,7 +23,7 @@ public abstract class Clock implements Observable {
     private boolean isRunning;
     private int minutesPassed;
     //TODO
-    private Profile profile;
+
 
     public Clock(int minutes) {
         this.minutes = minutes;

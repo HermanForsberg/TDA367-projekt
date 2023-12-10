@@ -7,8 +7,9 @@ import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
-public class Profile {
+public class Profile implements Mediator{
 
     private String name;
 
@@ -168,4 +169,11 @@ public class Profile {
 
     }
 
+    @Override
+    public void notified(String name) {
+        if(Objects.equals(name, "clock")){
+            addExp(1);
+            System.out.println(getName() + exp);
+        }
+    }
 }

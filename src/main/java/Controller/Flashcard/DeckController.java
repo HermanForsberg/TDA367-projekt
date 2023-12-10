@@ -178,6 +178,7 @@ public class DeckController extends JPanel implements Observer{
         correct.addActionListener(e -> {
             Flashcard flashcard = deck.getCurrentFlashcard();
             flashcard.setAnswer(Flashcard.correct);
+
         });
     }
 
