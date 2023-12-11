@@ -1,5 +1,8 @@
 package Model;
 
+import Controller.ObserverHandler;
+import Controller.Observer;
+
 public class Flashcard {
     private String solution;
     private String question;
@@ -11,9 +14,15 @@ public class Flashcard {
 
     public static final int expGain = 1;
 
+    private ObserverHandler observerHandler;
+
     public Flashcard(String question, String solution){
         this.question = question;
         this.solution = solution;
+    }
+
+    public void addObserver(Observer observer){
+        observerHandler.addObserver(observer);
     }
 
     public String getSolution() {

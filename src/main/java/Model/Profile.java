@@ -1,11 +1,16 @@
 package Model;
 
+import Controller.Observer;
+import Controller.ObserverHandler;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class Profile implements Mediator{
+public class Profile implements Mediator, Observable{
 
     private String name;
 
@@ -18,6 +23,8 @@ public class Profile implements Mediator{
     private StatisticModel statisticModel;
 
     private FlashcardDeck newestDeck;
+
+    private ObserverHandler observerHandler = new ObserverHandler();
 
     public Profile(String name){
         this.name = name;
@@ -39,6 +46,13 @@ public class Profile implements Mediator{
     public void addExp(int expGain){
         exp += expGain;
     }
+
+    public void addObserver(Observer observer){
+        observerHandler.addObserver(observer);
+    }
+
+
+
 
 
 

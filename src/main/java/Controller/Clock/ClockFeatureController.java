@@ -84,6 +84,7 @@ public class ClockFeatureController extends JPanel{
         sideBar.revalidate();
         repaint();
         createGrid(clockFeature.getClockIndex());
+        updateUI();
     }
 
     private void createGrid(int index){

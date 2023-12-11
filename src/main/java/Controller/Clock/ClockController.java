@@ -19,6 +19,7 @@ public class ClockController extends JPanel implements Observer {
         final int gap = 10;
 
         //Time label
+        formatTimeLabel();
         timeLabel.setFont(new Font("Calibri", Font.BOLD, 24));
 
         //All the buttons
@@ -83,6 +84,7 @@ public class ClockController extends JPanel implements Observer {
                 if (clock.isRunning()){
                     clock.pauseClock();
                     startOrPauseButton.setText("Start");
+                    //timeLabel.setText("1000000");
                     clock.playSound("src/main/sound/Stop_Clock.wav");
                 }
                 else {
@@ -119,7 +121,12 @@ public class ClockController extends JPanel implements Observer {
     }
 
     public void update(){
+
         formatTimeLabel();
+        //System.out.println(clock.getSeconds());
+        //timeLabel.setText("0" + clock.getSeconds() + ":");
+        //System.out.println(clock.getSeconds());
+
     }
 
     private void formatTimeLabel(){
@@ -139,6 +146,9 @@ public class ClockController extends JPanel implements Observer {
         }
 
         timeLabel.setText(text);
+        System.out.println(text);
+        //timeLabel.updateUI();
+
     }
     public JButton getStartOrPauseButton() {
         return startOrPauseButton;

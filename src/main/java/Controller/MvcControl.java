@@ -57,7 +57,6 @@ public class MvcControl extends JPanel implements Observer{
         updateUI();
     }
 
-
     public void profileMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
