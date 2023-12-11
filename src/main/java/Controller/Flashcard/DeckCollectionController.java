@@ -1,6 +1,7 @@
 package Controller.Flashcard;
 
 import Controller.AddButtonListener;
+import Controller.DeckButtonListener;
 import Controller.DeleteButtonListener;
 import Model.FlashcardDeck;
 import Model.Profile;
@@ -16,12 +17,6 @@ public class DeckCollectionController extends JPanel implements AddButtonListene
     public DeckCollectionController(Profile model) {
 
         profile = model;
-
-        for (FlashcardDeck deck : model.GetListOfDecks()) {
-
-            DeckController deckController = new DeckController(deck);
-
-        }
 
     }
 
@@ -45,5 +40,9 @@ public class DeckCollectionController extends JPanel implements AddButtonListene
     public void onDeleteButtonClicked(FlashcardDeck deck) {
         profile.deleteDeck(deck);
     }
+
+
+
+
 }
 

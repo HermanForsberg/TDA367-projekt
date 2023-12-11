@@ -35,7 +35,7 @@ public class MvcMenu {
 
                 if (control != null) {
 
-                    //control.timerMenuActionPerformed(e); // e.g., here
+                    control.setView("clockFeature"); // e.g., here
 
                 }
             }
@@ -54,7 +54,6 @@ public class MvcMenu {
             }
         });
         menuBar.add(profile);
-
         menuBar.add(timers);
         menuBar.add(flashcards);
     }

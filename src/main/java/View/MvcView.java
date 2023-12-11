@@ -45,9 +45,13 @@ public class MvcView implements Observer{
     }
 
     public void update(){
+
         System.out.println(views.get(currentView.getCurrentView()));
         mainPanel.removeAll();
         mainPanel.add((Component) views.get(currentView.getCurrentView()));
+        for(Component component: mainPanel.getComponents()){
+            component.repaint();
+        }
         mainPanel.updateUI();
     }
 

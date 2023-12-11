@@ -58,12 +58,14 @@ public class DeckButton extends JPanel {
     }
 
     public void addButtonListenerToClickedButton(DeckButtonListener buttonListener){
+        
 
         getClicked().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                    buttonListener.onDeckButtonClicked("flashcardFeature");
+                    buttonListener.onDeckButtonClicked(deck);
+
 
             }
 

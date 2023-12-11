@@ -56,6 +56,10 @@ public class Profile {
         observerHandler.updateObservers();
     }
 
+    public FlashcardDeck getDeckInFocus(){
+        return deckInFocus;
+    }
+
     public void addObserver(Observer observer){
         observerHandler.addObserver(observer);
     }

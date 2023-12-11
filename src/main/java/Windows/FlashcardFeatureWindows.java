@@ -5,8 +5,10 @@ import Controller.CurrentViewController;
 import Controller.Flashcard.DeckController;
 import Controller.Flashcard.FlashcardController;
 import Controller.Observer;
+import Model.CurrentView;
 import Model.Flashcard;
 import Model.FlashcardDeck;
+import Model.Profile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +22,8 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private JPanel panelForFlashcard;
 
+        private Profile profile;
+
         private FlashcardWindow flashcardWindow;
 
         private DeckController deckController;
@@ -32,6 +36,10 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
         private JButton backwardsButton;
 
         private CurrentViewController currentViewController;
+
+        private CurrentView currentView;
+
+
 
         public void setDeck(FlashcardDeck deck) {
             this.deck = deck;
@@ -49,11 +57,13 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
         }
 
 
-        public FlashcardFeatureWindows(CurrentViewController newCurrentViewController) throws HeadlessException {
+        public FlashcardFeatureWindows(CurrentView newCurrentView, CurrentViewController newCurrentViewController) throws HeadlessException {
             //TODO backwardsButton
             //Set up the content pane.
-
+            currentView = newCurrentView;
+            deck = currentView.getDeckInFocus();
             currentViewController = newCurrentViewController;
+
             setLayout(new GridBagLayout());
             this.panelForFlashcard = new JPanel(new GridLayout(1, 0, 10 ,10));
 
@@ -73,6 +83,9 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
             //shitcode men orkade inte göra bra :))))
 
+            FlashcardWindow flashcard = new FlashcardWindow(new Flashcard("palce", "palce"));
+
+
             c.gridy = 2;
             c.gridx = 1;
             c.weightx = 0;
@@ -80,7 +93,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.insets = new Insets(40, 100, 40, 100);
             c.ipadx = 300;
             c.ipady = 200;
-            panelForFlashcard.add(forFlashcard);
+            panelForFlashcard.add(flashcard);
             add(panelForFlashcard,c);
 
 
@@ -99,6 +112,10 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
 
         }
+
+        /*public void paint(){
+            flashcardWindow.setCard(currentView.getDeckInFocus().getCurrentFlashcard());
+        }*/
 
     public void addButtonListenerToBackwardsButton(BackwardsButtonListener buttonListener){
         backwardsButton.addActionListener(new ActionListener() {
@@ -134,8 +151,13 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
         }
 
         public void update(){
+
+
+
+            deckController = new DeckController(currentView.getDeckInFocus());
             flashcardWindow.setCard(deck.getCurrentFlashcard());
             currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+
             updateUI();
         }
 
@@ -221,15 +243,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.ipady = 20;
             add(addCards,c);
             addCards.addActionListener(e -> {
-                //AddMenu adder = new AddMenu(deck, Controller.Flashcard.DeckController.this);
-                Component[] test = getComponents();
-                for (Component test2: test) {
-                    test2.setVisible(false);
-                }
-                c.fill = GridBagConstraints.BOTH;
-                c.weighty = 0.5;
-                c.weightx = 0.5;
-                //add(adder,c);
+                currentViewController.setView("addMenu");
                 updateUI();
 
             });

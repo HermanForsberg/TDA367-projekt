@@ -20,6 +20,7 @@ public class FlashcardDeck {
         this.deck = new ArrayList<>();
         this.deckName = deckName;
         this.currentIndex = 0;
+        flashcardInFocus = new Flashcard("PlaceHolder", "PlaceHolderAnswer");
 
     }
 
@@ -29,8 +30,12 @@ public class FlashcardDeck {
         flashcardInFocus = card;
     }
 
-    public boolean addFlashcard(Flashcard flash){
-        return deck.add(flash);
+    public void addFlashcard(Flashcard flash){
+
+        deck.add(flash);
+        observerHandler.updateObservers();
+
+
     }
 
 

@@ -13,6 +13,10 @@ public class CurrentView {
 
     private String currentView;
 
+    private FlashcardDeck deckInFocus;
+
+    private Flashcard cardInFocus;
+
     public CurrentView(){
 
     }
@@ -27,5 +31,16 @@ public class CurrentView {
 
     public void addObserver(Observer observer){
         observerHandler.addObserver(observer);
+    }
+
+    public void setDeckInFocus(FlashcardDeck deck){
+        deckInFocus = deck;
+        setCurrentView("flashcardFeature");
+        observerHandler.updateObservers();
+    }
+
+    public FlashcardDeck getDeckInFocus(){
+        return deckInFocus;
+
     }
 }

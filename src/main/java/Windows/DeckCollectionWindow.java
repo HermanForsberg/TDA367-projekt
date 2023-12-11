@@ -3,6 +3,7 @@ package Windows;
 import Controller.*;
 import Controller.Flashcard.DeckButton;
 import Controller.Flashcard.DeckCollectionController;
+import Controller.Flashcard.DeckController;
 import Model.FlashcardDeck;
 import Model.Profile;
 
@@ -34,6 +35,7 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
 
             profile = model;
             profile.addObserver(this);
+
             deckCollectionController = newDeckCollectionController;
             currentViewController = newCurrentViewController;
 
@@ -47,10 +49,8 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
             grid.add(addButton);
 
 
-
-
             for (FlashcardDeck deck : model.GetListOfDecks()) {
-
+                //DeckController deckController = new DeckController(deck);
                 DeckButton deckButton = new DeckButton(deck);
                 deckButton.addButtonListenerToDeleteButton(deckCollectionController);
                 deckButton.addButtonListenerToClickedButton(currentViewController);
@@ -65,6 +65,8 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
         }
 
     public void update() {
+
+
         System.out.println("Update");
         grid.removeAll();
         grid.add(addButton);
@@ -77,12 +79,16 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
         grid.updateUI();
     }
 
+    public void addButtonListener(){
+
+    }
 
 
         public void addButtonListenerToAddButton(AddButtonListener buttonListener){
             addButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
                     String name = JOptionPane.showInputDialog("name of deck: ");
                     if (!name.isEmpty()){
                         buttonListener.onAddButtonClicked(name);

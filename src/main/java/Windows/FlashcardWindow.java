@@ -9,10 +9,10 @@ import Controller.Observer;
 
 public class FlashcardWindow extends JButton implements Observer, Window{
 
-    private Flashcard card = new Flashcard("swag", "Swag2");
+    private Flashcard card;
 
-    public FlashcardWindow(){
-
+    public FlashcardWindow(Flashcard newCard){
+        card=newCard;
         //card.addObserver(this);
 
         setText(card.getQuestion());

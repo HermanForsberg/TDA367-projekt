@@ -24,13 +24,6 @@ public class MvcModel {
 
     private String path = "";
 
-
-    private ArrayList<FlashcardDeck> decks = new ArrayList();
-
-
-    private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
-
-
     private ClockFeature clockFeature;
 
     private ArrayList<Profile> listOfProfiles = new ArrayList<>();
@@ -92,10 +85,6 @@ public class MvcModel {
     }
     public void addProfile(Profile profile){
         listOfProfiles.add(profile);
-    }
-
-    public void setProfileList(ArrayList<Profile> listOfProf){
-        listOfProfiles = listOfProf;
     }
 
     public void addObserver(Observer observer){

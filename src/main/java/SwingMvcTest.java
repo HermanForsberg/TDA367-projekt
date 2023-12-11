@@ -9,11 +9,8 @@ import Model.*;
 import Controller.*;
 import Model.Clock.*;
 import View.*;
-import Windows.DeckCollectionWindow;
-import Windows.FlashcardFeatureWindows;
-import Windows.FlashcardWindow;
+import Windows.*;
 import Model.CurrentView;
-import Windows.Window;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,7 +74,6 @@ public class SwingMvcTest {
 
         HashMap<String,Window> views = new HashMap<>();
 
-
         CurrentView currentView = new CurrentView();
 
         CurrentViewController currentViewController = new CurrentViewController(currentView);
@@ -86,13 +82,23 @@ public class SwingMvcTest {
 
         views.put("deckCollection",deckCollectionWindow);
 
-        FlashcardFeatureWindows flashcardFeatureWindows = new FlashcardFeatureWindows(currentViewController);
+        //Otroligt fula parametrar
+
+        FlashcardFeatureWindows flashcardFeatureWindows = new FlashcardFeatureWindows(currentView,currentViewController);
 
         views.put("flashcardFeature",flashcardFeatureWindows);
 
-        FlashcardWindow flashcardWindow = new FlashcardWindow();
+        AddMenuWindow addMenuWindow = new AddMenuWindow(model.getCurrentProfile(), currentView, currentViewController);
 
-        views.put("flashcardWindow",flashcardWindow);
+        views.put("addMenu", addMenuWindow);
+
+        ClockFeatureWindow clockFeatureWindow = new ClockFeatureWindow(model.getClockFeature());
+
+        views.put("clockFeature", clockFeatureWindow);
+
+        // FlashcardWindow flashcardWindow = new FlashcardWindow();
+
+       // views.put("flashcardWindow",flashcardWindow);
 
 
 

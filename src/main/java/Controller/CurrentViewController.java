@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.CurrentView;
+import Model.FlashcardDeck;
 import Windows.Window;
 
 public class CurrentViewController implements DeckButtonListener, BackwardsButtonListener{
@@ -16,8 +17,9 @@ public class CurrentViewController implements DeckButtonListener, BackwardsButto
 
 
     @Override
-    public void onDeckButtonClicked(String viewName) {
-        setView(viewName);
+    public void onDeckButtonClicked(FlashcardDeck deck) {
+        currentView.setDeckInFocus(deck);
+
     }
 
     @Override

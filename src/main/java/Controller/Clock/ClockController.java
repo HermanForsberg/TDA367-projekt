@@ -138,6 +138,7 @@ public class ClockController extends JPanel implements Observer {
         }
 
         timeLabel.setText(text);
+
     }
     public JButton getStartOrPauseButton() {
         return startOrPauseButton;
