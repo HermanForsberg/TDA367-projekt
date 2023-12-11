@@ -86,8 +86,8 @@ public class MvcModel implements Observable{
 
     public void initClock(){
         Clock manualTimer = new ManualTimer(currentProfile);
-        Clock stopwatch = new Stopwatch();
-        Clock pomodoro = new Pomodoro();
+        Clock stopwatch = new Stopwatch(currentProfile);
+        Clock pomodoro = new Pomodoro(currentProfile);
 
         ArrayList<Clock> clockList = new ArrayList<>();
         clockList.add(manualTimer);
