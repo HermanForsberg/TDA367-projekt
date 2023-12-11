@@ -25,7 +25,7 @@ public class QuestsController extends JPanel {
         dailyStreakLabel.setFont(font);
         weeklyStreakLabel.setFont(font);
 
-        dailyQuests = questFeature.getDailyQuests();
+        dailyQuests = questFeature.getQuests();
 
         createGrid();
     }
@@ -35,13 +35,13 @@ public class QuestsController extends JPanel {
         add(weeklyLabel);
 
         add(new QuestCard(dailyQuests.get(0)));
-        add(new QuestCard(dailyQuests.get(0)));
+        add(new QuestCard(dailyQuests.get(3)));
 
         add(new QuestCard(dailyQuests.get(1)));
-        add(new QuestCard(dailyQuests.get(1)));
+        add(new QuestCard(dailyQuests.get(4)));
 
         add(new QuestCard(dailyQuests.get(2)));
-        add(new QuestCard(dailyQuests.get(2)));
+        add(new QuestCard(dailyQuests.get(5)));
 
         add(dailyStreakLabel);
         add(weeklyStreakLabel);

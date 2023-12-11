@@ -4,17 +4,14 @@ import java.util.ArrayList;
 
 public class QuestFeature {
     private QuestFactory questFactory;
-    private WeeklyQuests weeklyQuests;
-    private ArrayList<Quest> dailyQuests;
+    private ArrayList<Quest> quests;
 
     public QuestFeature() {
         questFactory = new QuestFactory();
-        weeklyQuests = new WeeklyQuests();
-
-        dailyQuests = questFactory.getQuests();
+        quests = questFactory.getQuests();
     }
 
-    public ArrayList<Quest> getDailyQuests() {
-        return dailyQuests;
+    public ArrayList<Quest> getQuests() {
+        return quests;
     }
 }
