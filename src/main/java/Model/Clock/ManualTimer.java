@@ -24,6 +24,7 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
                 setSeconds(getSeconds() - 1);
             }
         }
+
     }
 
     public void rest(){
