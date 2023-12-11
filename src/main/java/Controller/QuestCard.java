@@ -13,6 +13,10 @@ public class QuestCard extends JPanel {
     public QuestCard(Quest quest) {
         setLayout(new GridLayout(3,0,0,0));
         Color customColor = new Color(186, 231, 255);
+        if (quest.isCompleted()) {
+            customColor = Color.GREEN;
+        }
+
         setBackground(customColor);
 
         createTitle(quest);

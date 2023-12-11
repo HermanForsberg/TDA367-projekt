@@ -35,8 +35,8 @@ public class QuestFactory {
         String text = "No description found...";
         switch (topic) {
             case "Clock"     -> text = "Study for a total of " + formatAmountToTime(amount);
-            case "Flashcard" -> text = "Complete " + amount + " of flashcards";
-            case "Level"     -> text = "Level up " + amount + " level(s)";
+            case "Flashcard" -> text = "Complete " + amount + " correct flashcards";
+            case "Level"     -> text = "Level up " + amount + formatAmountToLevel(amount);
         }
         return text;
     }
@@ -48,6 +48,11 @@ public class QuestFactory {
             return hours + "h";
         }
         return hours + "h, " + minutes + "m";
+    }
+
+    private String formatAmountToLevel(int amount){
+        if (amount == 1) return " level";
+        return " levels";
     }
 
     private int createDifficulty() {
