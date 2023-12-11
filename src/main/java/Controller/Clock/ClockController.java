@@ -15,6 +15,7 @@ public class ClockController extends JPanel implements Observer {
     private JButton startOrPauseButton = new JButton("Start");
     public ClockController(Clock clock, JLabel imageLabel){
         this.clock = clock;
+        clock.addObserver(this);
         final int gap = 10;
 
         //Time label

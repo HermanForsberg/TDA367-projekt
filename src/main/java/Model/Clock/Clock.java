@@ -1,6 +1,10 @@
 package Model.Clock;
 
 import Controller.Observer;
+import Controller.ObserverHandler;
+import Model.Mediator;
+import Model.Observable;
+import Model.Profile;
 
 import java.util.TimerTask;
 import java.util.Timer;
@@ -8,24 +12,29 @@ import java.util.Timer;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
-public abstract class Clock implements Observer {
+public abstract class Clock implements Observable{
     //Timer     = Keeps track of the time in a background thread.
     //TimerTask = Contains an abstract method called run(). When our Model.Timer reaches a certain time
     //            it will execute a task either once or repeatedly.
+    private ObserverHandler observerHandler = new ObserverHandler();
     private int minutes;
     private int seconds;
     private Timer timer;
     private boolean isRunning;
+    private int minutesPassed;
+    //TODO
+
 
     public Clock(int minutes) {
         this.minutes = minutes;
         this.seconds = 0;
         this.timer = new Timer();
         this.isRunning = false;
+        this.minutesPassed = 0;
     }
 
-    public void update(){
-
+    public void addObserver(Observer observer){
+        observerHandler.addObserver(observer);
     }
 
     public abstract void calculateTime();
@@ -61,6 +70,7 @@ public abstract class Clock implements Observer {
             e.printStackTrace();
         }
     }
+    //public abstract int minutesPassed();
     protected void setSeconds(int seconds) {
         this.seconds = seconds;
     }
@@ -79,5 +89,13 @@ public abstract class Clock implements Observer {
     public boolean isRunning() {
         return isRunning;
     }
-
+    public int getMinutesPassed() {
+        return minutesPassed;
+    }
+    public void setMinutesPassed(int minutesPassed) {
+        this.minutesPassed = minutesPassed;
+    }
+    public void addOneMinutesPassed(){
+        setMinutesPassed(getMinutesPassed()+1);
+    }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ClockFeature extends JPanel{
 
-    private ArrayList<Clock> clockList  = new ArrayList<Clock>();
+    private ArrayList<Clock> clockList;
 
     private int clockIndex;
 
@@ -24,5 +24,9 @@ public class ClockFeature extends JPanel{
     }
     public void setClockIndex(int clockIndex) {
         this.clockIndex = clockIndex;
+    }
+
+    public Clock getClock(){
+        return clockList.get(clockIndex);
     }
 }

@@ -8,10 +8,10 @@ public class MvcMenu {
 
     private JToolBar toolBar;
     private JMenuBar menuBar = new JMenuBar();
-    private CurrentViewController control;
+    private MvcControl control;
 
     @SuppressWarnings("serial")
-    public MvcMenu(CurrentViewController cntrl) {
+    public MvcMenu(MvcControl cntrl) {
         this.control = cntrl;
         JButton flashcards = new JButton("Flashcards");
 
@@ -21,7 +21,7 @@ public class MvcMenu {
 
                 if (control != null) {
 
-                    control.setView("deckCollection"); // e.g., here
+                    control.flashcardMenuActionPerformed(e); // e.g., here
 
                 }
             }
@@ -35,7 +35,7 @@ public class MvcMenu {
 
                 if (control != null) {
 
-                    control.setView("clockFeature"); // e.g., here
+                    control.timerMenuActionPerformed(e); // e.g., here
 
                 }
             }
@@ -48,12 +48,28 @@ public class MvcMenu {
 
                 if (control != null) {
 
-                    //control.profileMenuActionPerformed(e); // e.g., here
+                    control.profileMenuActionPerformed(e); // e.g., here
 
                 }
             }
         });
         menuBar.add(profile);
+
+        JButton quests = new JButton("Quests");
+
+        quests.addActionListener(new ActionListener() {
+            // all the buttons do is call methods of the control
+            public void actionPerformed(ActionEvent e) {
+
+                if (control != null) {
+
+                    control.questMenuActionPerformed(e); // e.g., here
+
+                }
+            }
+        });
+
+        menuBar.add(quests);
         menuBar.add(timers);
         menuBar.add(flashcards);
     }

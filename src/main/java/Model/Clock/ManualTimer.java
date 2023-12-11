@@ -1,8 +1,12 @@
 package Model.Clock;
 
+import Model.Mediator;
+
 public class ManualTimer extends Clock implements Rest { //Counts downwards.
-    public ManualTimer() {
+    private Mediator mediator;
+    public ManualTimer(Mediator mediator) {
         super(20);
+        this.mediator = mediator;
     }
 
     public void calculateTime(){
@@ -13,6 +17,8 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
             if (getSeconds() == 0){
                 setMinutes(getMinutes() - 1);
                 setSeconds(59);
+                addOneMinutesPassed();
+                mediator.notified("clock");
             }
             else {
                 setSeconds(getSeconds() - 1);
@@ -36,5 +42,6 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
         pauseClock();
         setMinutes(20);
         setSeconds(0);
-    };
+    }
+
 }

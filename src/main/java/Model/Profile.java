@@ -1,23 +1,21 @@
 package Model;
 
-import Controller.ObserverHandler;
+import Controller.Observer;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-import Controller.Observer;
+import java.util.Objects;
 
-public class Profile {
+public class Profile implements Mediator{
 
     private String name;
 
     private ArrayList<FlashcardDeck> decks;
 
-    private float exp;
-
-    private ObserverHandler observerHandler = new ObserverHandler();
+    private int exp;
 
     private String path = "";
 
@@ -25,12 +23,9 @@ public class Profile {
 
     private FlashcardDeck newestDeck;
 
-    private FlashcardDeck deckInFocus;
-
-
     public Profile(String name){
-
         this.name = name;
+        this.exp = 0;
         this.decks = new ArrayList<FlashcardDeck>();
         this.init();
     }
@@ -38,7 +33,6 @@ public class Profile {
     public void setStatisticModel(StatisticModel statisticModel) {
         this.statisticModel = statisticModel;
     }
-
     public String getPath(){
         return this.path;
     }
@@ -46,26 +40,31 @@ public class Profile {
         return decks;
     }
 
+    public void addExp(int expGain){
+        exp += expGain;
+    }
+
+
 
     public String getName(){
         return name;
     }
 
-    public void setDeckInFocus(FlashcardDeck deck){
-        deckInFocus = deck;
-        observerHandler.updateObservers();
+
+    public void deleteDeck(FlashcardDeck deck){
+        decks.remove(deck);
     }
 
-    public FlashcardDeck getDeckInFocus(){
-        return deckInFocus;
+    public FlashcardDeck getNewestDeck(){
+        return newestDeck;
     }
 
-    public void addObserver(Observer observer){
-        observerHandler.addObserver(observer);
+    public void addNewDeck(String name){
+        FlashcardDeck newDeck = new FlashcardDeck(name);
+        decks.add(newDeck);
+        newestDeck = newDeck;
+        //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
     }
-
-
-
 
 
 
@@ -107,26 +106,6 @@ public class Profile {
 
     }
 
-    public ArrayList<FlashcardDeck> GetListOfDecks(){
-        return decks;
-    }
-
-    public void deleteDeck(FlashcardDeck deck){
-        decks.remove(deck);
-        observerHandler.updateObservers();
-    }
-
-    public FlashcardDeck getNewestDeck(){
-        return newestDeck;
-    }
-
-    public void addNewDeck(String name){
-        FlashcardDeck newDeck = new FlashcardDeck(name);
-        decks.add(newDeck);
-        newestDeck = newDeck;
-        observerHandler.updateObservers();
-        //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
-    }
 
     public void saveData() {
         this.path = getPath();
@@ -190,4 +169,11 @@ public class Profile {
 
     }
 
+    @Override
+    public void notified(String name) {
+        if(Objects.equals(name, "clock")){
+            addExp(1);
+            System.out.println(getName() + exp);
+        }
+    }
 }
