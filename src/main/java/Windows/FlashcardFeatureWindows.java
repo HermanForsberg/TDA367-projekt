@@ -28,7 +28,9 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private DeckController deckController;
 
-        private FlashcardDeck deck = new FlashcardDeck("temp");
+        private Profile temp = new Profile("temp");
+
+        private FlashcardDeck deck = new FlashcardDeck("temp", temp);
 
         private final GridBagConstraints c = new GridBagConstraints();
         private final JLabel currentCard = new JLabel("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
@@ -151,8 +153,6 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
         }
 
         public void update(){
-
-
 
             deckController = new DeckController(currentView.getDeckInFocus());
             flashcardWindow.setCard(deck.getCurrentFlashcard());

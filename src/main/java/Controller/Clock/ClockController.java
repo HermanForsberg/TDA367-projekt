@@ -146,7 +146,7 @@ public class ClockController extends JPanel implements Observer {
         }
 
         timeLabel.setText(text);
-        System.out.println(text);
+        //System.out.println(text);
         //timeLabel.updateUI();
 
     }

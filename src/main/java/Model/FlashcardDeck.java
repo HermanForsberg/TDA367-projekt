@@ -20,8 +20,10 @@ public class FlashcardDeck {
         this.mediator = mediator;
     }
 
-    public boolean addFlashcard(Flashcard flash){
-        return deck.add(flash);
+    public void addFlashcard(Flashcard flash){
+
+        deck.add(flash);
+        observerHandler.updateObservers();
     }
 
 
