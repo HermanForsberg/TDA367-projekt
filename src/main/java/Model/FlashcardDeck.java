@@ -10,12 +10,14 @@ public class FlashcardDeck {
     private String deckName;
     private int currentIndex;
 
+    private Mediator mediator;
     private ObserverHandler observerHandler = new ObserverHandler();
 
-    public FlashcardDeck(String deckName) {
+    public FlashcardDeck(String deckName, Mediator mediator) {
         this.deck = new ArrayList<>();
         this.deckName = deckName;
         this.currentIndex = 0;
+        this.mediator = mediator;
     }
 
     public boolean addFlashcard(Flashcard flash){
@@ -90,6 +92,7 @@ public class FlashcardDeck {
             int answer = card.getAnswer();
             if(answer == Flashcard.correct){
                 count++;
+                mediator.notified("flashcard");
             }
         }
         return count;

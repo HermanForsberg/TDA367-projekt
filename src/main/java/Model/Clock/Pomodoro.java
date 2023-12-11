@@ -1,10 +1,16 @@
 package Model.Clock;
 
+import Model.Mediator;
+
 public class Pomodoro extends Clock implements Rest {
     boolean timeToRest;
     int intervalCounter;
-    public Pomodoro() {
+
+    private Mediator mediator;
+
+    public Pomodoro(Mediator mediator) {
         super(25);
+        this.mediator = mediator;
         timeToRest = true;
         intervalCounter = 0;
     }
@@ -18,6 +24,7 @@ public class Pomodoro extends Clock implements Rest {
                 setMinutes(getMinutes() - 1);
                 setSeconds(59);
                 addOneMinutesPassed();
+                mediator.notified("clock");
             }
             else {
                 setSeconds(getSeconds() - 1);

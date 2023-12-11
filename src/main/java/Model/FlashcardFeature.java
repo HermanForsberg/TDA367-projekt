@@ -23,13 +23,14 @@ public class FlashcardFeature extends JPanel {
         ListOfDecks.remove(deck);
     }
 
+    /*
     public void addNewDeck(String name){
         FlashcardDeck newDeck = new FlashcardDeck(name);
 
         ListOfDecks.add(newDeck);
         newestDeck = newDeck;
         //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
-    }
+    }*/
 
     public ArrayList<FlashcardDeck> GetListOfDecks(){
         return ListOfDecks;

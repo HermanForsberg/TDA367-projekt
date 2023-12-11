@@ -3,6 +3,7 @@ package Controller.Flashcard;
 import Controller.Observer;
 import Model.Flashcard;
 import Model.FlashcardDeck;
+import Model.Profile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,8 @@ public class DeckController extends JPanel implements Observer{
 
     private JPanel panelForFlashcard;
 
-    private FlashcardDeck deck = new FlashcardDeck("temp");
+    private Profile tempProfile = new Profile("temp");
+    private FlashcardDeck deck = new FlashcardDeck("temp", tempProfile);
 
     private final GridBagConstraints c = new GridBagConstraints();
     private final JLabel currentCard = new JLabel("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());

@@ -56,7 +56,7 @@ public class Profile implements Mediator{
     }
 
     public void addNewDeck(String name){
-        FlashcardDeck newDeck = new FlashcardDeck(name);
+        FlashcardDeck newDeck = new FlashcardDeck(name, this);
         decks.add(newDeck);
         newestDeck = newDeck;
         //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
@@ -70,7 +70,7 @@ public class Profile implements Mediator{
     private void parseLine(String line) {
         String[] tokens = line.split(";");
         try {
-            FlashcardDeck c = new FlashcardDeck(tokens[0]);
+            FlashcardDeck c = new FlashcardDeck(tokens[0], this);
             for (int i = 1; i < tokens.length - 1; i = i + 2) {
                 c.addFlashcard(new Flashcard(tokens[i], tokens[i + 1]));
             }
@@ -168,6 +168,9 @@ public class Profile implements Mediator{
     @Override
     public void notified(String name) {
         if(Objects.equals(name, "clock")){
+            addExp(1);
+            System.out.println(getName() + " " + exp);
+        }else if(Objects.equals(name, "flashcard")){
             addExp(1);
             System.out.println(getName() + " " + exp);
         }
