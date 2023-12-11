@@ -49,7 +49,7 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
             grid.add(addButton);
 
 
-            for (FlashcardDeck deck : model.GetListOfDecks()) {
+            for (FlashcardDeck deck : model.getListOfDecks()) {
                 //DeckController deckController = new DeckController(deck);
                 DeckButton deckButton = new DeckButton(deck);
                 deckButton.addButtonListenerToDeleteButton(deckCollectionController);
@@ -70,7 +70,7 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
         System.out.println("Update");
         grid.removeAll();
         grid.add(addButton);
-        for (FlashcardDeck deck : profile.GetListOfDecks()) {
+        for (FlashcardDeck deck : profile.getListOfDecks()) {
             DeckButton deckButton = new DeckButton(deck);
             deckButton.addButtonListenerToDeleteButton(deckCollectionController);
             deckButton.addButtonListenerToClickedButton(currentViewController);

@@ -90,7 +90,7 @@ public class MvcModel {
     }
 
     public void initClock(){
-        Clock manualTimer = new ManualTimer(listOfProfiles.get(0));
+        Clock manualTimer = new ManualTimer(currentProfile);
         Clock stopwatch = new Stopwatch();
         Clock pomodoro = new Pomodoro();
 

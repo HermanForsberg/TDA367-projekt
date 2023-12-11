@@ -83,6 +83,7 @@ public class ClockController extends JPanel implements Observer {
                 if (clock.isRunning()){
                     clock.pauseClock();
                     startOrPauseButton.setText("Start");
+                    //timeLabel.setText("1000000");
                     clock.playSound("src/main/sound/Stop_Clock.wav");
                 }
                 else {
@@ -119,6 +120,7 @@ public class ClockController extends JPanel implements Observer {
     }
 
     public void update(){
+
         formatTimeLabel();
     }
 
@@ -139,6 +141,8 @@ public class ClockController extends JPanel implements Observer {
         }
 
         timeLabel.setText(text);
+        System.out.println(timeLabel.getText());
+        timeLabel.updateUI();
 
     }
     public JButton getStartOrPauseButton() {

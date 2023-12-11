@@ -21,7 +21,7 @@ public class FlashcardController extends JButton {
 
 
     public void setCorrect(boolean bool){
-        flashcard.setCorrect(bool);
+        //flashcard.setCorrect(bool);
     }
 
     public void setQuestion(String question){

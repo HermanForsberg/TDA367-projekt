@@ -17,6 +17,7 @@ public class Watch {
             for (Observer o : observers)
 
                 o.update();
+
         });
     }
 

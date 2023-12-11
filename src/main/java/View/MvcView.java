@@ -33,7 +33,7 @@ public class MvcView implements Observer{
 
         views=newViews;
 
-        //mainPanel.add(deckTest.get());
+
 
 
         mainPanel.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
@@ -46,7 +46,7 @@ public class MvcView implements Observer{
 
     public void update(){
 
-        System.out.println(views.get(currentView.getCurrentView()));
+        //System.out.println(views.get(currentView.getCurrentView()));
         mainPanel.removeAll();
         mainPanel.add((Component) views.get(currentView.getCurrentView()));
         for(Component component: mainPanel.getComponents()){

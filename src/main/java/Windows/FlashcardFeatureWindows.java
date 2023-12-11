@@ -211,7 +211,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             add(correct,c);
             correct.addActionListener(e -> {
                 Flashcard flashcard = deck.getCurrentFlashcard();
-                flashcard.setCorrect(true);
+                //flashcard.setCorrect(true);
             });
         }
 
@@ -226,7 +226,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             add(wrong,c);
             wrong.addActionListener(e -> {
                 Flashcard flashcard = deck.getCurrentFlashcard();
-                flashcard.setCorrect(false);
+                //flashcard.setCorrect(false);
             });
         }
 

@@ -73,11 +73,13 @@ public abstract class Clock implements Observable{
     //public abstract int minutesPassed();
     protected void setSeconds(int seconds) {
         this.seconds = seconds;
+        observerHandler.updateObservers();
     }
     public void setRunning(boolean running) {
         isRunning = running;
     }
     public int getMinutes() {
+
         return minutes;
     }
     public int getSeconds() {

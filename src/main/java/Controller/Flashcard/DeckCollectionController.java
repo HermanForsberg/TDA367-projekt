@@ -22,10 +22,6 @@ public class DeckCollectionController extends JPanel implements AddButtonListene
 
 
 
-    public void setDeckInFocus(FlashcardDeck deck){
-        profile.setDeckInFocus(deck);
-    }
-
     public void deleteDeck(FlashcardDeck deck){
         profile.deleteDeck(deck);
     }
