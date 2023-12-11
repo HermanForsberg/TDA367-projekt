@@ -4,6 +4,7 @@ import Controller.BackwardsButtonListener;
 import Controller.CurrentViewController;
 import Controller.Flashcard.DeckController;
 import Controller.Flashcard.FlashcardController;
+import Controller.NextButtonListener;
 import Controller.Observer;
 import Model.CurrentView;
 import Model.Flashcard;
@@ -41,6 +42,8 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private CurrentView currentView;
 
+        private JButton next;
+
 
 
         public void setDeck(FlashcardDeck deck) {
@@ -62,9 +65,12 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
         public FlashcardFeatureWindows(CurrentView newCurrentView, CurrentViewController newCurrentViewController) throws HeadlessException {
             //TODO backwardsButton
             //Set up the content pane.
+
             currentView = newCurrentView;
+            currentView.addObserver(this);
             deck = currentView.getDeckInFocus();
             currentViewController = newCurrentViewController;
+            deckController = new DeckController(deck);
 
             setLayout(new GridBagLayout());
             this.panelForFlashcard = new JPanel(new GridLayout(1, 0, 10 ,10));
@@ -85,7 +91,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
             //shitcode men orkade inte göra bra :))))
 
-            FlashcardWindow flashcard = new FlashcardWindow(new Flashcard("palce", "palce"));
+            flashcardWindow = new FlashcardWindow(new Flashcard("palce", "palce"));
 
 
             c.gridy = 2;
@@ -95,7 +101,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.insets = new Insets(40, 100, 40, 100);
             c.ipadx = 300;
             c.ipady = 200;
-            panelForFlashcard.add(flashcard);
+            panelForFlashcard.add(flashcardWindow);
             add(panelForFlashcard,c);
 
 
@@ -154,15 +160,27 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         public void update(){
 
-            deckController = new DeckController(currentView.getDeckInFocus());
-            flashcardWindow.setCard(deck.getCurrentFlashcard());
-            currentCard.setText("Card: "+(deck.getCurrentIndex()+1)+"/"+ deck.getSize());
+            for(ActionListener al: next.getActionListeners()){
+                next.removeActionListener(al);
+
+            }
+
+            try {
+                deckController = new DeckController(currentView.getDeckInFocus());
+                currentView.getDeckInFocus().addObserver(this);
+                addNextButtonListener(deckController);
+                deck = currentView.getDeckInFocus();
+                flashcardWindow.setCard(deck.getCurrentFlashcard());
+                currentCard.setText("Card: " + (deck.getCurrentIndex() + 1) + "/" + deck.getSize());
+            }catch (Exception e){
+                //Ska lösa men orkar icke rn
+            }
 
             updateUI();
         }
 
         public void createNextButton(){
-            JButton next = new JButton("Next");
+            next = new JButton("Next");
             next.setBackground(Color.CYAN);
             c.gridx = 2;
             c.gridy = 2;
@@ -170,8 +188,22 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.ipadx = 50;
             c.ipady = 20;
             add(next, c);
-            next.addActionListener(this::nextActionPerformed);
+            addNextButtonListener(deckController);
+            //next.addActionListener(this::nextActionPerformed);
         }
+
+        public void addNextButtonListener(NextButtonListener nl){
+            next.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    nl.onNextButtonCLicked();
+                }
+
+                });
+            }
+
+
+
         public void nextActionPerformed(ActionEvent e) {
             deckController.nextClicked();
         }

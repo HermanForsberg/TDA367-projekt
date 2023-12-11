@@ -33,6 +33,7 @@ public class FlashcardDeck {
 
     public void delete(Flashcard flash){
         this.deck.remove(flash);
+        previousClicked();
     }
 
     public void previousClicked(){

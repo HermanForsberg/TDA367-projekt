@@ -63,7 +63,7 @@ public class MvcMenu {
 
                 if (control != null) {
 
-                    control.setView(""); // e.g., here
+                    control.setView("questWindow"); // e.g., here
 
                 }
             }

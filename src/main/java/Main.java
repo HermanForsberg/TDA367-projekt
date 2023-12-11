@@ -58,19 +58,23 @@ public class Main {
 
         views.put("clockFeature", clockFeatureWindow);
 
+        QuestsWindow questsWindow = new QuestsWindow(new QuestFeature());
+
+        views.put("questWindow", questsWindow);
+
         // FlashcardWindow flashcardWindow = new FlashcardWindow();
 
 
 
         MvcControl control = new MvcControl(model);
 
-        Watch watch = new Watch();
+        /*Watch watch = new Watch();
 
         for (ClockController clockController : control.getClockControllers()) {
             watch.addObserver(clockController);
         }
 
-        watch.start();
+        watch.start();*/
 
 
         MvcView view = new MvcView(currentView, views);
