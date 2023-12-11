@@ -12,7 +12,7 @@ import java.util.Timer;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
-public abstract class Clock implements Observable{
+public abstract class Clock implements Observable, Observer{
     //Timer     = Keeps track of the time in a background thread.
     //TimerTask = Contains an abstract method called run(). When our Model.Timer reaches a certain time
     //            it will execute a task either once or repeatedly.

@@ -1,9 +1,5 @@
 package Model;
 
-import Controller.Observer;
-
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -115,7 +111,7 @@ public class Profile implements Mediator{
         try {
             FileOutputStream fos = new FileOutputStream(this.path);
             OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
-            Iterator var3 = this.decks.iterator();
+            Iterator<FlashcardDeck> var3 = this.decks.iterator();
 
             while(var3.hasNext()) {
                 FlashcardDeck c = (FlashcardDeck) var3.next();
@@ -173,7 +169,7 @@ public class Profile implements Mediator{
     public void notified(String name) {
         if(Objects.equals(name, "clock")){
             addExp(1);
-            System.out.println(getName() + exp);
+            System.out.println(getName() + " " + exp);
         }
     }
 }

@@ -1,5 +1,6 @@
 package Model.Clock;
 
+import Controller.Observer;
 import Model.Mediator;
 
 public class ManualTimer extends Clock implements Rest { //Counts downwards.
@@ -44,4 +45,9 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
         setSeconds(0);
     }
 
+
+    @Override
+    public void update() {
+
+    }
 }

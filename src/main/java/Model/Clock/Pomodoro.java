@@ -51,4 +51,9 @@ public class Pomodoro extends Clock implements Rest {
     public void startTimer(Clock pomodoro){
         pomodoro.startClock();
     }
+
+    @Override
+    public void update() {
+
+    }
 }

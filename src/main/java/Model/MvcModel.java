@@ -12,20 +12,15 @@ import java.util.ArrayList;
 
 
 
-public class MvcModel {
+public class MvcModel implements Observable{
 
     private static MvcModel instance = null;
 
     private String path = "";
 
-
     private ArrayList<FlashcardDeck> decks = new ArrayList();
 
-
     private PropertyChangeSupport pcSupport = new PropertyChangeSupport(this);
-
-
-
 
     private ClockFeature clockFeature;
 
@@ -82,15 +77,15 @@ public class MvcModel {
             listOfProfiles.add(new Profile(profil));
         }
         try{
-        setCurrentProfile(listOfProfiles.get(0));}
+            setCurrentProfile(listOfProfiles.get(0));
+        }
         catch(Exception e){
             setCurrentProfile(new Profile("TemporaryProfile"));
         }
-
     }
 
     public void initClock(){
-        Clock manualTimer = new ManualTimer(listOfProfiles.get(0));
+        Clock manualTimer = new ManualTimer(currentProfile);
         Clock stopwatch = new Stopwatch();
         Clock pomodoro = new Pomodoro();
 
@@ -135,7 +130,7 @@ public class MvcModel {
     public void switchProfile(Profile profile){
 
         currentProfile=profile;
-
+        initClock();
         observerHandler.updateObservers();
     }
 
