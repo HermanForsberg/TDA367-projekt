@@ -183,16 +183,17 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
                 if(deck.getCurrentIndex() == deck.getSize()-1){
                     next.setBackground(Color.MAGENTA);
                     next.setText("Finish");
-                }else{
-                    next.setBackground(Color.CYAN);
-                    next.setText("Next");
-                }
-                if(deck.getCurrentIndex() >= deck.getSize()){
+                }else if(deck.getCurrentIndex() >= deck.getSize()){
+                    next.setText("Restart");
                     panelForFlashcard.removeAll();
                     panelForFlashcard.add(new JLabel("Number of Correct: " + deck.getNumberOfCorrect() +
                             "/" + deck.getSize()));
                     deck.resetAnswers();
+                }else{
+                    next.setBackground(Color.CYAN);
+                    next.setText("Next");
                 }
+
             }catch (Exception e){
                 //Ska lösa men orkar icke rn
             }
