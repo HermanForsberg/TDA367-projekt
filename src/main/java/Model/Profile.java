@@ -63,6 +63,7 @@ public class Profile implements Mediator, Observable{
 
     public void deleteDeck(FlashcardDeck deck){
         decks.remove(deck);
+        observerHandler.updateObservers();
     }
 
     public FlashcardDeck getNewestDeck(){
@@ -73,6 +74,7 @@ public class Profile implements Mediator, Observable{
         FlashcardDeck newDeck = new FlashcardDeck(name, this);
         decks.add(newDeck);
         newestDeck = newDeck;
+        observerHandler.updateObservers();
         //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
     }
 

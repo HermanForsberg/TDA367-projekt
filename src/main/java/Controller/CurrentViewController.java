@@ -4,7 +4,7 @@ import Model.CurrentView;
 import Model.FlashcardDeck;
 import Windows.Window;
 
-public class CurrentViewController implements DeckButtonListener, BackwardsButtonListener{
+public class CurrentViewController implements DeckButtonListener, BackwardsButtonListener, PlayButtonListener{
 
     private CurrentView currentView;
     public CurrentViewController(CurrentView newCurrentView){
@@ -25,5 +25,11 @@ public class CurrentViewController implements DeckButtonListener, BackwardsButto
     @Override
     public void onBackwardsClicked(String viewName) {
         setView(viewName);
+    }
+
+    @Override
+    public void onPlayButtonCLicked(FlashcardDeck deck) {
+        System.out.println("Updat");
+        currentView.setDeckInFocus(deck);
     }
 }

@@ -111,4 +111,9 @@ public class FlashcardDeck {
             card.setAnswer(Flashcard.reset);
         }
     }
+
+    public void shuffleDeck(){
+        Collections.shuffle(deck);
+        currentIndex = 0;
+    }
 }

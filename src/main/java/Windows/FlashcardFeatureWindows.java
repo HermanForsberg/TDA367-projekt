@@ -85,6 +85,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             createAddCardsButton();
             createDeleteButton();
 
+
             //TODO vart skall widgets och controller skapas.
 
             //TODO FlashcardController ska bli FlashcardWidget och skapas i swinvgmvctest, och bara ändras beroende vilket flashcard som är i fokus
@@ -222,7 +223,8 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
                 }
 
                 });
-            }
+        }
+
 
 
 
