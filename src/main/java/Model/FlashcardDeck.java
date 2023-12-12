@@ -57,7 +57,12 @@ public class FlashcardDeck {
     }
 
     public void incrementCurrentIndex(){
-        currentIndex = (currentIndex + 1) % (deck.size());
+        if (currentIndex < deck.size()){
+            currentIndex = (currentIndex + 1);
+        }else{
+            currentIndex = 0;
+        }
+
         System.out.println(currentIndex);
     }
 

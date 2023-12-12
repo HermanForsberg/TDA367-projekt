@@ -73,7 +73,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             deckController = new DeckController(deck);
 
             setLayout(new GridBagLayout());
-            this.panelForFlashcard = new JPanel(new GridLayout(1, 0, 10 ,10));
+            this.panelForFlashcard = new JPanel(new GridLayout(1, 1));
 
 
 
@@ -166,12 +166,33 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             }
 
             try {
+                panelForFlashcard.removeAll();
+                panelForFlashcard.add(flashcardWindow);
+
                 deckController = new DeckController(currentView.getDeckInFocus());
                 currentView.getDeckInFocus().addObserver(this);
                 addNextButtonListener(deckController);
                 deck = currentView.getDeckInFocus();
+                try{
                 flashcardWindow.setCard(deck.getCurrentFlashcard());
                 currentCard.setText("Card: " + (deck.getCurrentIndex() + 1) + "/" + deck.getSize());
+                }
+                catch(Exception e){}
+
+
+                if(deck.getCurrentIndex() == deck.getSize()-1){
+                    next.setBackground(Color.MAGENTA);
+                    next.setText("Finish");
+                }else{
+                    next.setBackground(Color.CYAN);
+                    next.setText("Next");
+                }
+                if(deck.getCurrentIndex() >= deck.getSize()){
+                    panelForFlashcard.removeAll();
+                    panelForFlashcard.add(new JLabel("Number of Correct: " + deck.getNumberOfCorrect() +
+                            "/" + deck.getSize()));
+                    deck.resetAnswers();
+                }
             }catch (Exception e){
                 //Ska lösa men orkar icke rn
             }
@@ -243,7 +264,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             add(correct,c);
             correct.addActionListener(e -> {
                 Flashcard flashcard = deck.getCurrentFlashcard();
-                //flashcard.setCorrect(true);
+                flashcard.setAnswer(Flashcard.correct);
             });
         }
 
@@ -258,7 +279,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             add(wrong,c);
             wrong.addActionListener(e -> {
                 Flashcard flashcard = deck.getCurrentFlashcard();
-                //flashcard.setCorrect(false);
+                flashcard.setAnswer(Flashcard.wrong);
             });
         }
 
