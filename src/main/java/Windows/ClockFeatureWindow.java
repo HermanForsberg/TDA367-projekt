@@ -46,6 +46,11 @@ public class ClockFeatureWindow extends JPanel implements Window{
 
             //Sets the grid.
             createGrid(clockFeature.getClockIndex());
+            makeClockButtons(clockFeature);
+        }
+
+        private void makeClockButtons(ClockFeature clockFeature){
+
             manualTimerButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     //Måste göra något åt denna rad v
@@ -70,6 +75,7 @@ public class ClockFeatureWindow extends JPanel implements Window{
                     swapClock(clockFeature);
                 }
             });
+
         }
 
         private void swapClock(ClockFeature clockFeature){

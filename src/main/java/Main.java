@@ -15,22 +15,9 @@ import java.util.HashMap;
 public class Main {
 
     private static void createAndShowUI() {
-        //Profile
-        ArrayList<Profile> profileList = new ArrayList<>();
-        //Profile currentProfile = new Profile("Profile1");
-        //Profile currentProfile2 = new Profile("Profile2");
-        //profileList.add(currentProfile);
-        //profileList.add(currentProfile2);
-        //currentProfile.setStatisticModel(statisticModel);
-
-
-
-
 
         //Main model
         MvcModel model = MvcModel.getInstance();
-
-
 
         HashMap<String, Window> views = new HashMap<>();
 
@@ -62,20 +49,8 @@ public class Main {
 
         views.put("questWindow", questsWindow);
 
-        // FlashcardWindow flashcardWindow = new FlashcardWindow();
-
-
 
         MvcControl control = new MvcControl(model);
-
-        /*Watch watch = new Watch();
-
-        for (ClockController clockController : control.getClockControllers()) {
-            watch.addObserver(clockController);
-        }
-
-        watch.start();*/
-
 
         MvcView view = new MvcView(currentView, views);
 
