@@ -48,4 +48,8 @@ public class QuestsWindow extends JPanel implements Window{
         add(dailyStreakLabel);
         add(weeklyStreakLabel);
     }
+
+    public void update(){
+
+    }
 }

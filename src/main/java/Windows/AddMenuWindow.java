@@ -19,6 +19,7 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
 
     private CurrentView currentView;
 
+    private CurrentViewController currentViewController;
     private JButton addButton;
 
     private DeckController deckController;
@@ -30,16 +31,22 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
             setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
             grid = new JPanel();
+            currentViewController = newCurrentViewController;
             currentView = newCurrentView;
             currentView.addObserver(this);
             deckController = new DeckController(currentView.getDeckInFocus());
 
-            grid.setLayout(new GridLayout(5, 5, 10,10));
+            grid.setLayout(new GridLayout(5, 5, 10, 10));
             c.gridy = 2;
             c.gridwidth = 5;
             c.gridheight = 5;
             c.fill = GridBagConstraints.BOTH;
             add(grid, c);
+            createAddButton(c);
+            createBackwardsButton(c);
+        }
+
+        public void createAddButton(GridBagConstraints c) {
             addButton = new JButton("Add Card");
             addButtonListenerToAddButtonInMenu(deckController);
             c.gridy = 0;
@@ -48,26 +55,7 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
             c.weightx = 0.5;
             c.gridheight = 2;
             c.gridwidth = 3;
-            add(addButton,c);
-
-
-
-            JButton backButton = new JButton("Finished");
-            c.gridx = 3;
-            c.gridheight = 2;
-            c.gridwidth = 2;
-            c.weightx = 0.3;
-            c.fill = GridBagConstraints.HORIZONTAL;
-            add(backButton,c);
-
-
-
-        backButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                newCurrentViewController.setView("flashcardFeature");
-            }
-        });
+            add(addButton, c);
         }
 
         public void update(){
@@ -90,6 +78,29 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
             }
             updateUI();
         }
+
+        public void createBackwardsButton(GridBagConstraints c){
+
+                JButton backButton = new JButton("Finished");
+                c.gridx = 3;
+                c.gridheight = 2;
+                c.gridwidth = 2;
+                c.weightx = 0.3;
+                c.fill = GridBagConstraints.HORIZONTAL;
+                add(backButton,c);
+
+
+
+                backButton.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        currentViewController.setView("flashcardFeature");
+                    }
+                });
+            }
+
+
+
 
 
 

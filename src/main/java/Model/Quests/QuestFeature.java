@@ -14,4 +14,5 @@ public class QuestFeature {
     public ArrayList<Quest> getQuests() {
         return quests;
     }
+
 }

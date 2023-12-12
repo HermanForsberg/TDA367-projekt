@@ -50,24 +50,28 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
             groundPanel.add(grid);
             grid.add(addButton);
 
+            createDeckButtons(model);
 
-            for (FlashcardDeck deck : model.getListOfDecks()) {
-                deckController = new DeckController(deck);
-                DeckButton deckButton = new DeckButton(deck);
-                deckButton.addButtonListenerToDeleteButton(deckCollectionController);
-                deckButton.addButtonListenerToClickedButton(currentViewController);
-                deckButton.addShuffleButtonListenerToClickedButton(deckController);
-                deckButton.addPlayButtonListenerToClickedButton(currentViewController);
-
-                grid.add(deckButton);
-
-            }
-
-
-            addButtonListenerToAddButton(deckCollectionController);
 
         }
 
+
+    public void createDeckButtons(Profile model){
+        for (FlashcardDeck deck : model.getListOfDecks()) {
+            deckController = new DeckController(deck);
+            DeckButton deckButton = new DeckButton(deck);
+            deckButton.addButtonListenerToDeleteButton(deckCollectionController);
+            deckButton.addButtonListenerToClickedButton(currentViewController);
+            deckButton.addShuffleButtonListenerToClickedButton(deckController);
+            deckButton.addPlayButtonListenerToClickedButton(currentViewController);
+
+            grid.add(deckButton);
+
+        }
+
+
+        addButtonListenerToAddButton(deckCollectionController);
+    }
     public void update() {
 
 

@@ -36,24 +36,26 @@ public class Profile implements Mediator, Observable{
     public void setStatisticModel(StatisticModel statisticModel) {
         this.statisticModel = statisticModel;
     }
+
+
     public String getPath(){
         return this.path;
     }
+
+
     public ArrayList<FlashcardDeck> getListOfDecks(){
         return decks;
     }
+
 
     public void addExp(int expGain){
         exp += expGain;
     }
 
+
     public void addObserver(Observer observer){
         observerHandler.addObserver(observer);
     }
-
-
-
-
 
 
     public String getName(){
@@ -101,6 +103,8 @@ public class Profile implements Mediator, Observable{
 
         //System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
     }
+
+
 
     private void loadData() {
         try {
