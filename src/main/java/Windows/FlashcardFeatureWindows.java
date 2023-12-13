@@ -2,8 +2,7 @@ package Windows;
 
 import Controller.BackwardsButtonListener;
 import Controller.CurrentViewController;
-import Controller.Flashcard.DeckController;
-import Controller.Flashcard.NextButtonListener;
+import Controller.Flashcard.*;
 import Controller.Observer;
 import Model.CurrentView;
 import Model.Flashcards.Flashcard;
@@ -22,7 +21,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private JPanel panelForFlashcard;
 
-        private Profile profile;
+
 
         private FlashcardWindow flashcardWindow;
 
@@ -43,6 +42,16 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private JButton next;
 
+        private JButton previousButton;
+
+        private JButton addCards;
+
+        private JButton wrong;
+
+        private JButton correct;
+
+        private FlashcardController flashcardController;
+
 
 
         public void setDeck(FlashcardDeck deck) {
@@ -51,14 +60,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         }
 
-        public void setForFlashcard(JButton newFlashcard){
-            forFlashcard = newFlashcard;
-            updateUI();
-        }
 
-        public void setControl(DeckController newDeckController) {
-            deckController = newDeckController;
-        }
 
 
         public FlashcardFeatureWindows(CurrentView newCurrentView, CurrentViewController newCurrentViewController) throws HeadlessException {
@@ -158,38 +160,56 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             });
         }
 
+        public void removeActionListeners(JButton currentButton){
+            for( ActionListener al : currentButton.getActionListeners() ) {
+                currentButton.removeActionListener( al );
+            }
+    }
+
         public void update(){
 
-            for(ActionListener al: next.getActionListeners()){
-                next.removeActionListener(al);
+            removeActionListeners(next);
+            removeActionListeners(wrong);
+            removeActionListeners(correct);
+            removeActionListeners(previousButton);
 
-            }
+            panelForFlashcard.removeAll();
+            panelForFlashcard.add(flashcardWindow);
 
             try {
-                panelForFlashcard.removeAll();
-                panelForFlashcard.add(flashcardWindow);
 
-                deckController = new DeckController(currentView.getDeckInFocus());
-                currentView.getDeckInFocus().addObserver(this);
-                addNextButtonListener(deckController);
                 deck = currentView.getDeckInFocus();
+                deckController = new DeckController(deck);
+                deck.addObserver(this);
+                addNextButtonListener(deckController);
+                addButtonListenerToPrev(deckController);
+
+
                 try{
                 flashcardWindow.setCard(deck.getCurrentFlashcard());
                 currentCard.setText("Card: " + (deck.getCurrentIndex() + 1) + "/" + deck.getSize());
                 }
                 catch(Exception e){}
 
-
                 if(deck.getCurrentIndex() == deck.getSize()-1){
                     next.setBackground(Color.MAGENTA);
                     next.setText("Finish");
+
+                    flashcardController = new FlashcardController(deck.getCurrentFlashcard());
+                    addButtonListenerToCorrect(flashcardController);
+                    addButtonListenerToWrong(flashcardController);
+
                 }else if(deck.getCurrentIndex() >= deck.getSize()){
+
                     next.setText("Restart");
                     panelForFlashcard.removeAll();
                     panelForFlashcard.add(new JLabel("Number of Correct: " + deck.getNumberOfCorrect() +
                             "/" + deck.getSize()));
                     deck.resetAnswers();
                 }else{
+                    flashcardController = new FlashcardController(deck.getCurrentFlashcard());
+                    addButtonListenerToCorrect(flashcardController);
+                    addButtonListenerToWrong(flashcardController);
                     next.setBackground(Color.CYAN);
                     next.setText("Next");
                 }
@@ -225,24 +245,16 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
         }
 
 
-
-
-        public void nextActionPerformed(ActionEvent e) {
-            deckController.nextClicked();
-        }
-
         public void createPreviousButton(){
-            JButton prev = new JButton("Previous");
-            prev.setBackground(Color.CYAN);
+            previousButton = new JButton("Previous");
+            previousButton.setBackground(Color.CYAN);
             c.gridx = 0;
             c.gridy = 2;
             c.insets = new Insets(0, 100, 0, 0);
             c.ipadx = 50;
             c.ipady = 20;
-            add(prev, c);
-            prev.addActionListener(e -> {
-                deckController.previousClicked();
-            });
+            add(previousButton, c);
+            addButtonListenerToPrev(deckController);
         }
 
         public void addCardCounter(){
@@ -256,7 +268,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
         }
 
         public void createCorrectButton(){
-            JButton correct = new JButton("Correct");
+            correct = new JButton("Correct");
             correct.setBackground(Color.GREEN);
             c.gridx = 1;
             c.gridy = 3;
@@ -264,14 +276,14 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.ipadx = 50;
             c.ipady = 20;
             add(correct,c);
-            correct.addActionListener(e -> {
-                Flashcard flashcard = deck.getCurrentFlashcard();
-                flashcard.setAnswer(Flashcard.correct);
-            });
+            try{
+            addButtonListenerToCorrect(flashcardController);}
+            catch (Exception e){}
+
         }
 
         public void createWrongButton(){
-            JButton wrong = new JButton("Wrong");
+            wrong = new JButton("Wrong");
             wrong.setBackground(Color.RED);
             c.gridx = 1;
             c.gridy = 4;
@@ -279,15 +291,13 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.ipadx = 50;
             c.ipady = 20;
             add(wrong,c);
-            wrong.addActionListener(e -> {
-                Flashcard flashcard = deck.getCurrentFlashcard();
-                flashcard.setAnswer(Flashcard.wrong);
-            });
+            try{
+            addButtonListenerToWrong(flashcardController);}catch (Exception e){}
         }
 
         public void createAddCardsButton(){
             //TODO Eget window!!!
-            JButton addCards = new JButton("Add Cards");
+            addCards = new JButton("Add Cards");
             addCards.setBackground(Color.BLUE);
             addCards.setForeground(Color.WHITE);
             c.gridx = 1;
@@ -297,10 +307,43 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.ipadx = 50;
             c.ipady = 20;
             add(addCards,c);
-            addCards.addActionListener(e -> {
-                currentViewController.setView("addMenu");
-                updateUI();
+            addButtonListenerToAddCards(currentViewController);
+        }
 
+        public void addButtonListenerToCorrect(CorrectButtonListener cbl){
+            correct.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cbl.onCorrectClicked(Flashcard.correct);
+                }
+            });
+        }
+
+        public void addButtonListenerToWrong(WrongButtonListener wbl){
+            wrong.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                wbl.onWrongClicked(Flashcard.wrong);
+                }
+            });
+        }
+
+        public void addButtonListenerToAddCards(AddCardsButtonListener acbl){
+            addCards.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    acbl.onAddCardsClicked();
+                }
+            });
+        }
+
+        public void addButtonListenerToPrev(PreviousButtonListener pbl){
+
+            previousButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    pbl.onPreviousClicked();
+                }
             });
         }
     }

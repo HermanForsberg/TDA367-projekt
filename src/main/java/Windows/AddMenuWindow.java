@@ -1,5 +1,6 @@
 package Windows;
 
+import Controller.BackwardsButtonListener;
 import Controller.Flashcard.AddButtonInMenusListener;
 import Controller.CurrentViewController;
 
@@ -25,6 +26,8 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
     private DeckController deckController;
 
     private JPanel grid;
+
+    private JButton backButton;
 
         public AddMenuWindow(Profile profile, CurrentView newCurrentView, CurrentViewController newCurrentViewController) {
 
@@ -81,7 +84,7 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
 
         public void createBackwardsButton(GridBagConstraints c){
 
-                JButton backButton = new JButton("Finished");
+                backButton = new JButton("Finished");
                 c.gridx = 3;
                 c.gridheight = 2;
                 c.gridwidth = 2;
@@ -89,18 +92,22 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
                 c.fill = GridBagConstraints.HORIZONTAL;
                 add(backButton,c);
 
+                addButtonListenerToBackwardsButton(currentViewController);
 
 
-                backButton.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e) {
-                        currentViewController.setView("flashcardFeature");
-                    }
-                });
             }
 
 
+        public void addButtonListenerToBackwardsButton(BackwardsButtonListener bbl){
+            backButton.addActionListener(new ActionListener() {
 
+                public void actionPerformed(ActionEvent e) {
+
+                    bbl.onBackwardsClicked("flashcardFeature");
+
+                }
+            });
+        }
 
 
 

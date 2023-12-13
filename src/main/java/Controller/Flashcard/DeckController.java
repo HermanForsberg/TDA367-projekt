@@ -5,7 +5,7 @@ import Model.Flashcards.FlashcardDeck;
 import java.awt.*;
 
 
-public class DeckController implements AddButtonInMenusListener, NextButtonListener, ShuffleButtonListener {
+public class DeckController implements AddButtonInMenusListener, NextButtonListener, ShuffleButtonListener, PreviousButtonListener {
 
     private final FlashcardDeck currentDeck;
 
@@ -34,5 +34,10 @@ public class DeckController implements AddButtonInMenusListener, NextButtonListe
     @Override
     public void onShuffleButtonCLicked() {
         currentDeck.shuffleDeck();
+    }
+
+    @Override
+    public void onPreviousClicked() {
+        currentDeck.previousClicked();
     }
 }
