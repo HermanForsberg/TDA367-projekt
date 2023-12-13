@@ -1,6 +1,6 @@
 package Controller.Flashcard;
 
-import Model.FlashcardDeck;
+import Model.Flashcards.FlashcardDeck;
 
 import javax.swing.*;
 import javax.swing.border.*;

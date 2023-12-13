@@ -1,4 +1,6 @@
-package Model;
+package Model.Statistics;
+
+import Model.Flashcards.FlashcardDeck;
 
 import java.util.ArrayList;
 

@@ -6,8 +6,8 @@ import Controller.Flashcard.DeckController;
 import Controller.Flashcard.NextButtonListener;
 import Controller.Observer;
 import Model.CurrentView;
-import Model.Flashcard;
-import Model.FlashcardDeck;
+import Model.Flashcards.Flashcard;
+import Model.Flashcards.FlashcardDeck;
 import Model.Profile;
 
 import javax.swing.*;

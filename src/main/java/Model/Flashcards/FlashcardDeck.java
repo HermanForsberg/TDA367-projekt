@@ -1,7 +1,8 @@
-package Model;
+package Model.Flashcards;
 
 import Controller.ObserverHandler;
 import Controller.Observer;
+import Model.Mediator;
 
 import java.util.*;
 

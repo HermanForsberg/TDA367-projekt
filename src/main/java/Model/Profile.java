@@ -2,9 +2,10 @@ package Model;
 
 import Controller.Observer;
 import Controller.ObserverHandler;
+import Model.Flashcards.Flashcard;
+import Model.Flashcards.FlashcardDeck;
+import Model.Statistics.StatisticModel;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;

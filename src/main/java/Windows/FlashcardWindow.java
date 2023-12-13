@@ -1,6 +1,6 @@
 package Windows;
 
-import Model.Flashcard;
+import Model.Flashcards.Flashcard;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

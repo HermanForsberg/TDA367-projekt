@@ -3,7 +3,7 @@ package Controller;
 import Controller.Flashcard.DeckButtonListener;
 import Controller.Flashcard.PlayButtonListener;
 import Model.CurrentView;
-import Model.FlashcardDeck;
+import Model.Flashcards.FlashcardDeck;
 import Model.Profile;
 
 public class CurrentViewController implements DeckButtonListener, BackwardsButtonListener, PlayButtonListener {

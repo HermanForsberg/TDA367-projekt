@@ -1,7 +1,7 @@
 package Controller.Flashcard;
 
-import Model.Flashcard;
-import Model.FlashcardDeck;
+import Model.Flashcards.Flashcard;
+import Model.Flashcards.FlashcardDeck;
 
 import javax.swing.*;
 import java.awt.*;

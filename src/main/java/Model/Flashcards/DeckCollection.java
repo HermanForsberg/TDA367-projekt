@@ -1,4 +1,4 @@
-package Model;
+package Model.Flashcards;
 
 import java.util.ArrayList;
 
