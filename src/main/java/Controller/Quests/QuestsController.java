@@ -1,5 +1,6 @@
 package Controller.Quests;
 
+import Controller.Observer;
 import Model.Quests.Quest;
 import Model.Quests.QuestFeature;
 
@@ -7,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class QuestsController extends JPanel {
+public class QuestsController extends JPanel implements Observer {
     private JLabel dailyLabel = new JLabel("Daily", SwingConstants.CENTER);
     private JLabel weeklyLabel = new JLabel("Weekly", SwingConstants.CENTER);
     private ImageIcon flameImage = new ImageIcon("src/main/img/flame_64.png");
@@ -38,5 +39,10 @@ public class QuestsController extends JPanel {
 
         add(new QuestCard(quests.get(2)));
         add(new QuestCard(quests.get(5)));
+    }
+
+    @Override
+    public void update() {
+
     }
 }

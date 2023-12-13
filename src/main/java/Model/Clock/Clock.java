@@ -67,6 +67,7 @@ public abstract class Clock implements Observable, Observer{
     }
 
     // @param path to sound file that will be played.
+    // TODO flytta till v.
     public void playSound(String soundFilePath){
         try {
             File soundFile = new File(soundFilePath);
@@ -89,8 +90,6 @@ public abstract class Clock implements Observable, Observer{
 
         return minutes;
     }
-
-
     public int getSeconds() {
         return seconds;
     }

@@ -1,8 +1,10 @@
 package Model.Quests;
 
+import Controller.Observer;
+
 import java.io.Serializable;
 
-public class Quest implements Serializable {
+public class Quest implements Observer, Serializable {
     private String typeOfQuest;
     private String topic;
     private String description;
@@ -27,7 +29,7 @@ public class Quest implements Serializable {
         int progress = Math.min(currentAmount/amount, 1) * 100;
         if (progress == 100 && !isCompleted){
             isCompleted = true;
-            //Skicka xp till Herman.
+            //Skicka xp till Herman. TODO mediator
         }
     }
 
@@ -53,5 +55,10 @@ public class Quest implements Serializable {
 
     public void setCompleted(boolean completed) {
         isCompleted = completed;
+    }
+
+    @Override
+    public void update() {
+        //updateProgress();
     }
 }

@@ -9,16 +9,16 @@ public class StatisticModel {
 
     private int lastWeekFlashcards;
 
-    private Set<StatsDayModel> week = new HashSet<StatsDayModel>();
+    private Set<StatsDay> week = new HashSet<StatsDay>();
 
     public StatisticModel(){
-        week.add(new StatsDayModel("Monday"));
-        week.add(new StatsDayModel("Tuesday"));
-        week.add(new StatsDayModel("Wednesday"));
-        week.add(new StatsDayModel("Thursday"));
-        week.add(new StatsDayModel("Friday"));
-        week.add(new StatsDayModel("Saturday"));
-        week.add(new StatsDayModel("Sunday"));
+        week.add(new StatsDay("Monday"));
+        week.add(new StatsDay("Tuesday"));
+        week.add(new StatsDay("Wednesday"));
+        week.add(new StatsDay("Thursday"));
+        week.add(new StatsDay("Friday"));
+        week.add(new StatsDay("Saturday"));
+        week.add(new StatsDay("Sunday"));
     }
 
 

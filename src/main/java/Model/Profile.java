@@ -5,6 +5,7 @@ import Controller.ObserverHandler;
 import Model.Flashcards.Flashcard;
 import Model.Flashcards.FlashcardDeck;
 import Model.Statistics.StatisticModel;
+import Model.Statistics.Stats;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,25 +20,51 @@ public class Profile implements Mediator, Observable{
 
     private int exp;
 
+    private int level;
+
     private String path = "";
 
-    private StatisticModel statisticModel;
+    private Stats stats;
 
     private FlashcardDeck newestDeck;
 
     private ObserverHandler observerHandler = new ObserverHandler();
 
+    private final int expToLevelConvertion = 100;
+
     public Profile(String name){
         this.name = name;
         this.exp = 0;
+        this.level = 1;
         this.decks = new ArrayList<FlashcardDeck>();
+        this.stats = new Stats();
         this.init();
     }
 
-    public void setStatisticModel(StatisticModel statisticModel) {
-        this.statisticModel = statisticModel;
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 
+
+    public int getLevel() {
+        UpdateLevel();
+        return level;
+    }
+
+    private void UpdateLevel(){
+        int expToNextLevel = (int)(expToLevelConvertion+ 100*Math.pow(1.2, level+1));
+        if(exp>(expToNextLevel+totalExpToCurrentLevel())){
+            level ++;
+        }
+    }
+
+    private int totalExpToCurrentLevel(){
+        int totalExpToCurrentLevel = 0;
+        for (int i = level; i > 0; i--) {
+            totalExpToCurrentLevel += (int)(expToLevelConvertion+ 100*Math.pow(1.2, i));
+        }
+        return totalExpToCurrentLevel;
+    }
 
     public String getPath(){
         return this.path;
