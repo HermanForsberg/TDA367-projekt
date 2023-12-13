@@ -115,5 +115,6 @@ public class FlashcardDeck {
     public void shuffleDeck(){
         Collections.shuffle(deck);
         currentIndex = 0;
+        observerHandler.updateObservers();
     }
 }

@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class DeckCollectionController extends JPanel implements AddButtonListener, DeleteButtonListener {
 
-    private DeckController deckController;
+
 
     private Profile profile;
 

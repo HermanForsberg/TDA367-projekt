@@ -166,6 +166,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
             }
 
+
             try {
                 panelForFlashcard.removeAll();
                 panelForFlashcard.add(flashcardWindow);
