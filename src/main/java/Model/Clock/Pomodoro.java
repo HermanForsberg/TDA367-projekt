@@ -9,8 +9,8 @@ public class Pomodoro extends Clock implements Rest {
     private Mediator mediator;
 
     public Pomodoro(Mediator mediator) {
-        super(25);
-        this.mediator = mediator;
+        super(25, mediator);
+
         timeToRest = true;
         intervalCounter = 0;
     }
@@ -63,4 +63,6 @@ public class Pomodoro extends Clock implements Rest {
     public void update() {
 
     }
+
+
 }

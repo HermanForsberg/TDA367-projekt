@@ -1,8 +1,11 @@
 package Windows;
 
 import Controller.Clock.ClockController;
+import Controller.ManualTimerListener;
+import Controller.Observer;
 import Model.Clock.Clock;
 import Model.Clock.ClockFeature;
+import Model.CurrentView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ClockFeatureWindow extends JPanel implements Window{
+public class ClockFeatureWindow extends JPanel implements Window, Observer {
 
         private ArrayList<Clock> clocks;
         private Clock clock;
@@ -31,9 +34,15 @@ public class ClockFeatureWindow extends JPanel implements Window{
 
         private ArrayList<ClockController> clockControllers = new ArrayList<>();
 
-        public ClockFeatureWindow(ClockFeature clockFeature){
+        private CurrentView currentView;
+
+        public ClockFeatureWindow(CurrentView currentView,ClockFeature clockFeature){
+
             clocks = clockFeature.getClocks();
             clock = clocks.get(clockFeature.getClockIndex());
+
+            this.currentView = currentView;
+            currentView.addObserver(this);
 
             for (Clock c : clocks){
                 switch (c.getClass().getSimpleName()) {
@@ -47,6 +56,17 @@ public class ClockFeatureWindow extends JPanel implements Window{
             //Sets the grid.
             createGrid(clockFeature.getClockIndex());
             makeClockButtons(clockFeature);
+        }
+
+        private void addListenerToManualTimerButton(ManualTimerListener mtl){
+
+            manualTimerButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    mtl.onManualTimerClicked();
+                }
+            });
+
         }
 
         private void makeClockButtons(ClockFeature clockFeature){
@@ -142,6 +162,13 @@ public class ClockFeatureWindow extends JPanel implements Window{
         public ArrayList<ClockController> getClockControllers() {
 
             return clockControllers;
+        }
+
+        public void update(){
+
+            for(ClockController cl: clockControllers){
+                cl.setMediator(currentView.getProfile());
+            }
         }
 
     }
