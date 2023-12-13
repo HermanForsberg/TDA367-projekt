@@ -5,8 +5,7 @@ import Model.FlashcardDeck;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class AddMenuCard extends JComponent {
     public AddMenuCard(Flashcard flashcard, FlashcardDeck deck, JPanel grid) {
@@ -27,16 +26,12 @@ public class AddMenuCard extends JComponent {
         c.gridy = 2;
         c.fill = GridBagConstraints.BOTH;
         add(deleteButton,c);
-        deleteButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(deck.getDeck().toString());
-                deck.delete(flashcard);
-                System.out.println(deck.getDeck().toString());
-                grid.remove(AddMenuCard.this);
-                grid.updateUI();
-
-            }
+        deleteButton.addActionListener(e -> {
+            System.out.println(deck.getDeck().toString());
+            deck.delete(flashcard);
+            System.out.println(deck.getDeck().toString());
+            grid.remove(AddMenuCard.this);
+            grid.updateUI();
 
         });
     }
