@@ -1,5 +1,6 @@
 package Controller.Quests;
 
+import Controller.Observer;
 import Model.Quests.Quest;
 
 import javax.swing.*;
@@ -47,4 +48,5 @@ public class QuestCard extends JPanel {
         add(description);
         add(progress);
     }
+
 }

@@ -5,6 +5,7 @@ import Controller.ObserverHandler;
 import Model.Flashcards.Flashcard;
 import Model.Flashcards.FlashcardDeck;
 import Model.Statistics.StatisticModel;
+import Model.Statistics.Stats;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Profile implements Mediator, Observable{
 
     private String path = "";
 
-    private StatisticModel statisticModel;
+    private Stats stats;
 
     private FlashcardDeck newestDeck;
 
@@ -31,11 +32,12 @@ public class Profile implements Mediator, Observable{
         this.name = name;
         this.exp = 0;
         this.decks = new ArrayList<FlashcardDeck>();
+        this.stats = new Stats();
         this.init();
     }
 
-    public void setStatisticModel(StatisticModel statisticModel) {
-        this.statisticModel = statisticModel;
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 
 

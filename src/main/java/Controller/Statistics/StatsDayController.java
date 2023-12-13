@@ -1,12 +1,12 @@
 package Controller.Statistics;
 
-import Model.Statistics.StatsDayModel;
+import Model.Statistics.StatsDay;
 
 public class StatsDayController {
 
-    private StatsDayModel model;
+    private StatsDay model;
 
-    public StatsDayController(StatsDayModel model){
+    public StatsDayController(StatsDay model){
         this.model = model;
     }
 

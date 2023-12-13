@@ -1,7 +1,10 @@
 package Model;
 
 import java.io.*;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
 
@@ -61,5 +64,11 @@ public class DayWeekTracker {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getDayToString(){
+        LocalDate currentDate = LocalDate.now();
+        DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
+        return dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault());
     }
 }
