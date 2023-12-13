@@ -1,16 +1,58 @@
 package Model.Quests;
 
+import Model.DayWeekTracker;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
 public class QuestFactory {
+    private final String FILENAME = "quests.ser"; // File to store the quests
     ArrayList<String> listOfTopics = new ArrayList<>();
     ArrayList<Quest> quests = new ArrayList<>();
+    DayWeekTracker dayWeekTracker;
     public QuestFactory() {
+        dayWeekTracker = new DayWeekTracker();
+
+        loadQuestsFromFile();
         createTopics();
-        createQuests("Daily");
-        createQuests("Weekly");
+
+        if (!dayWeekTracker.lastDateFileExists()){
+            createQuests("Daily");
+            createQuests("Weekly");
+            dayWeekTracker.saveLastCheckedDate();
+        }
+        else {
+            if (dayWeekTracker.isNewDay()){
+                deleteQuests("Daily");
+                createQuests("Daily");
+            }
+
+            if (dayWeekTracker.isNewWeek()){
+                deleteQuests("Weekly");
+                createQuests("Weekly");
+            }
+        }
+        saveQuestsToFile();
+    }
+
+    private void loadQuestsFromFile() {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(FILENAME))) {
+            quests = (ArrayList<Quest>) inputStream.readObject();
+        } catch (FileNotFoundException e) {
+            // File doesn't exist - quests ArrayList will remain empty
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveQuestsToFile() {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(FILENAME))) {
+            outputStream.writeObject(quests);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createTopics(){
@@ -20,15 +62,27 @@ public class QuestFactory {
     }
 
     private void createQuests(String typeOfQuest) {
+        int index = 0;
         for(String topic : listOfTopics){
-            quests.add(generateRandomQuest(typeOfQuest, topic));
+            switch (typeOfQuest) {
+                case "Daily"  -> quests.add(index, generateRandomQuest(typeOfQuest, topic));
+                case "Weekly" -> quests.add(generateRandomQuest(typeOfQuest, topic));
+            }
+            index++;
+        }
+    }
+
+    private void deleteQuests(String typeOfQuest) {
+        switch (typeOfQuest) {
+            case "Daily"  -> quests.subList(0, 3).clear();
+            case "Weekly" -> quests.subList(3, 6).clear();
         }
     }
 
     private Quest generateRandomQuest(String typeOfQuest, String topic) {
         int difficulty = createDifficulty();
         int amount = calculateAmount(typeOfQuest, topic, difficulty);
-        return new Quest(typeOfQuest, topic, createDescription(topic, amount), difficulty, calculateXpGain(difficulty-1), amount);
+        return new Quest(typeOfQuest, topic, createDescription(topic, amount), difficulty, calculateXpGain(typeOfQuest,difficulty-1), amount);
     }
 
     private String createDescription(String topic, int amount){
@@ -60,10 +114,12 @@ public class QuestFactory {
         return random.nextInt(10) + 1;
     }
 
-    private int calculateXpGain(int difficulty) {
+    private int calculateXpGain(String typeOfQuest,int difficulty) {
         final double XPFACTOR = 1.2;
         double xpWithDecimals = Math.pow(XPFACTOR, difficulty) * 10;
-        return Math.toIntExact(Math.round(xpWithDecimals));             //Får man typecasta här?
+        int xp = Math.toIntExact(Math.round(xpWithDecimals));
+        if (Objects.equals(typeOfQuest, "Weekly")) xp *= 5;
+        return xp;
     }
 
     private int calculateAmount(String typeOfQuest, String topic, int difficulty) {
