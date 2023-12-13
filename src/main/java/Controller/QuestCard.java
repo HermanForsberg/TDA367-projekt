@@ -6,10 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class QuestCard extends JPanel {
-    //private GridLayout grid = new GridLayout(3, 0);
-    private JLabel title = new JLabel("", SwingConstants.CENTER);
-    private JLabel description = new JLabel("", SwingConstants.CENTER);
-    private JLabel progress = new JLabel("", SwingConstants.CENTER);
+    private final JLabel title = new JLabel("", SwingConstants.CENTER);
+    private final JLabel description = new JLabel("", SwingConstants.CENTER);
+    private final JLabel progress = new JLabel("", SwingConstants.CENTER);
     public QuestCard(Quest quest) {
         setLayout(new GridLayout(3,0,0,0));
         Color customColor = new Color(186, 231, 255);
@@ -22,7 +21,7 @@ public class QuestCard extends JPanel {
         createTitle(quest);
         createDescription(quest);
         createProgress(quest);
-        createGrid(quest);
+        createGrid();
     }
 
     private void createTitle(Quest quest){
@@ -43,7 +42,7 @@ public class QuestCard extends JPanel {
         progress.setText(text);
         progress.setFont(new Font("Calibri", Font.PLAIN, 16));
     }
-    private void createGrid(Quest quest){
+    private void createGrid(){
         add(title);
         add(description);
         add(progress);
