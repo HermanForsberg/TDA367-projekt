@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Profile;
 
 import Model.Profile;
 

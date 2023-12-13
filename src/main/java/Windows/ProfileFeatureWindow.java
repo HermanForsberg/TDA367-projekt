@@ -2,8 +2,7 @@ package Windows;
 
 import Controller.CurrentViewController;
 import Controller.Observer;
-import Controller.ProfileController;
-import Controller.ProfileFeatureController;
+import Controller.Profile.ProfileController;
 import Model.MvcModel;
 import Model.Profile;
 

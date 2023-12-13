@@ -1,7 +1,5 @@
 package Controller.Flashcard;
 
-import Controller.AddButtonListener;
-import Controller.DeleteButtonListener;
 import Model.FlashcardDeck;
 import Model.Profile;
 

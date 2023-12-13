@@ -1,6 +1,6 @@
 package Windows;
 
-import Controller.AddButtonInMenusListener;
+import Controller.Flashcard.AddButtonInMenusListener;
 import Controller.CurrentViewController;
 
 import Controller.Flashcard.AddMenuCard;

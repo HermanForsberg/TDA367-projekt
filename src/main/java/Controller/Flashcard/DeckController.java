@@ -1,6 +1,5 @@
 package Controller.Flashcard;
 
-import Controller.*;
 import Model.Flashcard;
 import Model.FlashcardDeck;
 import java.awt.*;

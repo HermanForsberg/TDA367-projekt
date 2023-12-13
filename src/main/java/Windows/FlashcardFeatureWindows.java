@@ -3,7 +3,7 @@ package Windows;
 import Controller.BackwardsButtonListener;
 import Controller.CurrentViewController;
 import Controller.Flashcard.DeckController;
-import Controller.NextButtonListener;
+import Controller.Flashcard.NextButtonListener;
 import Controller.Observer;
 import Model.CurrentView;
 import Model.Flashcard;

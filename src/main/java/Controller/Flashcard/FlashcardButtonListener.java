@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Flashcard;
 
 public interface FlashcardButtonListener {
 

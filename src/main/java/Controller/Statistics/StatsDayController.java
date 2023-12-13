@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Statistics;
 
 import Model.StatsDayModel;
 

@@ -1,9 +1,5 @@
 package Controller.Flashcard;
 
-import Controller.DeckButtonListener;
-import Controller.DeleteButtonListener;
-import Controller.PlayButtonListener;
-import Controller.ShuffleButtonListener;
 import Model.FlashcardDeck;
 
 import javax.swing.*;

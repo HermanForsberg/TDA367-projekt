@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Quests;
 
 import Model.Quests.Quest;
 import Model.Quests.QuestFeature;
