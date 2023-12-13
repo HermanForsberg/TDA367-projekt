@@ -21,14 +21,17 @@ public class StatsDay {
 
     public void addMinutes(int newMinutes){
         minutesLapsed += newMinutes;
+        System.out.println(minutesLapsed);
     }
 
     public void addFlashcardsCompleted(int newFlashcards){
         flashcardsCompleted += newFlashcards;
+        System.out.println(flashcardsCompleted);
     }
 
     public void addLevelsGained(int newLevels){
         levelsGained += newLevels;
+        System.out.println(levelsGained);
     }
 
     public int getMinutesLapsed(){

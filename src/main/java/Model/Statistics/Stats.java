@@ -22,12 +22,34 @@ public class Stats {
         updateStatsWeek();
     }
 
+    private StatsDay getCurrentDay(){
+        System.out.println(statsWeek);
+        return statsWeek.get(statsWeek.size()-1);
+    }
+
+    public void addMinutesToCurrentDay(int minutes){
+        getCurrentDay().addMinutes(minutes);
+    }
+
+    public void addFlashcardCompletedToCurrentDay(int flashcards){
+        getCurrentDay().addFlashcardsCompleted(flashcards);
+    }
+
+    public void addLevelGainedToCurrentDay(int level){
+        getCurrentDay().addLevelsGained(level);
+    }
+
     private void updateStatsWeek() {
-        if (dayWeekTracker.isNewWeek()) {
-            statsWeek.clear();
-        }
-        if (dayWeekTracker.isNewDay()){
+        if (!dayWeekTracker.lastDateFileExists()){
             statsWeek.add(new StatsDay(dayWeekTracker.getDayToString()));
+        }
+        else {
+            if (dayWeekTracker.isNewWeek()) {
+                statsWeek.clear();
+            }
+            if (dayWeekTracker.isNewDay()){
+                statsWeek.add(new StatsDay(dayWeekTracker.getDayToString()));
+            }
         }
     }
 

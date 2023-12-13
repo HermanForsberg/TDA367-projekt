@@ -47,14 +47,15 @@ public class Profile implements Mediator, Observable{
 
 
     public int getLevel() {
-        UpdateLevel();
+        updateLevel();
         return level;
     }
 
-    private void UpdateLevel(){
+    private void updateLevel(){
         int expToNextLevel = (int)(expToLevelConvertion+ 100*Math.pow(1.2, level+1));
         if(exp>(expToNextLevel+totalExpToCurrentLevel())){
             level ++;
+            stats.addLevelGainedToCurrentDay(1);
         }
     }
 
@@ -78,6 +79,7 @@ public class Profile implements Mediator, Observable{
 
     public void addExp(int expGain){
         exp += expGain;
+        updateLevel();
     }
 
 
@@ -212,9 +214,11 @@ public class Profile implements Mediator, Observable{
     public void notified(String name) {
         if(Objects.equals(name, "clock")){
             addExp(1);
+            stats.addMinutesToCurrentDay(1);
             System.out.println(getName() + " " + exp);
         }else if(Objects.equals(name, "flashcard")){
             addExp(1);
+            stats.addFlashcardCompletedToCurrentDay(1);
             System.out.println(getName() + " " + exp);
         }
     }
