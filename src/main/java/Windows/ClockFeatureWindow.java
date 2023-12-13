@@ -1,7 +1,10 @@
 package Windows;
 
 import Controller.Clock.ClockController;
-import Controller.ManualTimerListener;
+import Controller.Clock.ClockFeatureController;
+import Controller.Clock.PomodoroListener;
+import Controller.Clock.StopwatchListener;
+import Controller.Clock.ManualTimerListener;
 import Controller.Observer;
 import Model.Clock.Clock;
 import Model.Clock.ClockFeature;
@@ -12,6 +15,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ClockFeatureWindow extends JPanel implements Window, Observer {
 
@@ -32,30 +36,67 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
         private JButton pomodoroButton = new JButton("Pomodoro", pomodoroImageSmall);
         private JLabel imageLabel;
 
-        private ArrayList<ClockController> clockControllers = new ArrayList<>();
+        private HashMap<Clock, ClockController> clockControllers = new HashMap<>();
 
         private CurrentView currentView;
 
+        private ClockFeature clockFeature;
+
+        private ClockFeatureController clockFeatureController;
+
         public ClockFeatureWindow(CurrentView currentView,ClockFeature clockFeature){
 
-            clocks = clockFeature.getClocks();
-            clock = clocks.get(clockFeature.getClockIndex());
+            this.clockFeature = clockFeature;
+            this.clockFeature.addObserver(this);
+
+            clocks = this.clockFeature.getClocks();
+            clock = clocks.get(this.clockFeature.getClockIndex());
+
+
+            clockFeatureController = new ClockFeatureController(this.clockFeature);
+
 
             this.currentView = currentView;
-            currentView.addObserver(this);
+            this.currentView.addObserver(this);
 
             for (Clock c : clocks){
+                //c.addObserver(this);
                 switch (c.getClass().getSimpleName()) {
+
                     case "ManualTimer" -> imageLabel = new JLabel(manualTimerImageBig);
+
                     case "Stopwatch" -> imageLabel = new JLabel(stopwatchImageBig);
+
                     case "Pomodoro" -> imageLabel = new JLabel(pomodoroImageBig);
+
+
                 }
-                clockControllers.add(new ClockController(c, imageLabel));
+                clockControllers.put(c, new ClockController(c, imageLabel));
+
             }
 
             //Sets the grid.
-            createGrid(clockFeature.getClockIndex());
-            makeClockButtons(clockFeature);
+            createGrid(this.clockFeature.getClock());
+            makeClockButtons(this.clockFeature);
+
+        }
+
+        private void makeManualTimer(){
+
+            addListenerToManualTimerButton(clockFeatureController);
+
+        }
+
+        private void makeStopwatch(){
+
+            addListenerToStopwatchButton(clockFeatureController);
+
+        }
+
+        private void makePomodoro(){
+
+            addListenerToPomodoroButton(clockFeatureController);
+
         }
 
         private void addListenerToManualTimerButton(ManualTimerListener mtl){
@@ -63,7 +104,29 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
             manualTimerButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    mtl.onManualTimerClicked();
+                    mtl.onManualClicked();
+                }
+            });
+
+        }
+
+        private void addListenerToPomodoroButton(PomodoroListener pl){
+
+            pomodoroButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    pl.onPomodoroClicked();
+                }
+            });
+
+        }
+
+        private void addListenerToStopwatchButton(StopwatchListener sl){
+
+            stopwatchButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    sl.onStopwatchClicked();
                 }
             });
 
@@ -71,50 +134,13 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
 
         private void makeClockButtons(ClockFeature clockFeature){
 
-            manualTimerButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    //Måste göra något åt denna rad v
-                    clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
-                    clockFeature.setClockIndex(0);
-                    swapClock(clockFeature);
-                }
-            });
-            stopwatchButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    //Måste göra något åt denna rad v
-                    clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
-                    clockFeature.setClockIndex(1);
-                    swapClock(clockFeature);
-                }
-            });
-            pomodoroButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    //Måste göra något åt denna rad v
-                    clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
-                    clockFeature.setClockIndex(2);
-                    swapClock(clockFeature);
-                }
-            });
+            makeManualTimer();
+            makeStopwatch();
+            makePomodoro();
 
         }
 
-        private void swapClock(ClockFeature clockFeature){
-            clock.resetClock();
-            clock = clocks.get(clockFeature.getClockIndex());
-            clock.playSound("src/main/sound/Click_Sound.wav");
-
-            //Resets everything
-            removeAll();
-            revalidate();
-            mainPanel.removeAll();
-            mainPanel.revalidate();
-            sideBar.removeAll();
-            sideBar.revalidate();
-            repaint();
-            createGrid(clockFeature.getClockIndex());
-        }
-
-        private void createGrid(int index){
+        private void createGrid(Clock clock){
             //Ska vara i View?
             final int gap = 20;
 
@@ -125,7 +151,7 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
             mainPanel.setBackground(Color.WHITE);
             sideBar.setBackground(Color.WHITE);
 
-            mainPanel.add(clockControllers.get(index));
+            mainPanel.add(clockControllers.get(clock));
 
             gbc.gridx = 1;
             gbc.gridy = 0;
@@ -159,16 +185,27 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
             gbcSideBar.gridy = 2;
             sideBar.add(pomodoroButton, gbcSideBar);
         }
-        public ArrayList<ClockController> getClockControllers() {
-
-            return clockControllers;
-        }
 
         public void update(){
 
-            for(ClockController cl: clockControllers){
-                cl.setMediator(currentView.getProfile());
+            for(Clock c: clocks){
+                clockControllers.get(c).setMediator(currentView.getProfile());
             }
+
+            clock.resetClock();
+            clock = clocks.get(clockFeature.getClockIndex());
+            clock.playSound("src/main/sound/Click_Sound.wav");
+
+            //Resets everything
+            removeAll();
+            revalidate();
+            mainPanel.removeAll();
+            mainPanel.revalidate();
+            sideBar.removeAll();
+            sideBar.revalidate();
+            repaint();
+            createGrid(this.clockFeature.getClock());
+
         }
 
     }

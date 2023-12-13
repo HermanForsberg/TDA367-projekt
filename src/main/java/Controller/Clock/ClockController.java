@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class ClockController extends JPanel implements Observer {
+public class ClockController extends JPanel implements Observer, ManualTimerListener, PomodoroListener, StopwatchListener {
     private final JLabel timeLabel = new JLabel("00:00", SwingConstants.CENTER);
     private final Clock clock;
     private final JButton startAndPauseButton = new JButton("Start");
@@ -141,5 +141,20 @@ public class ClockController extends JPanel implements Observer {
     }
     public JButton getStartAndPauseButton() {
         return startAndPauseButton;
+    }
+
+    @Override
+    public void onManualClicked() {
+
+    }
+
+    @Override
+    public void onPomodoroClicked() {
+
+    }
+
+    @Override
+    public void onStopwatchClicked() {
+
     }
 }

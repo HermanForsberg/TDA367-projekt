@@ -74,7 +74,7 @@ public class MvcControl extends JPanel implements Observer{
     public void timerMenuActionPerformed(ActionEvent ae) {
 
         removeAll();
-        add(clockFeatureController);
+        //add(clockFeatureController);
         updateUI();
     }
 
@@ -92,9 +92,6 @@ public class MvcControl extends JPanel implements Observer{
 
     }
 
-    public ArrayList<ClockController> getClockControllers(){
-        return clockFeatureController.getClockControllers();
-    }
 
 
 }

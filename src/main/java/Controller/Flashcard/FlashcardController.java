@@ -3,11 +3,13 @@ import Model.Flashcards.Flashcard;
 
 import javax.swing.*;
 
-public class FlashcardController extends JButton {
+public class FlashcardController extends JButton implements WrongButtonListener, CorrectButtonListener{
 
     private Flashcard flashcard;
 
-    public FlashcardController(){
+    public FlashcardController(Flashcard card){
+
+        flashcard = card;
 
 }
     public JButton get(){
@@ -27,5 +29,16 @@ public class FlashcardController extends JButton {
 
     public void setAnswer(String answer){
         flashcard.setSolution(answer);
+    }
+
+    @Override
+    public void onWrongClicked(int i) {
+        flashcard.setAnswer(i);
+    }
+
+
+    @Override
+    public void onCorrectClicked(int i) {
+        flashcard.setAnswer(i);
     }
 }

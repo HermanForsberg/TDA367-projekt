@@ -54,8 +54,6 @@ public class Main {
         views.put("profileWindow", profileFeatureWindow);
 
 
-
-
         MvcControl control = new MvcControl(model);
 
         MvcView view = new MvcView(currentView, views);

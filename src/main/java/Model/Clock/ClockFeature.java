@@ -1,5 +1,8 @@
 package Model.Clock;
 
+import Controller.Observer;
+import Controller.ObserverHandler;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -8,6 +11,8 @@ public class ClockFeature extends JPanel{
     private ArrayList<Clock> clockList;
 
     private int clockIndex;
+
+    private ObserverHandler observerHandler = new ObserverHandler();
 
 
     public ClockFeature(ArrayList<Clock> clocks){
@@ -26,7 +31,26 @@ public class ClockFeature extends JPanel{
         this.clockIndex = clockIndex;
     }
 
+    public void addObserver(Observer observer){
+        observerHandler.addObserver(observer);
+    }
+
     public Clock getClock(){
         return clockList.get(clockIndex);
+    }
+
+    public void onManualClicked(){
+        this.clockIndex = 0;
+        observerHandler.updateObservers();
+    }
+
+    public void onStopwatchClicked(){
+        this.clockIndex = 1;
+        observerHandler.updateObservers();
+    }
+
+    public void onPomodoroClicked(){
+        this.clockIndex = 2;
+        observerHandler.updateObservers();
     }
 }
