@@ -6,13 +6,12 @@ import Model.Clock.ManualTimer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class ClockController extends JPanel implements Observer {
-    private JLabel timeLabel = new JLabel("00:00", SwingConstants.CENTER);
-    private Clock clock;
-    private JButton startAndPauseButton = new JButton("Start");
+    private final JLabel timeLabel = new JLabel("00:00", SwingConstants.CENTER);
+    private final Clock clock;
+    private final JButton startAndPauseButton = new JButton("Start");
 
     public ClockController(Clock clock, JLabel imageLabel){
         this.clock = clock;
@@ -81,53 +80,40 @@ public class ClockController extends JPanel implements Observer {
         lastRow.add(resetButton, gbcLastRow);
 
         //Buttons actions
-        startAndPauseButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (clock.isRunning()){
-                    clock.pauseClock();
-                    startAndPauseButton.setText("Start");
-                    clock.playSound("src/main/sound/Stop_Clock.wav");
-                }
-                else {
-                    clock.startClock();
-                    startAndPauseButton.setText("Pause");
-                    clock.playSound("src/main/sound/Start_Clock.wav");
-                }
-            }
-        });
-        resetButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                clock.resetClock();
+        startAndPauseButton.addActionListener(e -> {
+            if (clock.isRunning()){
+                clock.pauseClock();
                 startAndPauseButton.setText("Start");
-                formatTimeLabel();
-                clock.playSound("src/main/sound/Reset_Clock.wav");
+                clock.playSound("src/main/sound/Stop_Clock.wav");
+            }
+            else {
+                clock.startClock();
+                startAndPauseButton.setText("Pause");
+                clock.playSound("src/main/sound/Start_Clock.wav");
             }
         });
-        addTimeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (clock instanceof ManualTimer){
-                    ((ManualTimer) clock).addTime();
-                    clock.playSound("src/main/sound/Click_Sound.wav");
-                }
+        resetButton.addActionListener(e -> {
+            clock.resetClock();
+            startAndPauseButton.setText("Start");
+            formatTimeLabel();
+            clock.playSound("src/main/sound/Reset_Clock.wav");
+        });
+        addTimeButton.addActionListener(e -> {
+            if (clock instanceof ManualTimer){
+                ((ManualTimer) clock).addTime();
+                clock.playSound("src/main/sound/Click_Sound.wav");
             }
         });
-        subtractTimeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (clock instanceof ManualTimer){
-                    ((ManualTimer) clock).subtractTime();
-                    clock.playSound("src/main/sound/Click_Sound.wav");
-                }
+        subtractTimeButton.addActionListener(e -> {
+            if (clock instanceof ManualTimer){
+                ((ManualTimer) clock).subtractTime();
+                clock.playSound("src/main/sound/Click_Sound.wav");
             }
         });
     }
 
     public void update(){
-
         formatTimeLabel();
-        //System.out.println(clock.getSeconds());
-        //timeLabel.setText("0" + clock.getSeconds() + ":");
-        //System.out.println(clock.getSeconds());
-
     }
 
     private void formatTimeLabel(){
@@ -147,9 +133,6 @@ public class ClockController extends JPanel implements Observer {
         }
 
         timeLabel.setText(text);
-        //System.out.println(text);
-        //timeLabel.updateUI();
-
     }
     public JButton getStartAndPauseButton() {
         return startAndPauseButton;
