@@ -23,12 +23,17 @@ public abstract class Clock implements Observable, Observer{
     private boolean isRunning;
     private int minutesPassed;
 
-    public Clock(int minutes) {
+    public Mediator mediator;
+    //TODO
+
+
+    public Clock(int minutes, Mediator mediator) {
         this.minutes = minutes;
         this.seconds = 0;
         this.timer = new Timer();
         this.isRunning = false;
         this.minutesPassed = 0;
+        this.mediator = mediator;
     }
 
     public void addObserver(Observer observer){
@@ -57,6 +62,11 @@ public abstract class Clock implements Observable, Observer{
         this.minutes = minutes;
     }
 
+    public void setMediator(Mediator newMediator){
+        mediator = newMediator;
+    }
+
+    // @param path to sound file that will be played.
     // TODO flytta till v.
     public void playSound(String soundFilePath){
         try {

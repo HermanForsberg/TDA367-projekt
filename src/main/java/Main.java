@@ -41,7 +41,7 @@ public class Main {
 
         views.put("addMenu", addMenuWindow);
 
-        ClockFeatureWindow clockFeatureWindow = new ClockFeatureWindow(model.getClockFeature());
+        ClockFeatureWindow clockFeatureWindow = new ClockFeatureWindow(currentView,model.getClockFeature());
 
         views.put("clockFeature", clockFeatureWindow);
 

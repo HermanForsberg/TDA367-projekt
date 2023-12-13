@@ -4,10 +4,10 @@ import Controller.Observer;
 import Model.Mediator;
 
 public class ManualTimer extends Clock implements Rest { //Counts downwards.
-    private Mediator mediator;
+
     public ManualTimer(Mediator mediator) {
-        super(20);
-        this.mediator = mediator;
+        super(20, mediator);
+
     }
 
     public void calculateTime(){
@@ -51,4 +51,6 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
     public void update() {
 
     }
+
+
 }

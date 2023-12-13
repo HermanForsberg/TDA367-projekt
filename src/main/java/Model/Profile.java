@@ -20,6 +20,8 @@ public class Profile implements Mediator, Observable{
 
     private int exp;
 
+    private int level;
+
     private String path = "";
 
     private Stats stats;
@@ -28,9 +30,12 @@ public class Profile implements Mediator, Observable{
 
     private ObserverHandler observerHandler = new ObserverHandler();
 
+    private final int expToLevelConvertion = 100;
+
     public Profile(String name){
         this.name = name;
         this.exp = 0;
+        this.level = 1;
         this.decks = new ArrayList<FlashcardDeck>();
         this.stats = new Stats();
         this.init();
@@ -40,6 +45,26 @@ public class Profile implements Mediator, Observable{
         this.stats = stats;
     }
 
+
+    public int getLevel() {
+        UpdateLevel();
+        return level;
+    }
+
+    private void UpdateLevel(){
+        int expToNextLevel = (int)(expToLevelConvertion+ 100*Math.pow(1.2, level+1));
+        if(exp>(expToNextLevel+totalExpToCurrentLevel())){
+            level ++;
+        }
+    }
+
+    private int totalExpToCurrentLevel(){
+        int totalExpToCurrentLevel = 0;
+        for (int i = level; i > 0; i--) {
+            totalExpToCurrentLevel += (int)(expToLevelConvertion+ 100*Math.pow(1.2, i));
+        }
+        return totalExpToCurrentLevel;
+    }
 
     public String getPath(){
         return this.path;

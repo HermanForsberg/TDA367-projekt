@@ -3,6 +3,7 @@ package Controller.Clock;
 import Controller.Observer;
 import Model.Clock.Clock;
 import Model.Clock.ManualTimer;
+import Model.Mediator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -133,6 +134,10 @@ public class ClockController extends JPanel implements Observer {
         }
 
         timeLabel.setText(text);
+    }
+
+    public void setMediator(Mediator mediator){
+        clock.setMediator(mediator);
     }
     public JButton getStartAndPauseButton() {
         return startAndPauseButton;
