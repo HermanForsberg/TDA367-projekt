@@ -17,6 +17,8 @@ public class CurrentView {
 
     private Flashcard cardInFocus;
 
+    private Profile currentProfile = new Profile("temp");
+
     public CurrentView(){
 
     }
@@ -42,5 +44,14 @@ public class CurrentView {
     public FlashcardDeck getDeckInFocus(){
         return deckInFocus;
 
+    }
+
+    public void setProfile(Profile profile){
+        currentProfile = profile;
+        System.out.println("UpdaterarProfil");
+    }
+
+    public Profile getProfile(){
+        return currentProfile;
     }
 }

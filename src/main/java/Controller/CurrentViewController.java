@@ -2,6 +2,7 @@ package Controller;
 
 import Model.CurrentView;
 import Model.FlashcardDeck;
+import Model.Profile;
 import Windows.Window;
 
 public class CurrentViewController implements DeckButtonListener, BackwardsButtonListener, PlayButtonListener{
@@ -13,6 +14,11 @@ public class CurrentViewController implements DeckButtonListener, BackwardsButto
 
     public void setView(String view){
         currentView.setCurrentView(view);
+    }
+
+
+    public void setProfile(Profile profile){
+        currentView.setProfile(profile);
     }
 
 

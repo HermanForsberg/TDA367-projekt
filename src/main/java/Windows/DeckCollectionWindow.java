@@ -4,6 +4,7 @@ import Controller.*;
 import Controller.Flashcard.DeckButton;
 import Controller.Flashcard.DeckCollectionController;
 import Controller.Flashcard.DeckController;
+import Model.CurrentView;
 import Model.FlashcardDeck;
 import Model.Profile;
 
@@ -24,19 +25,21 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
 
         private JPanel groundPanel = new JPanel();
 
-        private Profile profile;
+        private Profile profile = new Profile("temp");
 
         private DeckCollectionController deckCollectionController;
 
         private CurrentViewController currentViewController;
 
+        private CurrentView currentview;
 
 
-        public DeckCollectionWindow(Profile model, DeckCollectionController newDeckCollectionController, CurrentViewController newCurrentViewController) {
+
+        public DeckCollectionWindow(CurrentView newCurrentview, DeckCollectionController newDeckCollectionController, CurrentViewController newCurrentViewController) {
 
 
-            profile = model;
-            profile.addObserver(this);
+            currentview = newCurrentview;
+            currentview.addObserver(this);
 
             deckCollectionController = newDeckCollectionController;
             currentViewController = newCurrentViewController;
@@ -50,7 +53,7 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
             groundPanel.add(grid);
             grid.add(addButton);
 
-            createDeckButtons(model);
+            createDeckButtons(profile);
 
 
         }
@@ -74,10 +77,28 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
     }
     public void update() {
 
+        for(ActionListener al: addButton.getActionListeners()){
+            addButton.removeActionListener(al);
+        }
+        try{
+        profile = currentview.getProfile();
+        profile.addObserver(this);
+            deckCollectionController = new DeckCollectionController(profile);
+            addButtonListenerToAddButton(deckCollectionController);}
+        catch (Exception e){
+
+        }
+
+
+
+
+
+
 
         System.out.println("Update");
         grid.removeAll();
         grid.add(addButton);
+
         for (FlashcardDeck deck : profile.getListOfDecks()) {
             deckController = new DeckController(deck);
             DeckButton deckButton = new DeckButton(deck);

@@ -27,7 +27,7 @@ public class Main {
 
         DeckCollectionController deckCollectionController = new DeckCollectionController(model.getCurrentProfile());
 
-        DeckCollectionWindow deckCollectionWindow = new DeckCollectionWindow(model.getCurrentProfile(),deckCollectionController, currentViewController);
+        DeckCollectionWindow deckCollectionWindow = new DeckCollectionWindow(currentView,deckCollectionController, currentViewController);
 
         views.put("deckCollection",deckCollectionWindow);
 
@@ -48,6 +48,12 @@ public class Main {
         QuestsWindow questsWindow = new QuestsWindow(new QuestFeature());
 
         views.put("questWindow", questsWindow);
+
+        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController);
+
+        views.put("profileWindow", profileFeatureWindow);
+
+
 
 
         MvcControl control = new MvcControl(model);

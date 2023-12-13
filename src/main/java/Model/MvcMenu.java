@@ -48,7 +48,7 @@ public class MvcMenu {
 
                 if (control != null) {
 
-                    control.setView(""); // e.g., here
+                    control.setView("profileWindow"); // e.g., here
 
                 }
             }
