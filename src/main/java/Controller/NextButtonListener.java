@@ -1,6 +1,5 @@
 package Controller;
 
 public interface NextButtonListener {
-
-    void onNextButtonCLicked();
+    void onNextButtonClicked();
 }

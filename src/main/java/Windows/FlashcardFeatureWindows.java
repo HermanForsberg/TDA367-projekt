@@ -3,7 +3,6 @@ package Windows;
 import Controller.BackwardsButtonListener;
 import Controller.CurrentViewController;
 import Controller.Flashcard.DeckController;
-import Controller.Flashcard.FlashcardController;
 import Controller.NextButtonListener;
 import Controller.Observer;
 import Model.CurrentView;
@@ -219,7 +218,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             next.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    nl.onNextButtonCLicked();
+                    nl.onNextButtonClicked();
                 }
 
                 });
