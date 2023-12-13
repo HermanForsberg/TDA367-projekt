@@ -54,7 +54,7 @@ public class ClockFeatureWindow extends JPanel implements Window{
             manualTimerButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     //Måste göra något åt denna rad v
-                    clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
+                    clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
                     clockFeature.setClockIndex(0);
                     swapClock(clockFeature);
                 }
@@ -62,7 +62,7 @@ public class ClockFeatureWindow extends JPanel implements Window{
             stopwatchButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     //Måste göra något åt denna rad v
-                    clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
+                    clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
                     clockFeature.setClockIndex(1);
                     swapClock(clockFeature);
                 }
@@ -70,7 +70,7 @@ public class ClockFeatureWindow extends JPanel implements Window{
             pomodoroButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     //Måste göra något åt denna rad v
-                    clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
+                    clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
                     clockFeature.setClockIndex(2);
                     swapClock(clockFeature);
                 }

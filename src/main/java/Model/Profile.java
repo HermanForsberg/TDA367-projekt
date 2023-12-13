@@ -80,11 +80,6 @@ public class Profile implements Mediator, Observable{
         //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
     }
 
-
-
-
-
-
     private void parseLine(String line) {
         String[] tokens = line.split(";");
         try {

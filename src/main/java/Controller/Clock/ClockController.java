@@ -12,11 +12,12 @@ import java.awt.event.ActionListener;
 public class ClockController extends JPanel implements Observer {
     private JLabel timeLabel = new JLabel("00:00", SwingConstants.CENTER);
     private Clock clock;
-    private JButton startOrPauseButton = new JButton("Start");
+    private JButton startAndPauseButton = new JButton("Start");
+
     public ClockController(Clock clock, JLabel imageLabel){
         this.clock = clock;
         clock.addObserver(this);
-        final int gap = 10;
+
 
         //Time label
         formatTimeLabel();
@@ -29,31 +30,32 @@ public class ClockController extends JPanel implements Observer {
 
         //The grid
         setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(gap, gap, gap, gap);
+        GridBagConstraints constraints = new GridBagConstraints();
+        int gap = 10;
+        constraints.insets = new Insets(gap, gap, gap, gap);
         setBackground(Color.WHITE);
 
-        gbc.weightx = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        constraints.weightx = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
 
         //Row 1
-        gbc.gridy = 0;
+        constraints.gridy = 0;
 
         if (clock instanceof ManualTimer){
-            gbc.gridx = 0;
-            add(subtractTimeButton, gbc);
+            constraints.gridx = 0;
+            add(subtractTimeButton, constraints);
 
-            gbc.gridx = 2;
-            add(addTimeButton, gbc);
+            constraints.gridx = 2;
+            add(addTimeButton, constraints);
         }
 
-        gbc.gridx = 1;
-        add(timeLabel, gbc);
+        constraints.gridx = 1;
+        add(timeLabel, constraints);
 
         //Row 2
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        add(imageLabel, gbc);
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        add(imageLabel, constraints);
 
         //Row 3
         JPanel lastRow = new JPanel();
@@ -65,31 +67,30 @@ public class ClockController extends JPanel implements Observer {
         gbcLastRow.weightx = 1;
         gbcLastRow.gridwidth = 1;
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 3;
-        add(lastRow, gbc);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 3;
+        add(lastRow, constraints);
 
         gbcLastRow.gridx = 0;
         gbcLastRow.insets = new Insets(0, 0, 0,5);
-        lastRow.add(startOrPauseButton, gbcLastRow);
+        lastRow.add(startAndPauseButton, gbcLastRow);
 
         gbcLastRow.gridx = 1;
         gbcLastRow.insets = new Insets(0, 5, 0,0);
         lastRow.add(resetButton, gbcLastRow);
 
         //Buttons actions
-        startOrPauseButton.addActionListener(new ActionListener() {
+        startAndPauseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (clock.isRunning()){
                     clock.pauseClock();
-                    startOrPauseButton.setText("Start");
-                    //timeLabel.setText("1000000");
+                    startAndPauseButton.setText("Start");
                     clock.playSound("src/main/sound/Stop_Clock.wav");
                 }
                 else {
                     clock.startClock();
-                    startOrPauseButton.setText("Pause");
+                    startAndPauseButton.setText("Pause");
                     clock.playSound("src/main/sound/Start_Clock.wav");
                 }
             }
@@ -97,7 +98,7 @@ public class ClockController extends JPanel implements Observer {
         resetButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 clock.resetClock();
-                startOrPauseButton.setText("Start");
+                startAndPauseButton.setText("Start");
                 formatTimeLabel();
                 clock.playSound("src/main/sound/Reset_Clock.wav");
             }
@@ -150,7 +151,7 @@ public class ClockController extends JPanel implements Observer {
         //timeLabel.updateUI();
 
     }
-    public JButton getStartOrPauseButton() {
-        return startOrPauseButton;
+    public JButton getStartAndPauseButton() {
+        return startAndPauseButton;
     }
 }

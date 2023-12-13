@@ -5,29 +5,27 @@ import Model.Clock.ClockFeature;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ClockFeatureController extends JPanel{
-    private ArrayList<Clock> clocks;
+    private final ArrayList<Clock> clocks;
     private Clock clock;
-    private JPanel sideBar = new JPanel();
-    private JPanel mainPanel = new JPanel();
+    private final JPanel sideBar = new JPanel();
+    private final JPanel mainPanel = new JPanel();
 
     //Buttons, Images etc.
-    private ImageIcon manualTimerImageSmall = new ImageIcon("src/main/img/hourglass_32.png");
-    private ImageIcon stopwatchImageSmall = new ImageIcon("src/main/img/stopwatch_32.png");
-    private ImageIcon pomodoroImageSmall = new ImageIcon("src/main/img/tomato_32.png");
-    private ImageIcon manualTimerImageBig = new ImageIcon("src/main/img/hourglass_128.png");
-    private ImageIcon stopwatchImageBig = new ImageIcon("src/main/img/stopwatch_128.png");
-    private ImageIcon pomodoroImageBig = new ImageIcon("src/main/img/tomato_128.png");
-    private JButton manualTimerButton = new JButton("Timer", manualTimerImageSmall);
-    private JButton stopwatchButton = new JButton("Stopwatch", stopwatchImageSmall);
-    private JButton pomodoroButton = new JButton("Pomodoro", pomodoroImageSmall);
+    private final ImageIcon manualTimerImageSmall = new ImageIcon("src/main/img/hourglass_32.png");
+    private final ImageIcon stopwatchImageSmall = new ImageIcon("src/main/img/stopwatch_32.png");
+    private final ImageIcon pomodoroImageSmall = new ImageIcon("src/main/img/tomato_32.png");
+    private final ImageIcon manualTimerImageBig = new ImageIcon("src/main/img/hourglass_128.png");
+    private final ImageIcon stopwatchImageBig = new ImageIcon("src/main/img/stopwatch_128.png");
+    private final ImageIcon pomodoroImageBig = new ImageIcon("src/main/img/tomato_128.png");
+    private final JButton manualTimerButton = new JButton("Timer", manualTimerImageSmall);
+    private final JButton stopwatchButton = new JButton("Stopwatch", stopwatchImageSmall);
+    private final JButton pomodoroButton = new JButton("Pomodoro", pomodoroImageSmall);
     private JLabel imageLabel;
 
-    private ArrayList<ClockController> clockControllers = new ArrayList<>();
+    private final ArrayList<ClockController> clockControllers = new ArrayList<>();
 
     public ClockFeatureController(ClockFeature clockFeature){
         clocks = clockFeature.getClocks();
@@ -44,29 +42,23 @@ public class ClockFeatureController extends JPanel{
 
         //Sets the grid.
         createGrid(clockFeature.getClockIndex());
-         manualTimerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //Måste göra något åt denna rad v
-                clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
-                clockFeature.setClockIndex(0);
-                swapClock(clockFeature);
-            }
+         manualTimerButton.addActionListener(e -> {
+             //Måste göra något åt denna rad v
+             clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
+             clockFeature.setClockIndex(0);
+             swapClock(clockFeature);
+         });
+        stopwatchButton.addActionListener(e -> {
+            //Måste göra något åt denna rad v
+            clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
+            clockFeature.setClockIndex(1);
+            swapClock(clockFeature);
         });
-        stopwatchButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //Måste göra något åt denna rad v
-                clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
-                clockFeature.setClockIndex(1);
-                swapClock(clockFeature);
-            }
-        });
-        pomodoroButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //Måste göra något åt denna rad v
-                clockControllers.get(clockFeature.getClockIndex()).getStartOrPauseButton().setText("Start");
-                clockFeature.setClockIndex(2);
-                swapClock(clockFeature);
-            }
+        pomodoroButton.addActionListener(e -> {
+            //Måste göra något åt denna rad v
+            clockControllers.get(clockFeature.getClockIndex()).getStartAndPauseButton().setText("Start");
+            clockFeature.setClockIndex(2);
+            swapClock(clockFeature);
         });
     }
 
@@ -92,7 +84,7 @@ public class ClockFeatureController extends JPanel{
         final int gap = 20;
 
         setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        GridBagConstraints constraints = new GridBagConstraints();
 
         setBackground(Color.WHITE);
         mainPanel.setBackground(Color.WHITE);
@@ -100,37 +92,37 @@ public class ClockFeatureController extends JPanel{
 
         mainPanel.add(clockControllers.get(index));
 
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        add(mainPanel, gbc);
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        add(mainPanel, constraints);
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 0;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        add(sideBar, gbc);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.weightx = 0;
+        constraints.weighty = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        add(sideBar, constraints);
 
         sideBar.setLayout(new GridBagLayout());
-        GridBagConstraints gbcSideBar = new GridBagConstraints();
-        gbcSideBar.insets = new Insets(gap, gap, gap, gap);
+        GridBagConstraints constraintSideBar = new GridBagConstraints();
+        constraintSideBar.insets = new Insets(gap, gap, gap, gap);
 
-        gbcSideBar.gridx = 0;
-        gbcSideBar.gridy = 0;
-        gbcSideBar.weightx = 1;
-        gbcSideBar.fill = GridBagConstraints.HORIZONTAL;
-        sideBar.add(manualTimerButton, gbcSideBar);
+        constraintSideBar.gridx = 0;
+        constraintSideBar.gridy = 0;
+        constraintSideBar.weightx = 1;
+        constraintSideBar.fill = GridBagConstraints.HORIZONTAL;
+        sideBar.add(manualTimerButton, constraintSideBar);
 
-        gbcSideBar.gridx = 0;
-        gbcSideBar.gridy = 1;
-        sideBar.add(stopwatchButton, gbcSideBar);
+        constraintSideBar.gridx = 0;
+        constraintSideBar.gridy = 1;
+        sideBar.add(stopwatchButton, constraintSideBar);
 
-        gbcSideBar.gridx = 0;
-        gbcSideBar.gridy = 2;
-        sideBar.add(pomodoroButton, gbcSideBar);
+        constraintSideBar.gridx = 0;
+        constraintSideBar.gridy = 2;
+        sideBar.add(pomodoroButton, constraintSideBar);
     }
 
     public ArrayList<ClockController> getClockControllers() {
