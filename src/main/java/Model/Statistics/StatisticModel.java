@@ -1,4 +1,4 @@
-package Model;
+package Model.Statistics;
 
 import java.util.HashSet;
 import java.util.Set;

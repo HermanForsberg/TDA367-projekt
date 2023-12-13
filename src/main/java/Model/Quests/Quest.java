@@ -1,6 +1,8 @@
 package Model.Quests;
 
-public class Quest {
+import java.io.Serializable;
+
+public class Quest implements Serializable {
     private String typeOfQuest;
     private String topic;
     private String description;

@@ -1,11 +1,12 @@
 package Windows;
 
 import Controller.*;
+import Controller.Flashcard.AddButtonListener;
 import Controller.Flashcard.DeckButton;
 import Controller.Flashcard.DeckCollectionController;
 import Controller.Flashcard.DeckController;
 import Model.CurrentView;
-import Model.FlashcardDeck;
+import Model.Flashcards.FlashcardDeck;
 import Model.Profile;
 
 import javax.swing.*;

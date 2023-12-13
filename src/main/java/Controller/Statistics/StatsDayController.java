@@ -1,6 +1,6 @@
-package Controller;
+package Controller.Statistics;
 
-import Model.StatsDayModel;
+import Model.Statistics.StatsDayModel;
 
 public class StatsDayController {
 

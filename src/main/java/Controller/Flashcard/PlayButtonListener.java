@@ -1,6 +1,6 @@
-package Controller;
+package Controller.Flashcard;
 
-import Model.FlashcardDeck;
+import Model.Flashcards.FlashcardDeck;
 
 public interface PlayButtonListener {
     void onPlayButtonCLicked(FlashcardDeck deck);

@@ -1,6 +1,6 @@
 package Windows;
 
-import Controller.QuestCard;
+import Controller.Quests.QuestCard;
 import Model.Quests.Quest;
 import Model.Quests.QuestFeature;
 

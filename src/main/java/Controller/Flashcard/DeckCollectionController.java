@@ -1,31 +1,16 @@
 package Controller.Flashcard;
 
-import Controller.AddButtonListener;
-import Controller.DeckButtonListener;
-import Controller.DeleteButtonListener;
-import Model.FlashcardDeck;
+import Model.Flashcards.FlashcardDeck;
 import Model.Profile;
 
 import javax.swing.*;
 
 public class DeckCollectionController extends JPanel implements AddButtonListener, DeleteButtonListener {
+    private final Profile profile;
 
-
-
-    private Profile profile;
-
-    public DeckCollectionController(Profile model) {
-
-        profile = model;
-
+    public DeckCollectionController(Profile profile) {
+        this.profile = profile;
     }
-
-
-
-    public void deleteDeck(FlashcardDeck deck){
-        profile.deleteDeck(deck);
-    }
-
 
     @Override
     public void onAddButtonClicked(String name) {

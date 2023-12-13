@@ -3,12 +3,11 @@ package Windows;
 import Controller.BackwardsButtonListener;
 import Controller.CurrentViewController;
 import Controller.Flashcard.DeckController;
-import Controller.Flashcard.FlashcardController;
-import Controller.NextButtonListener;
+import Controller.Flashcard.NextButtonListener;
 import Controller.Observer;
 import Model.CurrentView;
-import Model.Flashcard;
-import Model.FlashcardDeck;
+import Model.Flashcards.Flashcard;
+import Model.Flashcards.FlashcardDeck;
 import Model.Profile;
 
 import javax.swing.*;
@@ -219,7 +218,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             next.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    nl.onNextButtonCLicked();
+                    nl.onNextButtonClicked();
                 }
 
                 });

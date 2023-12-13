@@ -1,4 +1,4 @@
-package Model;
+package Model.Flashcards;
 
 import Controller.ObserverHandler;
 import Controller.Observer;

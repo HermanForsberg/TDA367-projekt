@@ -2,10 +2,8 @@ package Model;
 
 import Controller.Observer;
 import Controller.ObserverHandler;
-import Windows.Window;
-
-import java.util.HashSet;
-import java.util.Set;
+import Model.Flashcards.Flashcard;
+import Model.Flashcards.FlashcardDeck;
 
 public class CurrentView {
 

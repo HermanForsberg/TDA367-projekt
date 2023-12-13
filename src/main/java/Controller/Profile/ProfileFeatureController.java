@@ -1,7 +1,6 @@
-package Controller;
+package Controller.Profile;
 
-import Controller.Flashcard.AddMenu;
-import Controller.Flashcard.AddMenuCard;
+import Controller.Observer;
 import Model.MvcModel;
 
 import Model.*;
@@ -10,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ProfileFeatureController extends JPanel implements Observer{
+public class ProfileFeatureController extends JPanel implements Observer {
 
     private JButton addButton;
 

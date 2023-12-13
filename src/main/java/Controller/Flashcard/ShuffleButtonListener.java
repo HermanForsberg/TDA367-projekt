@@ -1,6 +1,4 @@
-package Controller;
-
-import Model.FlashcardDeck;
+package Controller.Flashcard;
 
 public interface ShuffleButtonListener {
     void onShuffleButtonCLicked();

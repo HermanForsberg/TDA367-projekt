@@ -3,6 +3,7 @@ package Model;
 import Model.Clock.*;
 import Controller.ObserverHandler;
 import Controller.Observer;
+import Model.Flashcards.FlashcardDeck;
 import Model.Quests.QuestFeature;
 
 import java.beans.*;

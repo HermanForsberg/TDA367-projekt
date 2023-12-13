@@ -1,13 +1,13 @@
 package Windows;
 
-import Controller.AddButtonInMenusListener;
+import Controller.Flashcard.AddButtonInMenusListener;
 import Controller.CurrentViewController;
 
 import Controller.Flashcard.AddMenuCard;
 import Controller.Flashcard.DeckController;
 import Controller.Observer;
 import Model.CurrentView;
-import Model.Flashcard;
+import Model.Flashcards.Flashcard;
 import Model.Profile;
 
 import javax.swing.*;
