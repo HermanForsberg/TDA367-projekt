@@ -7,28 +7,20 @@ import Controller.ShuffleButtonListener;
 import Model.FlashcardDeck;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
+import javax.swing.border.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class DeckButton extends JPanel {
-    private JButton clicked;
+    private JButton playButton;
     private JButton delete;
     private JButton shuffleButton;
-
-    private DeckController deckController;
-
-    private final GridBagConstraints c = new GridBagConstraints();
-    private FlashcardDeck deck;
+    private final GridBagConstraints constraints = new GridBagConstraints();
+    private final FlashcardDeck deck;
     public DeckButton(FlashcardDeck newDeck){
         deck = newDeck;
-
         setLayout(new GridBagLayout());
 
-
-        createDeckOpener();
+        createPlayButton();
         createDeleteButton();
         createShuffleButton();
 
@@ -39,106 +31,77 @@ public class DeckButton extends JPanel {
         shuffleButton = new JButton("Shuffle deck and play");
         shuffleButton.setBackground(Color.CYAN);
         shuffleButton.setBorder(new LineBorder(Color.BLACK));
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 3;
-        c.weighty = 0.0;
-        c.weightx = 0.0;
-        c.gridheight = 1;
-        c.fill = GridBagConstraints.BOTH;
-        add(shuffleButton, c);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 3;
+        constraints.weighty = 0.0;
+        constraints.weightx = 0.0;
+        constraints.gridheight = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        add(shuffleButton, constraints);
     }
 
-    public void createDeckOpener(){
-        clicked = new JButton(deck.getDeckName());
-        clicked.setBackground(Color.WHITE);
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 3;
-        c.weighty = 0.5;
-        c.weightx = 0.5;
-        c.gridheight = 2;
-        c.fill = GridBagConstraints.BOTH;
-        add(clicked, c);
+    public void createPlayButton(){
+        playButton = new JButton(deck.getDeckName());
+        playButton.setBackground(Color.WHITE);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 3;
+        constraints.weighty = 0.5;
+        constraints.weightx = 0.5;
+        constraints.gridheight = 2;
+        constraints.fill = GridBagConstraints.BOTH;
+        add(playButton, constraints);
     }
 
     public void createDeleteButton(){
         delete = new JButton("Delete deck");
         delete.setBackground(Color.RED);
         delete.setForeground(Color.WHITE);
-        c.gridx = 0;
-        c.gridy = 3;
-        c.weighty = 0;
-        c.weightx = 0;
-        c.gridwidth = 3;
-        c.gridheight = 1;
-        c.fill = GridBagConstraints.BOTH;
-        c.ipady = 20;
-        add(delete, c);
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.weighty = 0;
+        constraints.weightx = 0;
+        constraints.gridwidth = 3;
+        constraints.gridheight = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.ipady = 20;
+        add(delete, constraints);
     }
     public JButton getDeleteButton() {
         return delete;
     }
 
-    public JButton getClicked() {
-        return clicked;
+    public JButton getPlayButton() {
+        return playButton;
     }
 
     public void addShuffleButtonListenerToClickedButton(ShuffleButtonListener buttonListener){
-        shuffleButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                buttonListener.onShuffleButtonCLicked();
-
-            }
-
-        });
+        shuffleButton.addActionListener(e -> buttonListener.onShuffleButtonCLicked());
     }
 
 
     public void addPlayButtonListenerToClickedButton(PlayButtonListener buttonListener){
-        shuffleButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                buttonListener.onPlayButtonCLicked(deck);
-
-            }
-
-        });
+        shuffleButton.addActionListener(e -> buttonListener.onPlayButtonCLicked(deck));
     }
 
     public void addButtonListenerToClickedButton(DeckButtonListener buttonListener){
         
 
-        getClicked().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                    buttonListener.onDeckButtonClicked(deck);
-
-
-            }
-
-        });
+        getPlayButton().addActionListener(e -> buttonListener.onDeckButtonClicked(deck));
 
     }
 
     public void addButtonListenerToDeleteButton(DeleteButtonListener buttonListener){
 
-        getDeleteButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        getDeleteButton().addActionListener(e -> {
 
-                int ans = JOptionPane.showConfirmDialog(null,
-                        "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
-                if(ans == 0){
+            int ans = JOptionPane.showConfirmDialog(null,
+                    "Do you want to delete the card?","Delete", JOptionPane.YES_NO_OPTION);
+            if(ans == 0){
 
-                buttonListener.onDeleteButtonClicked(deck);
-            }
+            buttonListener.onDeleteButtonClicked(deck);
         }
-
     });
 
 }

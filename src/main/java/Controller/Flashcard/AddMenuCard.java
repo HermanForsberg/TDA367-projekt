@@ -8,32 +8,41 @@ import java.awt.*;
 
 
 public class AddMenuCard extends JComponent {
+    private final GridBagConstraints constraints = new GridBagConstraints();
     public AddMenuCard(Flashcard flashcard, FlashcardDeck deck, JPanel grid) {
         setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
         setBorder(BorderFactory.createLineBorder(Color.black));
 
-        c.gridy = 0;
+        createQuestionLabel(flashcard);
+        createAnswerLabel(flashcard);
+        createDeleteButton(deck, flashcard, grid);
+
+    }
+
+    public void createQuestionLabel(Flashcard flashcard){
+        constraints.gridy = 0;
         JLabel question = new JLabel("Question: " + flashcard.getQuestion());
-        add(question,c);
+        add(question,constraints);
+    }
 
-        c.gridy = 1;
+    public void createAnswerLabel(Flashcard flashcard){
+        constraints.gridy = 1;
         JLabel solution = new JLabel("Solution: " + flashcard.getSolution());
-        add(solution,c);
+        add(solution,constraints);
+    }
 
+    public void createDeleteButton(FlashcardDeck deck, Flashcard flashcard, JPanel grid){
         JButton deleteButton = new JButton("delete");
         deleteButton.setBackground(Color.RED);
-        c.gridy = 2;
-        c.fill = GridBagConstraints.BOTH;
-        add(deleteButton,c);
+        constraints.gridy = 2;
+        constraints.fill = GridBagConstraints.BOTH;
+        add(deleteButton,constraints);
         deleteButton.addActionListener(e -> {
             System.out.println(deck.getDeck().toString());
             deck.delete(flashcard);
             System.out.println(deck.getDeck().toString());
             grid.remove(AddMenuCard.this);
             grid.updateUI();
-
         });
     }
-
 }
