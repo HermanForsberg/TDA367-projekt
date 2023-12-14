@@ -19,6 +19,8 @@ public class Main {
         //Main model
         MvcModel model = MvcModel.getInstance();
 
+        MvcControl control = new MvcControl(model);
+
         HashMap<String, Window> views = new HashMap<>();
 
         CurrentView currentView = new CurrentView();
@@ -49,12 +51,12 @@ public class Main {
 
         views.put("questWindow", questsWindow);
 
-        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController);
+        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController, control);
 
         views.put("profileWindow", profileFeatureWindow);
 
 
-        MvcControl control = new MvcControl(model);
+
 
         MvcView view = new MvcView(currentView, views);
         MvcMenu menu = new MvcMenu(currentViewController);

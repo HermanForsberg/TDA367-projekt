@@ -1,8 +1,12 @@
 package Windows;
 
 import Controller.CurrentViewController;
+import Controller.Flashcard.PlayButtonListener;
+import Controller.MvcControl;
 import Controller.Observer;
-import Controller.Profile.ProfileController;
+import Controller.Profile.AddProfileButtonListener;
+import Controller.Profile.ProfileButton;
+import Controller.Profile.ProfileButtonListener;
 import Model.MvcModel;
 import Model.Profile;
 
@@ -13,62 +17,52 @@ import java.awt.event.ActionListener;
 public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
 
         private JButton addButton;
+
+        private CurrentViewController currentViewController;
         //TODO lös denna
 
-        public ProfileFeatureWindow(MvcModel model, CurrentViewController currentViewController){
+        public ProfileFeatureWindow(MvcModel model, CurrentViewController currentViewController, MvcControl control){
 
-
+            this.currentViewController=currentViewController;
             for(Profile profile: model.getProfiles()){
-                ProfileController profileController = new ProfileController(profile);
-                profileController.addActionListener(new ActionListener() {
 
-                    public void actionPerformed(ActionEvent e) {
-
-
-
-                        currentViewController.setProfile(profile);
-
-                    }
-
-                });
-                add(profileController);
+                ProfileButton tempProfileButton = new ProfileButton(profile);
+                tempProfileButton.addButtonListenerToProfileClicked(currentViewController);
+                add(tempProfileButton);
             }
 
-
-            JButton addButton = new JButton("Add new profile");
+            addButton = new JButton("Add new profile");
             add(addButton);
+
+            addButtonListenerToAddProfile(control);
+
+        }
+
+
+
+        public void addButtonListenerToAddProfile(AddProfileButtonListener apbl){
             addButton.addActionListener(new ActionListener() {
-
+                @Override
                 public void actionPerformed(ActionEvent e) {
-
                     String name = JOptionPane.showInputDialog("Name of profile: ");
 
                     if(!name.isEmpty()){
+
+
                         Profile newProfile = new Profile(name);
-                        ProfileController profileController = new ProfileController(newProfile);
-                        profileController.addActionListener(new ActionListener() {
-
-                            public void actionPerformed(ActionEvent e) {
-                                currentViewController.setProfile(newProfile);
-                                //model.switchProfile(newProfile);
-                            }
-
-                        });
-                        model.addProfile(newProfile);
+                        ProfileButton tempProfileButton = new ProfileButton(newProfile);
+                        tempProfileButton.addButtonListenerToProfileClicked(currentViewController);
+                        apbl.addProfileClicked(newProfile);
                         remove(addButton);
-                        add(profileController);
+                        add(tempProfileButton);
                         add(addButton);
                         updateUI();
                     }
                     else {
                         JOptionPane.showMessageDialog(ProfileFeatureWindow.this, "Need name");
                     }
-
-
-
                 }
             });
-
         }
 
         public void update(){

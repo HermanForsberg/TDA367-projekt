@@ -45,7 +45,7 @@ public class CurrentView {
 
     public void setProfile(Profile profile){
         currentProfile = profile;
-        System.out.println("UpdaterarProfil");
+        System.out.println(currentProfile.getName());
     }
 
     public Profile getProfile(){

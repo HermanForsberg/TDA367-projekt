@@ -3,11 +3,12 @@ package Controller;
 import Controller.Flashcard.AddCardsButtonListener;
 import Controller.Flashcard.DeckButtonListener;
 import Controller.Flashcard.PlayButtonListener;
+import Controller.Profile.ProfileButtonListener;
 import Model.CurrentView;
 import Model.Flashcards.FlashcardDeck;
 import Model.Profile;
 
-public class CurrentViewController implements DeckButtonListener, BackwardsButtonListener, PlayButtonListener, AddCardsButtonListener {
+public class CurrentViewController implements DeckButtonListener, BackwardsButtonListener, PlayButtonListener, AddCardsButtonListener, ProfileButtonListener {
     private CurrentView currentView;
     public CurrentViewController(CurrentView newCurrentView){
         currentView = newCurrentView;
@@ -38,5 +39,10 @@ public class CurrentViewController implements DeckButtonListener, BackwardsButto
     @Override
     public void onAddCardsClicked() {
         setView("addMenu");
+    }
+
+    @Override
+    public void onProfileButtonClicked(Profile profile) {
+        currentView.setProfile(profile);
     }
 }
