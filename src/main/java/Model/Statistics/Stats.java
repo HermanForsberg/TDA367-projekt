@@ -18,7 +18,7 @@ public class Stats {
         this.minutesPassed = 0;
         this.flashcardsCompleted = 0;
         this.levelsGained = 0;
-
+        //statsWeek.add(new StatsDay(dayWeekTracker.getDayToString()));
         updateStatsWeek();
     }
 

@@ -9,7 +9,6 @@ public class StatsDay {
     private int minutesLapsed;
     private int flashcardsCompleted;
     private int levelsGained;
-
     private final String day;
 
     public StatsDay(String day){
@@ -21,7 +20,7 @@ public class StatsDay {
 
     public void addMinutes(int newMinutes){
         minutesLapsed += newMinutes;
-        System.out.println(minutesLapsed);
+        System.out.println("minute "+minutesLapsed);
     }
 
     public void addFlashcardsCompleted(int newFlashcards){
