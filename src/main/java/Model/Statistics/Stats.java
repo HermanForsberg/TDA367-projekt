@@ -3,6 +3,7 @@ package Model.Statistics;
 import Model.DayWeekTracker;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Stats {
     private int minutesPassed;
@@ -20,6 +21,10 @@ public class Stats {
         this.levelsGained = 0;
         //statsWeek.add(new StatsDay(dayWeekTracker.getDayToString()));
         updateStatsWeek();
+    }
+
+    private String getLastDay(){
+        return statsWeek.get(statsWeek.size()-1).getDay();
     }
 
     private StatsDay getCurrentDay(){

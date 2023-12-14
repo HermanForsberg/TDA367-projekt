@@ -18,6 +18,10 @@ public class StatsDay {
         this.levelsGained = 0;
     }
 
+    public String getDay() {
+        return day;
+    }
+
     public void addMinutes(int newMinutes){
         minutesLapsed += newMinutes;
         System.out.println("minute "+minutesLapsed);
