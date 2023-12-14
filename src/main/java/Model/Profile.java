@@ -220,6 +220,8 @@ public class Profile implements Mediator, Observable{
             addExp(1);
             stats.addFlashcardCompletedToCurrentDay(1);
             System.out.println(getName() + " " + exp);
+        }else if (Objects.equals(name, "quest")){
+
         }
     }
 }

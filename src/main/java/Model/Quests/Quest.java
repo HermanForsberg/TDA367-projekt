@@ -1,17 +1,18 @@
 package Model.Quests;
 
 import Controller.Observer;
+import Model.Mediator;
 
 import java.io.Serializable;
 
 public class Quest implements Observer, Serializable {
-    private String typeOfQuest;
-    private String topic;
-    private String description;
-    private int expGain;
-    private int difficulty;
-    private int amount;
-    private int progress;
+    private final String typeOfQuest;
+    private final String topic;
+    private final String description;
+    private final int expGain;
+    private final int difficulty;
+    private final int amount;
+    private final int progress;
     private boolean isCompleted;
 
     public Quest(String typeOfQuest, String topic, String description, int difficulty, int expGain, int amount) {
@@ -27,7 +28,7 @@ public class Quest implements Observer, Serializable {
 
     public void updateProgress(int currentAmount) {
         int progress = Math.min(currentAmount/amount, 1) * 100;
-        if (progress == 100 && !isCompleted){
+        if (progress >= 100 && !isCompleted){
             isCompleted = true;
             //Skicka xp till Herman. TODO mediator
         }
@@ -60,5 +61,10 @@ public class Quest implements Observer, Serializable {
     @Override
     public void update() {
         //updateProgress();
+    }
+
+
+    public void notified(int name) {
+        updateProgress(name);
     }
 }
