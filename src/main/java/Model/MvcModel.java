@@ -122,6 +122,6 @@ public class MvcModel implements Observable{
         return questFeature;
     }
 
-    // allow addition of listeners or observers
+
 
 }

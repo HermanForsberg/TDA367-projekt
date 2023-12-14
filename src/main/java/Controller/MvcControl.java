@@ -16,17 +16,6 @@ import javax.swing.*;
 public class MvcControl extends JPanel implements AddProfileButtonListener {
     private MvcModel model;
 
-    private DeckCollectionController deckCollection;
-
-    private ClockFeatureController clockFeatureController;
-
-    private QuestsController questController;
-
-
-    private ProfileFeatureController profileFeatureController;
-
-
-
     public MvcControl(MvcModel model) {
 
         this.model = model;

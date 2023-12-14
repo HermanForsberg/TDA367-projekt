@@ -29,12 +29,7 @@ public class MvcView implements Observer{
 
         currentView.addObserver(this);
 
-
-
         views=newViews;
-
-
-
 
         mainPanel.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
         mainPanel.setLayout(new BorderLayout(gap, gap));

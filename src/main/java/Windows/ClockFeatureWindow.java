@@ -192,7 +192,7 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
                 clockControllers.get(c).setMediator(currentView.getProfile());
             }
 
-            clock.resetClock();
+            //clock.resetClock();
             clock = clocks.get(clockFeature.getClockIndex());
             clock.playSound("src/main/sound/Click_Sound.wav");
 
