@@ -1,9 +1,8 @@
 package Model.Clock;
 
-import Controller.Observer;
 import Model.Mediator;
 
-public class ManualTimer extends Clock implements Rest { //Counts downwards.
+public class ManualTimer extends Clock { //Counts downwards.
 
     public ManualTimer(Mediator mediator) {
         super(20, mediator);
@@ -25,10 +24,6 @@ public class ManualTimer extends Clock implements Rest { //Counts downwards.
                 setSeconds(getSeconds() - 1);
             }
         }
-
-    }
-
-    public void rest(){
 
     }
 

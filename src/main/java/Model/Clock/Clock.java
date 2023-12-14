@@ -4,7 +4,6 @@ import Controller.Observer;
 import Controller.ObserverHandler;
 import Model.Mediator;
 import Model.Observable;
-import Model.Profile;
 
 import java.util.TimerTask;
 import java.util.Timer;
@@ -16,7 +15,7 @@ public abstract class Clock implements Observable, Observer{
     //Timer     = Keeps track of the time in a background thread.
     //TimerTask = Contains an abstract method called run(). When our Model.Timer reaches a certain time
     //            it will execute a task either once or repeatedly.
-    private ObserverHandler observerHandler = new ObserverHandler();
+    private final ObserverHandler observerHandler = new ObserverHandler();
     private int minutes;
     private int seconds;
     private Timer timer;
@@ -58,7 +57,6 @@ public abstract class Clock implements Observable, Observer{
         timer.cancel();
     }
     protected void setMinutes(int minutes) {
-
         this.minutes = minutes;
     }
 
@@ -83,11 +81,7 @@ public abstract class Clock implements Observable, Observer{
         this.seconds = seconds;
         observerHandler.updateObservers();
     }
-    public void setRunning(boolean running) {
-        isRunning = running;
-    }
     public int getMinutes() {
-
         return minutes;
     }
     public int getSeconds() {
