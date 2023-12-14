@@ -2,6 +2,7 @@ package Model.Statistics;
 
 import Model.DayWeekTracker;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ public class Stats {
     private int levelsGained;
     private ArrayList<StatsDay> statsWeek;
     private DayWeekTracker dayWeekTracker;
+    private String FILENAME = "stats.ser";
     public Stats() {
         this.dayWeekTracker = new DayWeekTracker();
 
@@ -85,10 +87,10 @@ public class Stats {
     public int getLevelsGained() {
         return levelsGained;
     }
-    /*
-    private void loadQuestsFromFile() {
+
+    private void loadStatsFromFile() {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(FILENAME))) {
-            quests = (ArrayList<Quest>) inputStream.readObject();
+            statsWeek = (ArrayList<StatsDay>) inputStream.readObject();
         } catch (FileNotFoundException e) {
             // File doesn't exist - quests ArrayList will remain empty
         } catch (IOException | ClassNotFoundException e) {
@@ -96,12 +98,12 @@ public class Stats {
         }
     }
 
-    private void saveQuestsToFile() {
+    private void saveStatsToFile() {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(FILENAME))) {
-            outputStream.writeObject(quests);
+            outputStream.writeObject(statsWeek);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    */
+
 }

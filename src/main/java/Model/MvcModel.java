@@ -33,6 +33,8 @@ public class MvcModel implements Observable{
 
     private Profile currentProfile;
 
+    private DayWeekTracker dayWeekTracker = new DayWeekTracker();
+
     public static MvcModel getInstance() {
         if (instance == null) {
             instance = new MvcModel();
@@ -46,6 +48,7 @@ public class MvcModel implements Observable{
         init();
         initClock();
         initQuests();
+        dayWeekTracker.saveLastCheckedDate();
     }
 
 
