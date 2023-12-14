@@ -5,8 +5,8 @@ import Model.Mediator;
 
 public class ManualTimer extends Clock implements Rest { //Counts downwards.
 
-    public ManualTimer(Mediator mediator) {
-        super(20, mediator);
+    public ManualTimer() {
+        super(20);
 
     }
 

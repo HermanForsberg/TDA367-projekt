@@ -17,11 +17,11 @@ import java.awt.event.ActionListener;
 
 public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
-        private JButton forFlashcard = new JButton("Placeholder");
+
 
         private JPanel panelForFlashcard;
 
-
+        private Flashcard flashcard = new Flashcard("temp", "temp");
 
         private FlashcardWindow flashcardWindow;
 
@@ -50,7 +50,9 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private JButton correct;
 
-        private FlashcardController flashcardController;
+        private JButton deleteButton;
+
+        private FlashcardController flashcardController = new FlashcardController(flashcard);
 
 
 
@@ -93,7 +95,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
             //shitcode men orkade inte göra bra :))))
 
-            flashcardWindow = new FlashcardWindow(new Flashcard("palce", "palce"));
+            flashcardWindow = new FlashcardWindow(flashcard);
 
 
             c.gridy = 2;
@@ -139,7 +141,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
 
         private void createDeleteButton() {
-            JButton deleteButton = new JButton("Delete Card");
+            deleteButton = new JButton("Delete Card");
             deleteButton.setBackground(Color.BLUE);
             deleteButton.setForeground(Color.RED);
             c.gridx = 2;
@@ -148,14 +150,20 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.insets = new Insets(0, 0, 0, 0);
             c.ipadx = 50;
             c.ipady = 20;
-            add(deleteButton,c);
-            deleteButton.addActionListener(e -> {
-                int ans = JOptionPane.showConfirmDialog(null,
-                        "Do you want to delete the card?","yes", JOptionPane.YES_NO_OPTION);
-                if(ans == 0){
-                    deck.deleteIndex(deck.getCurrentIndex());
-                    deck.previousClicked();
+            add(deleteButton, c);
+            addButtonListenerToDelete(deckController);
 
+        }
+
+        public void addButtonListenerToDelete(DeleteCardButtonListener dcbl){
+            deleteButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int ans = JOptionPane.showConfirmDialog(null,
+                            "Do you want to delete the card?","yes", JOptionPane.YES_NO_OPTION);
+                    if(ans == 0) {
+                        dcbl.onDeleteCardClicked();
+                    }
                 }
             });
         }
@@ -168,6 +176,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         public void update(){
 
+            removeActionListeners(deleteButton);
             removeActionListeners(next);
             removeActionListeners(wrong);
             removeActionListeners(correct);
@@ -176,48 +185,37 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             panelForFlashcard.removeAll();
             panelForFlashcard.add(flashcardWindow);
 
-            try {
+            deck = currentView.getDeckInFocus();
+            deckController = new DeckController(deck);
+            deck.addObserver(this);
+            addNextButtonListener(deckController);
+            addButtonListenerToPrev(deckController);
+            addButtonListenerToDelete(deckController);
 
-                deck = currentView.getDeckInFocus();
-                deckController = new DeckController(deck);
-                deck.addObserver(this);
-                addNextButtonListener(deckController);
-                addButtonListenerToPrev(deckController);
+            flashcardWindow.setCard(deck.getCurrentFlashcard());
+            currentCard.setText("Card: " + (deck.getCurrentIndex() + 1) + "/" + deck.getSize());
+
+            flashcardController = new FlashcardController(deck.getCurrentFlashcard());
 
 
-                try{
-                flashcardWindow.setCard(deck.getCurrentFlashcard());
-                currentCard.setText("Card: " + (deck.getCurrentIndex() + 1) + "/" + deck.getSize());
-                }
-                catch(Exception e){}
+            if(deck.getCurrentIndex() == deck.getSize()-1){
+                next.setBackground(Color.MAGENTA);
+                next.setText("Finish");
 
-                if(deck.getCurrentIndex() == deck.getSize()-1){
-                    next.setBackground(Color.MAGENTA);
-                    next.setText("Finish");
+            }else if(deck.getCurrentIndex() >= deck.getSize()){
 
-                    flashcardController = new FlashcardController(deck.getCurrentFlashcard());
-                    addButtonListenerToCorrect(flashcardController);
-                    addButtonListenerToWrong(flashcardController);
+                next.setText("Restart");
+                panelForFlashcard.removeAll();
+                panelForFlashcard.add(new JLabel("Number of Correct: " + deck.getNumberOfCorrect() +
+                        "/" + deck.getSize()));
+                deckController.resetAnswers();
+            }else{
 
-                }else if(deck.getCurrentIndex() >= deck.getSize()){
-
-                    next.setText("Restart");
-                    panelForFlashcard.removeAll();
-                    panelForFlashcard.add(new JLabel("Number of Correct: " + deck.getNumberOfCorrect() +
-                            "/" + deck.getSize()));
-                    deck.resetAnswers();
-                }else{
-                    flashcardController = new FlashcardController(deck.getCurrentFlashcard());
-                    addButtonListenerToCorrect(flashcardController);
-                    addButtonListenerToWrong(flashcardController);
-                    next.setBackground(Color.CYAN);
-                    next.setText("Next");
-                }
-
-            }catch (Exception e){
-                //Ska lösa men orkar icke rn
+                addButtonListenerToCorrect(flashcardController);
+                addButtonListenerToWrong(flashcardController);
+                next.setBackground(Color.CYAN);
+                next.setText("Next");
             }
-
             updateUI();
         }
 
@@ -231,7 +229,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.ipady = 20;
             add(next, c);
             addNextButtonListener(deckController);
-            //next.addActionListener(this::nextActionPerformed);
+
         }
 
         public void addNextButtonListener(NextButtonListener nl){
@@ -276,9 +274,8 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.ipadx = 50;
             c.ipady = 20;
             add(correct,c);
-            try{
-            addButtonListenerToCorrect(flashcardController);}
-            catch (Exception e){}
+            addButtonListenerToCorrect(flashcardController);
+
 
         }
 
@@ -291,8 +288,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             c.ipadx = 50;
             c.ipady = 20;
             add(wrong,c);
-            try{
-            addButtonListenerToWrong(flashcardController);}catch (Exception e){}
+            addButtonListenerToWrong(flashcardController);
         }
 
         public void createAddCardsButton(){

@@ -1,5 +1,7 @@
 package Windows;
 
+import Controller.Flashcard.FlashcardButtonListener;
+import Controller.Flashcard.FlashcardController;
 import Model.Flashcards.Flashcard;
 
 import javax.swing.*;
@@ -13,15 +15,11 @@ public class FlashcardWindow extends JButton implements Observer, Window{
 
     public FlashcardWindow(Flashcard newCard){
         card=newCard;
-        //card.addObserver(this);
-
         setText(card.getQuestion());
 
         addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-
-                //if (control != null) {
 
                 if (getText().equals(card.getQuestion()))
                 {
@@ -32,6 +30,8 @@ public class FlashcardWindow extends JButton implements Observer, Window{
 
         });
     }
+
+
     public void update(){
         setText(card.getQuestion());
     }
@@ -42,6 +42,5 @@ public class FlashcardWindow extends JButton implements Observer, Window{
     }
     public JButton get(){
         return this;
-
     }
 }

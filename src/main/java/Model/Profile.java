@@ -214,6 +214,7 @@ public class Profile implements Mediator, Observable{
     public void notified(String name) {
         if(Objects.equals(name, "clock")){
             addExp(1);
+            System.out.println(getName());
             stats.addMinutesToCurrentDay(1);
             System.out.println(getName() + " " + exp);
         }else if(Objects.equals(name, "flashcard")){

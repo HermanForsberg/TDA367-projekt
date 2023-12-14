@@ -41,4 +41,6 @@ public class FlashcardController extends JButton implements WrongButtonListener,
     public void onCorrectClicked(int i) {
         flashcard.setAnswer(i);
     }
+
+
 }

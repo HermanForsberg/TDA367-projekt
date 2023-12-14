@@ -76,40 +76,36 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
 
         addButtonListenerToAddButton(deckCollectionController);
     }
-    public void update() {
 
-        for(ActionListener al: addButton.getActionListeners()){
-            addButton.removeActionListener(al);
+    public void removeActionListeners(JButton currentButton){
+        for( ActionListener al : currentButton.getActionListeners() ) {
+            currentButton.removeActionListener( al );
         }
-        try{
+    }
+    public void update() {
+        removeActionListeners(addButton);
+
         profile = currentview.getProfile();
         profile.addObserver(this);
-            deckCollectionController = new DeckCollectionController(profile);
-            addButtonListenerToAddButton(deckCollectionController);}
-        catch (Exception e){
-
-        }
-
-
-
-
-
-
+        deckCollectionController = new DeckCollectionController(profile);
+        addButtonListenerToAddButton(deckCollectionController);
 
         System.out.println("Update");
         grid.removeAll();
         grid.add(addButton);
 
-        for (FlashcardDeck deck : profile.getListOfDecks()) {
-            deckController = new DeckController(deck);
-            DeckButton deckButton = new DeckButton(deck);
-            deckButton.addButtonListenerToDeleteButton(deckCollectionController);
-            deckButton.addButtonListenerToClickedButton(currentViewController);
-            deckButton.addShuffleButtonListenerToClickedButton(deckController);
-            deckButton.addPlayButtonListenerToClickedButton(currentViewController);
+        for (FlashcardDeck deck : profile.getListOfDecks())
 
-            grid.add(deckButton);
-        }
+    {
+        deckController = new DeckController(deck);
+        DeckButton deckButton = new DeckButton(deck);
+        deckButton.addButtonListenerToDeleteButton(deckCollectionController);
+        deckButton.addButtonListenerToClickedButton(currentViewController);
+        deckButton.addShuffleButtonListenerToClickedButton(deckController);
+        deckButton.addPlayButtonListenerToClickedButton(currentViewController);
+
+        grid.add(deckButton);
+    }
         grid.updateUI();
     }
 

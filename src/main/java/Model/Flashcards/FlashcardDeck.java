@@ -63,7 +63,6 @@ public class FlashcardDeck {
         }else{
             currentIndex = 0;
         }
-
         System.out.println(currentIndex);
     }
 
@@ -92,7 +91,12 @@ public class FlashcardDeck {
     }
 
     public Flashcard getCurrentFlashcard(){
-        return deck.get(getCurrentIndex());
+        if(getCurrentIndex() >= getSize()) {
+            return new Flashcard("temp", "temp");
+        }
+        else{
+            return deck.get(getCurrentIndex());
+        }
     };
 
     public int getNumberOfCorrect(){

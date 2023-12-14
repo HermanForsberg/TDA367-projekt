@@ -6,10 +6,10 @@ public class Pomodoro extends Clock implements Rest {
     boolean timeToRest;
     int intervalCounter;
 
-    private Mediator mediator;
 
-    public Pomodoro(Mediator mediator) {
-        super(25, mediator);
+
+    public Pomodoro() {
+        super(25);
 
         timeToRest = true;
         intervalCounter = 0;

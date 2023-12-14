@@ -27,13 +27,12 @@ public abstract class Clock implements Observable, Observer{
     //TODO
 
 
-    public Clock(int minutes, Mediator mediator) {
+    public Clock(int minutes) {
         this.minutes = minutes;
         this.seconds = 0;
         this.timer = new Timer();
         this.isRunning = false;
         this.minutesPassed = 0;
-        this.mediator = mediator;
     }
 
     public void addObserver(Observer observer){

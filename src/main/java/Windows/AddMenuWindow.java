@@ -29,7 +29,7 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
 
     private JButton backButton;
 
-        public AddMenuWindow(Profile profile, CurrentView newCurrentView, CurrentViewController newCurrentViewController) {
+        public AddMenuWindow(CurrentView newCurrentView, CurrentViewController newCurrentViewController) {
 
             setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
@@ -62,25 +62,27 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
         }
 
         public void update(){
-
-            for(ActionListener al: addButton.getActionListeners()){
-                addButton.removeActionListener(al);
-            }
+            removeActionListeners(addButton);
 
             deckController = new DeckController(currentView.getDeckInFocus());
             addButtonListenerToAddButtonInMenu(deckController);
 
             grid.removeAll();
-            try {
-                currentView.getDeckInFocus().addObserver(this);
-                for (Flashcard card : currentView.getDeckInFocus().getDeck()) {
-                    grid.add(new AddMenuCard(card, currentView.getDeckInFocus(), grid));
-                }
-            }catch(Exception e){
 
+            currentView.getDeckInFocus().addObserver(this);
+            for (Flashcard card : currentView.getDeckInFocus().getDeck()) {
+                grid.add(new AddMenuCard(card, currentView.getDeckInFocus(), grid));
             }
+
             updateUI();
         }
+
+        public void removeActionListeners(JButton currentButton) {
+            for (ActionListener al : currentButton.getActionListeners()) {
+                currentButton.removeActionListener(al);
+            }
+        }
+
 
         public void createBackwardsButton(GridBagConstraints c){
 

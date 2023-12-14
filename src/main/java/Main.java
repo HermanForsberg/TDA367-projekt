@@ -25,7 +25,7 @@ public class Main {
 
         CurrentViewController currentViewController = new CurrentViewController(currentView);
 
-        DeckCollectionController deckCollectionController = new DeckCollectionController(model.getCurrentProfile());
+        DeckCollectionController deckCollectionController = new DeckCollectionController(currentView.getProfile());
 
         DeckCollectionWindow deckCollectionWindow = new DeckCollectionWindow(currentView,deckCollectionController, currentViewController);
 
@@ -37,7 +37,7 @@ public class Main {
 
         views.put("flashcardFeature",flashcardFeatureWindows);
 
-        AddMenuWindow addMenuWindow = new AddMenuWindow(model.getCurrentProfile(), currentView, currentViewController);
+        AddMenuWindow addMenuWindow = new AddMenuWindow(currentView, currentViewController);
 
         views.put("addMenu", addMenuWindow);
 
@@ -57,8 +57,6 @@ public class Main {
         MvcControl control = new MvcControl(model);
 
         MvcView view = new MvcView(currentView, views);
-
-        view.setGuiControl(control);
         MvcMenu menu = new MvcMenu(currentViewController);
 
 

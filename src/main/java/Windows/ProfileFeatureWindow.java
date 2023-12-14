@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
 
         private JButton addButton;
+        //TODO lös denna
 
         public ProfileFeatureWindow(MvcModel model, CurrentViewController currentViewController){
 
@@ -24,9 +25,9 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
                     public void actionPerformed(ActionEvent e) {
 
 
-                        //model.saveData();
+
                         currentViewController.setProfile(profile);
-                        model.switchProfile(profile);
+
                     }
 
                 });
@@ -48,8 +49,8 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
                         profileController.addActionListener(new ActionListener() {
 
                             public void actionPerformed(ActionEvent e) {
-
-                                model.switchProfile(newProfile);
+                                currentViewController.setProfile(newProfile);
+                                //model.switchProfile(newProfile);
                             }
 
                         });

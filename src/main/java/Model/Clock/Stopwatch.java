@@ -5,9 +5,10 @@ import Model.Mediator;
 
 public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
 
-    private Mediator mediator;
-    public Stopwatch (Mediator mediator){
-        super(0, mediator);
+
+
+    public Stopwatch (){
+        super(0);
 
     }
     public void calculateTime(){

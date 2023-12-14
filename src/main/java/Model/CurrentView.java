@@ -11,12 +11,11 @@ public class CurrentView {
 
     private String currentView;
 
-    private FlashcardDeck deckInFocus;
-
     private Flashcard cardInFocus;
 
     private Profile currentProfile = new Profile("temp");
 
+    private FlashcardDeck deckInFocus = new FlashcardDeck("temp",currentProfile);
     public CurrentView(){
 
     }
