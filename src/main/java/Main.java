@@ -28,41 +28,41 @@ public class Main {
 
         HashMap<String, Window> views = new HashMap<>();
 
-        CurrentView currentView = new CurrentView();
+        MvcView view = new MvcView(views);
 
-        CurrentViewController currentViewController = new CurrentViewController(currentView);
+        CurrentViewController currentViewController = new CurrentViewController(view);
 
-        DeckCollectionController deckCollectionController = new DeckCollectionController(currentView.getProfile());
 
-        DeckCollectionWindow deckCollectionWindow = new DeckCollectionWindow(currentView,deckCollectionController, currentViewController);
+
+        DeckCollectionController deckCollectionController = new DeckCollectionController(objectsInFocus.getCurrentProfile());
+
+        DeckCollectionWindow deckCollectionWindow = new DeckCollectionWindow(objectsInFocus, objectsInFocusController, deckCollectionController, currentViewController);
 
         views.put("deckCollection",deckCollectionWindow);
 
         //Otroligt fula parametrar
 
-        FlashcardFeatureWindows flashcardFeatureWindows = new FlashcardFeatureWindows(currentView,currentViewController);
+        FlashcardFeatureWindows flashcardFeatureWindows = new FlashcardFeatureWindows(objectsInFocus,currentViewController);
 
         views.put("flashcardFeature",flashcardFeatureWindows);
 
-        AddMenuWindow addMenuWindow = new AddMenuWindow(currentView, currentViewController);
+        AddMenuWindow addMenuWindow = new AddMenuWindow(objectsInFocus, currentViewController);
 
         views.put("addMenu", addMenuWindow);
 
-        ClockFeatureWindow clockFeatureWindow = new ClockFeatureWindow(currentView,model.getClockFeature());
+        ClockFeatureWindow clockFeatureWindow = new ClockFeatureWindow(objectsInFocus,model.getClockFeature());
 
         views.put("clockFeature", clockFeatureWindow);
 
-        QuestsWindow questsWindow = new QuestsWindow(currentView);
+        QuestsWindow questsWindow = new QuestsWindow(objectsInFocus);
 
         views.put("questWindow", questsWindow);
 
-        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController, control);
+        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController, control, objectsInFocusController);
 
         views.put("profileWindow", profileFeatureWindow);
 
-
-
-        MvcView view = new MvcView(currentView, views);
+        //view.setGuiControl(currentViewController);
         MvcMenu menu = new MvcMenu(currentViewController);
 
         JFrame frame = new JFrame("MyPlugg");

@@ -7,6 +7,7 @@ import Controller.Observer;
 import Model.CurrentView;
 import Model.Flashcards.Flashcard;
 import Model.Flashcards.FlashcardDeck;
+import Model.ObjectsInFocus;
 import Model.Profile;
 
 import javax.swing.*;
@@ -38,8 +39,6 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private CurrentViewController currentViewController;
 
-        private CurrentView currentView;
-
         private JButton next;
 
         private JButton previousButton;
@@ -54,14 +53,16 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
         private FlashcardController flashcardController = new FlashcardController(flashcard);
 
+        private ObjectsInFocus objectsInFocus;
 
-        public FlashcardFeatureWindows(CurrentView newCurrentView, CurrentViewController newCurrentViewController) throws HeadlessException {
+
+        public FlashcardFeatureWindows(ObjectsInFocus objectsInFocus, CurrentViewController newCurrentViewController) throws HeadlessException {
             //TODO backwardsButton
             //Set up the content pane.
 
-            currentView = newCurrentView;
-            currentView.addObserver(this);
-            deck = currentView.getDeckInFocus();
+            this.objectsInFocus = objectsInFocus;
+            this.objectsInFocus.addObserver(this);
+            deck = objectsInFocus.getDeckInFocus();
             currentViewController = newCurrentViewController;
             deckController = new DeckController(deck);
 
@@ -175,7 +176,7 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             panelForFlashcard.removeAll();
             panelForFlashcard.add(flashcardWindow);
 
-            deck = currentView.getDeckInFocus();
+            deck = objectsInFocus.getDeckInFocus();
             deckController = new DeckController(deck);
             deck.addObserver(this);
             addNextButtonListener(deckController);

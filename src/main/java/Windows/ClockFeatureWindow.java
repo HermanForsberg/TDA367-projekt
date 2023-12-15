@@ -9,6 +9,7 @@ import Controller.Observer;
 import Model.Clock.Clock;
 import Model.Clock.ClockFeature;
 import Model.CurrentView;
+import Model.ObjectsInFocus;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,13 +39,13 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
 
         private final HashMap<Clock, ClockController> clockControllers = new HashMap<>();
 
-        private final CurrentView currentView;
-
         private final ClockFeature clockFeature;
 
         private final ClockFeatureController clockFeatureController;
 
-        public ClockFeatureWindow(CurrentView currentView,ClockFeature clockFeature){
+        private ObjectsInFocus objectsInFocus;
+
+        public ClockFeatureWindow(ObjectsInFocus objectsInFocus, ClockFeature clockFeature){
 
             this.clockFeature = clockFeature;
             this.clockFeature.addObserver(this);
@@ -56,8 +57,8 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
             clockFeatureController = new ClockFeatureController(this.clockFeature);
 
 
-            this.currentView = currentView;
-            this.currentView.addObserver(this);
+            this.objectsInFocus = objectsInFocus;
+            this.objectsInFocus.addObserver(this);
 
             for (Clock clock : clocks){
                 //c.addObserver(this);
@@ -189,9 +190,9 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
         public void update(){
 
             for(Clock c: clocks){
-                clockControllers.get(c).setMediator(currentView.getProfile());
+                clockControllers.get(c).setMediator(objectsInFocus.getCurrentProfile());
                 if(c != clockFeature.getClock()){
-                    clock.resetClock();
+                   //clock.resetClock();
                 }
             }
 

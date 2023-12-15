@@ -3,6 +3,7 @@ package Windows;
 import Controller.Observer;
 import Controller.Quests.QuestCard;
 import Model.CurrentView;
+import Model.ObjectsInFocus;
 import Model.Quests.Quest;
 import Model.Quests.QuestFeature;
 
@@ -19,14 +20,14 @@ public class QuestsWindow extends JPanel implements Window, Observer {
     private JLabel weeklyStreakLabel = new JLabel("Streak 2", SwingConstants.CENTER);
     ArrayList<Quest> dailyQuests;
 
-    private CurrentView currentView;
+    private ObjectsInFocus objectsInFocus;
 
     private QuestFeature questFeature;
-    public QuestsWindow(CurrentView currentView) {
+    public QuestsWindow(ObjectsInFocus objectsInFocus) {
 
-        this.currentView = currentView;
+        this.objectsInFocus = objectsInFocus;
 
-        questFeature = currentView.getProfile().getQuestFeature();
+        questFeature = objectsInFocus.getCurrentProfile().getQuestFeature();
 
         setBorder(BorderFactory.createEmptyBorder(20,50,20,50));
         setLayout(new GridLayout(5,2,50,10));
