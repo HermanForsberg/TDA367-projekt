@@ -37,7 +37,7 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
         private final JButton pomodoroButton = new JButton("Pomodoro", pomodoroImageSmall);
         private JLabel imageLabel;
 
-        private final HashMap<Clock, ClockController> clockControllers = new HashMap<>();
+        private final HashMap<Clock, ClockWindow> clockControllers = new HashMap<>();
 
         private final ClockFeature clockFeature;
 
@@ -72,7 +72,7 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
 
 
                 }
-                clockControllers.put(clock, new ClockController(clock, imageLabel));
+                clockControllers.put(clock, new ClockWindow(clock, new ClockController(clock), imageLabel));
 
             }
 

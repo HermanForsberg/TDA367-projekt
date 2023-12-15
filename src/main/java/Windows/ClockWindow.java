@@ -1,5 +1,6 @@
 package Windows;
 
+import Controller.Clock.ClockController;
 import Controller.Clock.ManualTimerListener;
 import Controller.Clock.PomodoroListener;
 import Controller.Clock.StopwatchListener;
@@ -11,17 +12,21 @@ import Model.Mediator;
 import javax.swing.*;
 import java.awt.*;
 
-public class ClockWindow extends JPanel implements Observer, ManualTimerListener, PomodoroListener, StopwatchListener{
+public class ClockWindow extends JPanel implements Observer{
 
         private final JLabel timeLabel = new JLabel("00:00", SwingConstants.CENTER);
         private final Clock clock;
         private final JButton startAndPauseButton = new JButton("Start");
 
+        private ClockController clockController;
+
         //TODO lösa denna
-        public ClockWindow(Clock clock, JLabel imageLabel){
+        public ClockWindow(Clock clock, ClockController clockController, JLabel imageLabel){
+
+
             this.clock = clock;
             clock.addObserver(this);
-
+            this.clockController = clockController;
 
             //Time label
             formatTimeLabel();
@@ -85,35 +90,30 @@ public class ClockWindow extends JPanel implements Observer, ManualTimerListener
             lastRow.add(resetButton, gbcLastRow);
 
             //Buttons actions
+            //TODO listener interfaces
             startAndPauseButton.addActionListener(e -> {
                 if (clock.isRunning()){
-                    clock.pauseClock();
+                    clockController.pauseClock();
                     startAndPauseButton.setText("Start");
-                    clock.playSound("src/main/sound/Stop_Clock.wav");
+                    //clock.playSound("src/main/sound/Stop_Clock.wav");
                 }
                 else {
-                    clock.startClock();
+                    clockController.startClock();
                     startAndPauseButton.setText("Pause");
-                    clock.playSound("src/main/sound/Start_Clock.wav");
+                    //clock.playSound("src/main/sound/Start_Clock.wav");
                 }
             });
             resetButton.addActionListener(e -> {
-                clock.resetClock();
+                clockController.resetClock();
                 startAndPauseButton.setText("Start");
                 formatTimeLabel();
-                clock.playSound("src/main/sound/Reset_Clock.wav");
+                //clock.playSound("src/main/sound/Reset_Clock.wav");
             });
             addTimeButton.addActionListener(e -> {
-                if (clock instanceof ManualTimer){
-                    ((ManualTimer) clock).addTime();
-                    clock.playSound("src/main/sound/Click_Sound.wav");
-                }
+                clockController.addTime();
             });
             subtractTimeButton.addActionListener(e -> {
-                if (clock instanceof ManualTimer){
-                    ((ManualTimer) clock).subtractTime();
-                    clock.playSound("src/main/sound/Click_Sound.wav");
-                }
+                clockController.subtractTime();
             });
         }
 
@@ -147,20 +147,7 @@ public class ClockWindow extends JPanel implements Observer, ManualTimerListener
             return startAndPauseButton;
         }
 
-        @Override
-        public void onManualClicked() {
 
-        }
-
-        @Override
-        public void onPomodoroClicked() {
-
-        }
-
-        @Override
-        public void onStopwatchClicked() {
-
-        }
     }
 
 
