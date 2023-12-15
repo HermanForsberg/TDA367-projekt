@@ -74,7 +74,7 @@ public class Profile implements Mediator, Observable{
 
     private int totalExpToCurrentLevel(){
         int totalExpToCurrentLevel = 0;
-        for (int i = level; i > 0; i--) {
+        for (int i = level; i > 1; i--) {
             totalExpToCurrentLevel += (int)(expToLevelConversion + 100*Math.pow(1.2, i));
         }
         return totalExpToCurrentLevel;
