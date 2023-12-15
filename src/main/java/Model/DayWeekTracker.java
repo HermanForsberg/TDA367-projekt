@@ -69,6 +69,7 @@ public class DayWeekTracker {
         return dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault());
     }
 
+    @VisibleForTesting
     public void setLastCheckedDate(LocalDate lastCheckedDate) {
         this.lastCheckedDate = lastCheckedDate;
     }
