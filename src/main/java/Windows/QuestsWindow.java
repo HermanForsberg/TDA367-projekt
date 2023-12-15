@@ -81,7 +81,6 @@ public class QuestsWindow extends JPanel implements Window, Observer {
     }
 
     public void update(){
-
         removeAll();
         createGrid();
     }

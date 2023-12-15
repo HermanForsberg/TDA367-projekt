@@ -59,6 +59,7 @@ public abstract class Clock implements Observable, Observer{
     }
     protected void setMinutes(int minutes) {
         this.minutes = minutes;
+        observerHandler.updateObservers();
     }
 
     public void setMediator(Mediator newMediator){
