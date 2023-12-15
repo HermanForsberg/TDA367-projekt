@@ -9,6 +9,7 @@ import Controller.Observer;
 import Model.Clock.Clock;
 import Model.Clock.ClockFeature;
 import Model.CurrentView;
+import View.Images;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,17 +24,12 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
         private Clock clock;
         private final JPanel sideBar = new JPanel();
         private final JPanel mainPanel = new JPanel();
+        private final Images images = new Images();
 
         //Buttons, Images etc.
-        private final ImageIcon manualTimerImageSmall = new ImageIcon("src/main/img/hourglass_32.png");
-        private final ImageIcon stopwatchImageSmall = new ImageIcon("src/main/img/stopwatch_32.png");
-        private final ImageIcon pomodoroImageSmall = new ImageIcon("src/main/img/tomato_32.png");
-        private final ImageIcon manualTimerImageBig = new ImageIcon("src/main/img/hourglass_128.png");
-        private final ImageIcon stopwatchImageBig = new ImageIcon("src/main/img/stopwatch_128.png");
-        private final ImageIcon pomodoroImageBig = new ImageIcon("src/main/img/tomato_128.png");
-        private final JButton manualTimerButton = new JButton("Timer", manualTimerImageSmall);
-        private final JButton stopwatchButton = new JButton("Stopwatch", stopwatchImageSmall);
-        private final JButton pomodoroButton = new JButton("Pomodoro", pomodoroImageSmall);
+        private final JButton manualTimerButton = new JButton("Timer", images.getManualTimerImageSmall());
+        private final JButton stopwatchButton = new JButton("Stopwatch", images.getStopwatchImageSmall());
+        private final JButton pomodoroButton = new JButton("Pomodoro", images.getPomodoroImageSmall());
         private JLabel imageLabel;
 
         private final HashMap<Clock, ClockController> clockControllers = new HashMap<>();
@@ -63,11 +59,11 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
                 //c.addObserver(this);
                 switch (clock.getClass().getSimpleName()) {
 
-                    case "ManualTimer" -> imageLabel = new JLabel(manualTimerImageBig);
+                    case "ManualTimer" -> imageLabel = new JLabel(images.getManualTimerImageBig());
 
-                    case "Stopwatch" -> imageLabel = new JLabel(stopwatchImageBig);
+                    case "Stopwatch" -> imageLabel = new JLabel(images.getStopwatchImageBig());
 
-                    case "Pomodoro" -> imageLabel = new JLabel(pomodoroImageBig);
+                    case "Pomodoro" -> imageLabel = new JLabel(images.getPomodoroImageBig());
 
 
                 }

@@ -46,4 +46,16 @@ public class StatsDay {
     public int getLevelsGained() {
         return levelsGained;
     }
+
+    public void setMinutesLapsed(int minutesLapsed) {
+        this.minutesLapsed = minutesLapsed;
+    }
+
+    public void setFlashcardsCompleted(int flashcardsCompleted) {
+        this.flashcardsCompleted = flashcardsCompleted;
+    }
+
+    public void setLevelsGained(int levelsGained) {
+        this.levelsGained = levelsGained;
+    }
 }
