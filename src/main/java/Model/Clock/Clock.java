@@ -22,6 +22,8 @@ public abstract class Clock implements Observable, Observer{
     private boolean isRunning;
     private int minutesPassed;
 
+    public static final int expGainPerMinute = 1;
+
     public Mediator mediator;
     //TODO
 

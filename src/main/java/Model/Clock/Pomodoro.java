@@ -24,7 +24,7 @@ public class Pomodoro extends Clock implements Rest {
                 setMinutes(getMinutes() - 1);
                 setSeconds(59);
                 addOneMinutesPassed();
-                mediator.notified("clock");
+                mediator.notified(expGainPerMinute, "clock");
             }
             else {
                 setSeconds(getSeconds() - 1);

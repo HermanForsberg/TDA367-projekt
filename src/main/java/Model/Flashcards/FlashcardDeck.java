@@ -105,7 +105,7 @@ public class FlashcardDeck {
             int answer = card.getAnswer();
             if(answer == Flashcard.correct){
                 count++;
-                mediator.notified("flashcard");
+                mediator.notified(1,"flashcard");
             }
         }
         return count;
