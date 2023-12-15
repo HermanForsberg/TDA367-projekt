@@ -64,9 +64,12 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
                         tempProfileButton.addButtonListenerToProfileClicked(currentViewController);
                         apbl.addProfileClicked(newProfile);
                         remove(addButton);
+                        remove(flashcardsDone);
+                        remove(minutesPassedLabel);
                         add(tempProfileButton);
                         add(addButton);
-
+                        add(flashcardsDone);
+                        add(minutesPassedLabel);
                         updateUI();
                     }
                     else {

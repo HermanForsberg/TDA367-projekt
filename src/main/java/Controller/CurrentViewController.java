@@ -18,6 +18,9 @@ public class CurrentViewController implements DeckButtonListener, BackwardsButto
         currentView.setView(view);
     }
 
+
+
+    //De flesta av dessa bör ha egna interfaces, dem använder ej sina paramterar, men vi hann inte.
     @Override
     public void onDeckButtonClicked(FlashcardDeck deck) {
         setView("flashcardFeature");

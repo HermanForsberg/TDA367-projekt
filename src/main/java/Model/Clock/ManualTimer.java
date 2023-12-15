@@ -35,7 +35,7 @@ public class ManualTimer extends Clock { //Counts downwards.
     public void resetClock(){
         pauseClock();
         setMinutes(20);
-        setSeconds(2);
+        setSeconds(0);
     }
 
     @Override
