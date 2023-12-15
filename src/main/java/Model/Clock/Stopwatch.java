@@ -16,7 +16,7 @@ public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
             setSeconds(0);
             setMinutes(getMinutes() + 1);
             addOneMinutesPassed();
-            mediator.notified("clock");
+            mediator.notified(expGainPerMinute, "clock");
         }
         else{
             setSeconds(getSeconds() + 1);

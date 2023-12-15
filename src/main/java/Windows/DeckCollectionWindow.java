@@ -7,6 +7,7 @@ import Controller.Flashcard.DeckCollectionController;
 import Controller.Flashcard.DeckController;
 import Model.CurrentView;
 import Model.Flashcards.FlashcardDeck;
+import Model.ObjectsInFocus;
 import Model.Profile;
 
 import javax.swing.*;
@@ -32,18 +33,25 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
 
         private CurrentViewController currentViewController;
 
-        private CurrentView currentview;
+        private ObjectsInFocus objectsInFocus;
+
+        private ObjectsInFocusController objectsInFocusController;
 
 
 
-        public DeckCollectionWindow(CurrentView newCurrentview, DeckCollectionController newDeckCollectionController, CurrentViewController newCurrentViewController) {
 
 
-            currentview = newCurrentview;
-            currentview.addObserver(this);
+        public DeckCollectionWindow(ObjectsInFocus objectsInFocus, ObjectsInFocusController objectsInFocusController, DeckCollectionController newDeckCollectionController, CurrentViewController newCurrentViewController) {
+
+
+            this.objectsInFocus = objectsInFocus;
+            this.objectsInFocus.addObserver(this);
+
+
 
             deckCollectionController = newDeckCollectionController;
             currentViewController = newCurrentViewController;
+            this.objectsInFocusController = objectsInFocusController;
 
             groundPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             groundPanel.setLayout(new BorderLayout(10, 10));
@@ -64,10 +72,15 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
         for (FlashcardDeck deck : model.getListOfDecks()) {
             deckController = new DeckController(deck);
             DeckButton deckButton = new DeckButton(deck);
+
             deckButton.addButtonListenerToDeleteButton(deckCollectionController);
             deckButton.addButtonListenerToClickedButton(currentViewController);
+
+            deckButton.addButtonListenerToClickedButton(objectsInFocusController);
             deckButton.addShuffleButtonListenerToClickedButton(deckController);
+
             deckButton.addPlayButtonListenerToClickedButton(currentViewController);
+            deckButton.addPlayButtonListenerToClickedButton(objectsInFocusController);
 
             grid.add(deckButton);
 
@@ -85,7 +98,7 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
     public void update() {
         removeActionListeners(addButton);
 
-        profile = currentview.getProfile();
+        profile = objectsInFocus.getCurrentProfile();
         profile.addObserver(this);
         deckCollectionController = new DeckCollectionController(profile);
         addButtonListenerToAddButton(deckCollectionController);
@@ -101,8 +114,10 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
         DeckButton deckButton = new DeckButton(deck);
         deckButton.addButtonListenerToDeleteButton(deckCollectionController);
         deckButton.addButtonListenerToClickedButton(currentViewController);
+        deckButton.addButtonListenerToClickedButton(objectsInFocusController);
         deckButton.addShuffleButtonListenerToClickedButton(deckController);
         deckButton.addPlayButtonListenerToClickedButton(currentViewController);
+        deckButton.addPlayButtonListenerToClickedButton(objectsInFocusController);
 
         grid.add(deckButton);
     }

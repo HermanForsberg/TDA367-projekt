@@ -4,9 +4,7 @@ import Controller.Observer;
 import Controller.ObserverHandler;
 import Model.Flashcards.Flashcard;
 import Model.Flashcards.FlashcardDeck;
-import Model.Quests.Quest;
 import Model.Quests.QuestFeature;
-import Model.Statistics.StatisticModel;
 import Model.Statistics.Stats;
 
 import java.io.*;
@@ -33,8 +31,9 @@ public class Profile implements Mediator, Observable{
     private ObserverHandler observerHandler = new ObserverHandler();
 
     private QuestFeature questFeature;
+    private Mediator mediator;
 
-    private final int expToLevelConvertion = 100;
+    private final int expToLevelConversion = 100;
 
     public Profile(String name){
         this.name = name;
@@ -43,6 +42,7 @@ public class Profile implements Mediator, Observable{
         this.decks = new ArrayList<FlashcardDeck>();
         this.stats = new Stats();
         this.questFeature = new QuestFeature();
+        this.mediator = questFeature;
         this.init();
     }
     public QuestFeature getQuestFeature(){
@@ -60,7 +60,7 @@ public class Profile implements Mediator, Observable{
     }
 
     private void updateLevel(){
-        int expToNextLevel = (int)(expToLevelConvertion+ 100*Math.pow(1.2, level+1));
+        int expToNextLevel = (int)(expToLevelConversion + 100*Math.pow(1.2, level+1));
         if(exp>(expToNextLevel+totalExpToCurrentLevel())){
             level ++;
             stats.addLevelGainedToCurrentDay(1);
@@ -71,7 +71,7 @@ public class Profile implements Mediator, Observable{
     private int totalExpToCurrentLevel(){
         int totalExpToCurrentLevel = 0;
         for (int i = level; i > 0; i--) {
-            totalExpToCurrentLevel += (int)(expToLevelConvertion+ 100*Math.pow(1.2, i));
+            totalExpToCurrentLevel += (int)(expToLevelConversion + 100*Math.pow(1.2, i));
         }
         return totalExpToCurrentLevel;
     }
@@ -221,17 +221,17 @@ public class Profile implements Mediator, Observable{
 
 
     @Override
-    public void notified(String name) {
+    public void notified(int amount, String name) {
         if(Objects.equals(name, "clock")){
-            addExp(1);
+            addExp(amount);
             System.out.println(getName());
-            stats.addMinutesToCurrentDay(1);
-            questFeature.notified(stats.getMinutesPassedFromCurrentDay(), "Clock");
+            stats.addMinutesToCurrentDay(amount);
+            mediator.notified(stats.getMinutesPassedFromCurrentDay(), "Clock");
             System.out.println(getName() + " " + exp);
         }else if(Objects.equals(name, "flashcard")){
-            addExp(1);
-            stats.addFlashcardCompletedToCurrentDay(1);
-            questFeature.notified(stats.getFlashcardsFromCurrentDay(), "Flashcard");
+            addExp(amount);
+            stats.addFlashcardCompletedToCurrentDay(amount);
+            mediator.notified(stats.getFlashcardsFromCurrentDay(), "Flashcard");
             System.out.println(getName() + " " + exp);
         }else if (Objects.equals(name, "quest")){
 

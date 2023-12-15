@@ -1,5 +1,6 @@
 package View;
 
+import Controller.CurrentViewController;
 import Controller.MvcControl;
 
 import Model.CurrentView;
@@ -15,7 +16,7 @@ import Windows.Window;
 
 public class MvcView implements Observer{
 
-    private MvcControl control;
+    private CurrentView control;
 
     private JPanel mainPanel = new JPanel();
     private int gap = 10;
@@ -24,11 +25,7 @@ public class MvcView implements Observer{
 
     private HashMap<String, Window> views;
 
-    public MvcView(CurrentView newCurrentView, HashMap<String, Window> newViews) {
-        currentView= newCurrentView;
-
-        currentView.addObserver(this);
-
+    public MvcView(HashMap<String, Window> newViews) {
         views=newViews;
 
         mainPanel.setBorder(BorderFactory.createEmptyBorder(gap, gap, gap, gap));
@@ -37,6 +34,14 @@ public class MvcView implements Observer{
 
 
         // mainPanel.add(statePanel, BorderLayout.PAGE_END);
+    }
+
+    public void setView(String name){
+        mainPanel.removeAll();
+        views.get(name).update();
+        mainPanel.add((Component) views.get(name));
+        mainPanel.updateUI();
+
     }
 
     public void update(){
@@ -53,9 +58,7 @@ public class MvcView implements Observer{
     //public void setView(JPanel comp){mainPanel.add(comp);}
 
 
-    public void setGuiControl(MvcControl control) {
-        this.control = control;
-        //mainPanel.add(control);
+    public void setGuiControl(CurrentViewController control) {
     }
 
 

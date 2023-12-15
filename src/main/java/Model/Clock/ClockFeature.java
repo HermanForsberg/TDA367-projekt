@@ -38,16 +38,25 @@ public class ClockFeature extends JPanel{
 
     public void onManualClicked(){
         this.clockIndex = 0;
+        for(Clock clock: clockList){
+            clock.resetClock();
+        }
         observerHandler.updateObservers();
     }
 
     public void onStopwatchClicked(){
         this.clockIndex = 1;
+        for(Clock clock: clockList){
+            clock.resetClock();
+        }
         observerHandler.updateObservers();
     }
 
     public void onPomodoroClicked(){
         this.clockIndex = 2;
+        for(Clock clock: clockList){
+            clock.resetClock();
+        }
         observerHandler.updateObservers();
     }
 }

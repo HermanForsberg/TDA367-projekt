@@ -54,7 +54,7 @@ public class QuestCard extends JPanel implements Observer{
     }
 
     public void update(){
-        System.out.println(quest.getProgress() + "PRogreeeesa");
-        progress.setText("Progress: " + quest.getProgress() + "%");
+        String progressShort = String.format("%.1f", quest.getProgress());
+        progress.setText("Progress: " + progressShort + "%");
     }
 }

@@ -2,13 +2,14 @@ package Model.Quests;
 
 import Controller.Observer;
 import Controller.ObserverHandler;
+import Model.Mediator;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class QuestFeature {
+public class QuestFeature implements Mediator{
     private QuestFactory questFactory;
-    private ArrayList<Quest> quests;
+    private final ArrayList<Quest> quests;
 
     private ObserverHandler observerHandler = new ObserverHandler();
 
