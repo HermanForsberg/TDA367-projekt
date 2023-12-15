@@ -1,6 +1,6 @@
 package Windows;
 
-import Controller.BackwardsButtonListener;
+import Controller.Flashcard.BackwardsButtonListener;
 import Controller.CurrentViewController;
 import Controller.Flashcard.*;
 import Controller.Observer;

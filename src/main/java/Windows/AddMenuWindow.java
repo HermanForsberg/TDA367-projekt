@@ -1,16 +1,14 @@
 package Windows;
 
-import Controller.BackwardsButtonListener;
+import Controller.Flashcard.BackwardsButtonListener;
 import Controller.Flashcard.AddButtonInMenusListener;
 import Controller.CurrentViewController;
 
 import Controller.Flashcard.AddMenuCard;
 import Controller.Flashcard.DeckController;
-import Controller.ObjectsInFocusController;
 import Controller.Observer;
 import Model.Flashcards.Flashcard;
 import Model.ObjectsInFocus;
-import Model.Profile;
 
 import javax.swing.*;
 import java.awt.*;
