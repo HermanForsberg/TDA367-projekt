@@ -21,7 +21,7 @@ public class Stats {
         this.minutesPassed = 0;
         this.flashcardsCompleted = 0;
         this.levelsGained = 0;
-        //statsWeek.add(new StatsDay(dayWeekTracker.getDayToString()));
+        statsWeek.add(new StatsDay(dayWeekTracker.getDayToString()));
         updateStatsWeek();
     }
 
@@ -74,6 +74,18 @@ public class Stats {
         for (StatsDay day : statsWeek){
             levelsGained += day.getLevelsGained();
         }
+    }
+
+    public int getFlashcardsFromCurrentDay(){
+        return getCurrentDay().getFlashcardsCompleted();
+    }
+
+    public int getLevelsFromCurrentDay(){
+        return getCurrentDay().getLevelsGained();
+    }
+
+    public int getMinutesPassedFromCurrentDay(){
+        return getCurrentDay().getMinutesLapsed();
     }
 
     public int getMinutesPassed() {

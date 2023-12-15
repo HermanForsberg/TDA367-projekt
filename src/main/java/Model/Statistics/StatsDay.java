@@ -24,7 +24,7 @@ public class StatsDay {
 
     public void addMinutes(int newMinutes){
         minutesLapsed += newMinutes;
-        System.out.println("minute "+minutesLapsed);
+        System.out.println("minute " + minutesLapsed);
     }
 
     public void addFlashcardsCompleted(int newFlashcards){
