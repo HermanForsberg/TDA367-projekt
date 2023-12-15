@@ -6,6 +6,7 @@ import Model.*;
 import Controller.*;
 import Model.Clock.*;
 import Model.Quests.QuestFeature;
+import Model.Statistics.Stats;
 import View.*;
 import Windows.*;
 
@@ -47,7 +48,7 @@ public class Main {
 
         views.put("clockFeature", clockFeatureWindow);
 
-        QuestsWindow questsWindow = new QuestsWindow(new QuestFeature());
+        QuestsWindow questsWindow = new QuestsWindow(currentView.getProfile().getQuestFeature());
 
         views.put("questWindow", questsWindow);
 
@@ -57,10 +58,8 @@ public class Main {
 
 
 
-
         MvcView view = new MvcView(currentView, views);
         MvcMenu menu = new MvcMenu(currentViewController);
-
 
         JFrame frame = new JFrame("MyPlugg");
         frame.setSize(800,600);

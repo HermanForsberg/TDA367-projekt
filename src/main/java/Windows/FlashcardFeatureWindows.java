@@ -55,16 +55,6 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
         private FlashcardController flashcardController = new FlashcardController(flashcard);
 
 
-
-        public void setDeck(FlashcardDeck deck) {
-            this.deck = deck;
-            deck.addObserver(this);
-
-        }
-
-
-
-
         public FlashcardFeatureWindows(CurrentView newCurrentView, CurrentViewController newCurrentViewController) throws HeadlessException {
             //TODO backwardsButton
             //Set up the content pane.

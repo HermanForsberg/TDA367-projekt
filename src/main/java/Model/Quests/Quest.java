@@ -30,6 +30,7 @@ public class Quest implements Observer, Serializable {
         if (progress == 100 && !isCompleted){
             isCompleted = true;
             //Skicka xp till Herman. TODO mediator
+
         }
     }
 
