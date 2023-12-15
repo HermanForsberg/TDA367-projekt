@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 public class ClockFeature extends JPanel{
 
-    private ArrayList<Clock> clockList;
+    private final ArrayList<Clock> clockList;
 
     private int clockIndex;
 
-    private ObserverHandler observerHandler = new ObserverHandler();
+    private final ObserverHandler observerHandler = new ObserverHandler();
 
 
     public ClockFeature(ArrayList<Clock> clocks){
@@ -26,9 +26,6 @@ public class ClockFeature extends JPanel{
 
     public int getClockIndex(){
         return clockIndex;
-    }
-    public void setClockIndex(int clockIndex) {
-        this.clockIndex = clockIndex;
     }
 
     public void addObserver(Observer observer){

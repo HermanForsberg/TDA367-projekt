@@ -35,7 +35,6 @@ public class DayWeekTracker {
 
         if (!currentDate.isEqual(lastCheckedDate)) {
             lastCheckedDate = currentDate;
-            saveLastCheckedDate(); // Save the updated date
             System.out.println("New day yay");
             return true;
         }
@@ -51,7 +50,6 @@ public class DayWeekTracker {
 
         if (currentWeek != lastCheckedWeek) {
             lastCheckedDate = currentDate;
-            saveLastCheckedDate(); // Save the updated date
             System.out.println("New week yay");
             return true;
         }

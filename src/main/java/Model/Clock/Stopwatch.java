@@ -26,7 +26,7 @@ public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
         pauseClock();
         setMinutes(0);
         setSeconds(0);
-    };
+    }
 
     @Override
     public void update() {
