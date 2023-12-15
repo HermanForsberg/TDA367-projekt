@@ -1,7 +1,5 @@
 package Model.Clock;
 
-import Model.Mediator;
-
 public class ManualTimer extends Clock { //Counts downwards.
 
     public ManualTimer() {
@@ -18,7 +16,7 @@ public class ManualTimer extends Clock { //Counts downwards.
                 setMinutes(getMinutes() - 1);
                 setSeconds(59);
                 addOneMinutesPassed();
-                mediator.notified("clock");
+                mediator.notified(expGainPerMinute,"clock");
             }
             else {
                 setSeconds(getSeconds() - 1);
