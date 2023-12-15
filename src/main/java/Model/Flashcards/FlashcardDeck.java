@@ -7,12 +7,12 @@ import Model.Mediator;
 import java.util.*;
 
 public class FlashcardDeck {
-    private ArrayList<Flashcard> deck;
+    private final ArrayList<Flashcard> deck;
     private String deckName;
     private int currentIndex;
 
-    private Mediator mediator;
-    private ObserverHandler observerHandler = new ObserverHandler();
+    private final Mediator mediator;
+    private final ObserverHandler observerHandler = new ObserverHandler();
 
     public FlashcardDeck(String deckName, Mediator mediator) {
         this.deck = new ArrayList<>();

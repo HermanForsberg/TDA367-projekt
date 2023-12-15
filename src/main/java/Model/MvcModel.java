@@ -27,6 +27,8 @@ public class MvcModel implements Observable{
 
 
 
+    private DayWeekTracker dayWeekTracker = new DayWeekTracker();
+
     public static MvcModel getInstance() {
         if (instance == null) {
             instance = new MvcModel();
@@ -37,9 +39,10 @@ public class MvcModel implements Observable{
     }
 
     public MvcModel(){
+        initQuests();
         init();
         initClock();
-        initQuests();
+        dayWeekTracker.saveLastCheckedDate();
     }
     //Vet inte om det ska sparas såhär, men det fungerar atleast
     public void init(){
