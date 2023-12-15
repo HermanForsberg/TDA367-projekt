@@ -137,7 +137,6 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
         }
 
         private void createGrid(Clock clock){
-            //Ska vara i View?
             final int gap = 20;
 
             setLayout(new GridBagLayout());
@@ -188,8 +187,6 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
                 clockControllers.get(clock).setMediator(objectsInFocus.getCurrentProfile());
 
             }
-
-            //clock.resetClock();
             clock = clocks.get(clockFeature.getClockIndex());
 
             //Resets everything
@@ -201,9 +198,5 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
             sideBar.revalidate();
             repaint();
             createGrid(this.clockFeature.getClock());
-
         }
-
     }
-
-

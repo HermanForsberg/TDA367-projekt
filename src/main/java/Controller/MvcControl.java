@@ -14,7 +14,6 @@ public class MvcControl extends JPanel implements AddProfileButtonListener {
 
     }
 
-
     @Override
     public void addProfileClicked(Profile profile) {
         model.addProfile(profile);

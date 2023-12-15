@@ -4,7 +4,6 @@ import Model.DayWeekTracker;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Stats {
     private int minutesPassed;
@@ -16,7 +15,6 @@ public class Stats {
     public Stats() {
         this.dayWeekTracker = new DayWeekTracker();
 
-        //Lösa detta
         this.statsWeek = new ArrayList<>();
         this.minutesPassed = 0;
         this.flashcardsCompleted = 0;
@@ -117,5 +115,4 @@ public class Stats {
             e.printStackTrace();
         }
     }
-
 }

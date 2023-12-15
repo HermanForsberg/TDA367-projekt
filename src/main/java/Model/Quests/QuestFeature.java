@@ -10,7 +10,6 @@ import java.util.Objects;
 public class QuestFeature implements Mediator{
     private QuestFactory questFactory;
     private final ArrayList<Quest> quests;
-
     private ObserverHandler observerHandler = new ObserverHandler();
 
     public QuestFeature() {

@@ -3,10 +3,7 @@ package Model;
 import Model.Clock.*;
 import Controller.ObserverHandler;
 import Controller.Observer;
-import Model.Flashcards.FlashcardDeck;
 import Model.Quests.QuestFeature;
-
-import java.beans.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -44,7 +41,7 @@ public class MvcModel implements Observable{
         initClock();
         dayWeekTracker.saveLastCheckedDate();
     }
-    //Vet inte om det ska sparas såhär, men det fungerar atleast
+
     public void init(){
 
         this.path = System.getProperty("user.home") + File.separatorChar + "ProfilesForStudyApp";
@@ -52,7 +49,6 @@ public class MvcModel implements Observable{
 
         try {
             contactsData = new File(this.path);
-            //System.out.println(contactsData.listFiles());
             if (!contactsData.exists()) {
                 contactsData.mkdir();
             }

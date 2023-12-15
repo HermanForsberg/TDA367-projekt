@@ -17,13 +17,11 @@ import java.awt.event.ActionListener;
 
 public class DeckCollectionWindow extends JPanel implements Window, Observer {
 
-
         private JButton addButton = new JButton("Add Deck");
 
         private JPanel grid = new JPanel(new GridLayout(2, 0, 5, 5));
 
         private DeckController deckController;
-
 
         private JPanel groundPanel = new JPanel();
 
@@ -37,17 +35,10 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
 
         private ObjectsInFocusController objectsInFocusController;
 
-
-
-
-
         public DeckCollectionWindow(ObjectsInFocus objectsInFocus, ObjectsInFocusController objectsInFocusController, DeckCollectionController newDeckCollectionController, CurrentViewController newCurrentViewController) {
-
 
             this.objectsInFocus = objectsInFocus;
             this.objectsInFocus.addObserver(this);
-
-
 
             deckCollectionController = newDeckCollectionController;
             currentViewController = newCurrentViewController;
@@ -63,10 +54,7 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
             grid.add(addButton);
 
             createDeckButtons(profile);
-
-
         }
-
 
     public void createDeckButtons(Profile model){
         for (FlashcardDeck deck : model.getListOfDecks()) {
@@ -85,8 +73,6 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
             grid.add(deckButton);
 
         }
-
-
         addButtonListenerToAddButton(deckCollectionController);
     }
 
@@ -127,8 +113,6 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
     public void addButtonListener(){
 
     }
-
-
         public void addButtonListenerToAddButton(AddButtonListener buttonListener){
             addButton.addActionListener(new ActionListener() {
                 @Override
@@ -144,10 +128,7 @@ public class DeckCollectionWindow extends JPanel implements Window, Observer {
 
                 }
             });
-
         }
-
-
     }
 
 

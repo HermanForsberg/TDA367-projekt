@@ -10,7 +10,6 @@ public class ClockFeatureController implements ManualTimerListener, PomodoroList
         this.clockFeature = clockFeature;
     }
 
-
     @Override
     public void onManualClicked() {
         clockFeature.onManualTimerClicked();

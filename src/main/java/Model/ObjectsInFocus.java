@@ -4,7 +4,6 @@ import Controller.Observer;
 import Controller.ObserverHandler;
 import Model.Flashcards.Flashcard;
 import Model.Flashcards.FlashcardDeck;
-import Model.Profile;
 
 public class ObjectsInFocus {
     private Flashcard cardInFocus;

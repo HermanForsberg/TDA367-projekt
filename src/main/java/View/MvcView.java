@@ -1,22 +1,12 @@
 package View;
 
-import Controller.CurrentViewController;
-import Controller.MvcControl;
-
-
-import Model.MvcModel;
-
 import java.awt.*;
-import java.beans.*;
 import java.util.HashMap;
 import javax.swing.*;
-import Controller.Observer;
 
 import Windows.Window;
 
 public class MvcView{
-
-
 
     private JPanel mainPanel = new JPanel();
     private int gap = 10;

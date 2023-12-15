@@ -84,22 +84,18 @@ public class Profile implements Mediator, Observable{
         return this.path;
     }
 
-
     public ArrayList<FlashcardDeck> getListOfDecks(){
         return decks;
     }
-
 
     public void addExp(int expGain){
         exp += expGain;
         updateLevel();
     }
 
-
     public void addObserver(Observer observer){
         observerHandler.addObserver(observer);
     }
-
 
     public String getName(){
         return name;
@@ -120,7 +116,6 @@ public class Profile implements Mediator, Observable{
         decks.add(newDeck);
         newestDeck = newDeck;
         observerHandler.updateObservers();
-        //newestDeck.addFlashcard(new Flashcard("deez", "nuts"));
     }
 
     private void parseLine(String line) {
@@ -135,13 +130,7 @@ public class Profile implements Mediator, Observable{
         catch(Exception e){
 
         }
-        /*catch(Exception var){
-            System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
-        }*/
-
-        //System.out.println("DAT215 lab 1 Model, invalid data line: " + line);
     }
-
 
 
     private void loadData() {
@@ -178,7 +167,6 @@ public class Profile implements Mediator, Observable{
                     line = line + card.getQuestion() + ";" + card.getSolution() + ";";
                 }
                 line = line + "\n";
-                //String line = c.getFirstName() + ";" + c.getLastName() + ";" + c.getPhone() + ";" + c.getEmail() + ";" + c.getAddress() + ";" + c.getPostCode() + ";" + c.getPostAddress() + ";" + "end\n";
                 osw.write(line);
             }
 
@@ -217,12 +205,8 @@ public class Profile implements Mediator, Observable{
         contactsData = new File(this.path);
         if (contactsData.exists()) {
             this.loadData();
-        } else {
-            //this.contacts.add(new Contact());
         }
-
     }
-
 
     @Override
     public void notified(int amount, String name) {

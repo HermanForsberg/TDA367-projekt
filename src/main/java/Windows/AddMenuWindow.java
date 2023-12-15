@@ -6,11 +6,9 @@ import Controller.CurrentViewController;
 
 import Controller.Flashcard.AddMenuCard;
 import Controller.Flashcard.DeckController;
-import Controller.ObjectsInFocusController;
 import Controller.Observer;
 import Model.Flashcards.Flashcard;
 import Model.ObjectsInFocus;
-import Model.Profile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -113,8 +111,6 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
             });
         }
 
-
-
         public void addButtonListenerToAddButtonInMenu(AddButtonInMenusListener addListener){
 
             addButton.addActionListener(new ActionListener() {
@@ -128,12 +124,9 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
                     else {
                         JOptionPane.showMessageDialog(AddMenuWindow.this, "Need input in both fields");
                     }
-
                 }
-
             });
         }
-
     }
 
 

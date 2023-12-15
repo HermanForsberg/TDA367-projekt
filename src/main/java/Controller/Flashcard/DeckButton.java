@@ -19,8 +19,6 @@ public class DeckButton extends JPanel {
         createPlayButton();
         createDeleteButton();
         createShuffleButton();
-
-
     }
 
     public void createShuffleButton(){
@@ -82,14 +80,10 @@ public class DeckButton extends JPanel {
     }
 
     public void addButtonListenerToClickedButton(DeckButtonListener buttonListener){
-        
-
         getPlayButton().addActionListener(e -> buttonListener.onDeckButtonClicked(deck));
-
     }
 
     public void addButtonListenerToDeleteButton(DeleteButtonListener buttonListener){
-
         getDeleteButton().addActionListener(e -> {
 
             int ans = JOptionPane.showConfirmDialog(null,

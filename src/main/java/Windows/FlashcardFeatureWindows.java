@@ -18,8 +18,6 @@ import java.awt.event.ActionListener;
 
 public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
-
-
         private JPanel panelForFlashcard;
 
         private Flashcard flashcard = new Flashcard("temp", "temp");
@@ -69,8 +67,6 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             setLayout(new GridBagLayout());
             this.panelForFlashcard = new JPanel(new GridLayout(1, 1));
 
-
-
             addCardCounter();
             createNextButton();
             createPreviousButton();
@@ -78,11 +74,6 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
             createWrongButton();
             createAddCardsButton();
             createDeleteButton();
-
-
-            //TODO vart skall widgets och controller skapas.
-
-            //TODO FlashcardController ska bli FlashcardWidget och skapas i swinvgmvctest, och bara ändras beroende vilket flashcard som är i fokus
 
             //shitcode men orkade inte göra bra :))))
 
@@ -115,10 +106,6 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
 
         }
-
-        /*public void paint(){
-            flashcardWindow.setCard(currentView.getDeckInFocus().getCurrentFlashcard());
-        }*/
 
     public void addButtonListenerToBackwardsButton(BackwardsButtonListener buttonListener){
         backwardsButton.addActionListener(new ActionListener() {
