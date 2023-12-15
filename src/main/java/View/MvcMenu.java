@@ -6,7 +6,6 @@ import javax.swing.*;
 
 public class MvcMenu {
 
-    private JToolBar toolBar;
     private JMenuBar menuBar = new JMenuBar();
     private CurrentViewController control;
 
@@ -30,7 +29,7 @@ public class MvcMenu {
         JButton timers = new JButton("Timers");
 
         timers.addActionListener(new ActionListener() {
-            // all the buttons do is call methods of the control
+
             public void actionPerformed(ActionEvent e) {
 
                 if (control != null) {

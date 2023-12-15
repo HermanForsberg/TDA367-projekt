@@ -36,18 +36,13 @@ public class MvcView{
     }
 
     public void setView(String name){
+
         mainPanel.removeAll();
         views.get(name).update();
         mainPanel.add((Component) views.get(name));
         mainPanel.updateUI();
 
     }
-
-
-
-    public void setGuiControl(CurrentViewController control) {
-    }
-
 
     public JComponent getMainPanel() {
         return mainPanel;
