@@ -68,4 +68,8 @@ public class DayWeekTracker {
         DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
         return dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault());
     }
+
+    public void setLastCheckedDate(LocalDate lastCheckedDate) {
+        this.lastCheckedDate = lastCheckedDate;
+    }
 }
