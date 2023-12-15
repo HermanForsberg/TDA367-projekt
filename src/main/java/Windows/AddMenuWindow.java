@@ -6,9 +6,11 @@ import Controller.CurrentViewController;
 
 import Controller.Flashcard.AddMenuCard;
 import Controller.Flashcard.DeckController;
+import Controller.ObjectsInFocusController;
 import Controller.Observer;
 import Model.CurrentView;
 import Model.Flashcards.Flashcard;
+import Model.ObjectsInFocus;
 import Model.Profile;
 
 import javax.swing.*;
@@ -17,8 +19,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddMenuWindow extends JPanel implements Window, Observer {
-
-    private CurrentView currentView;
 
     private CurrentViewController currentViewController;
     private JButton addButton;
@@ -29,15 +29,17 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
 
     private JButton backButton;
 
-        public AddMenuWindow(CurrentView newCurrentView, CurrentViewController newCurrentViewController) {
+    private ObjectsInFocus objectsInFocus;
+
+        public AddMenuWindow(ObjectsInFocus objectsInFocus, CurrentViewController newCurrentViewController) {
 
             setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
             grid = new JPanel();
             currentViewController = newCurrentViewController;
-            currentView = newCurrentView;
-            currentView.addObserver(this);
-            deckController = new DeckController(currentView.getDeckInFocus());
+            this.objectsInFocus = objectsInFocus;
+            this.objectsInFocus.addObserver(this);
+            deckController = new DeckController(objectsInFocus.getDeckInFocus());
 
             grid.setLayout(new GridLayout(5, 5, 10, 10));
             c.gridy = 2;
@@ -47,6 +49,7 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
             add(grid, c);
             createAddButton(c);
             createBackwardsButton(c);
+
         }
 
         public void createAddButton(GridBagConstraints c) {
@@ -65,14 +68,14 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
 
             removeActionListeners(addButton);
 
-            deckController = new DeckController(currentView.getDeckInFocus());
+            deckController = new DeckController(objectsInFocus.getDeckInFocus());
             addButtonListenerToAddButtonInMenu(deckController);
 
             grid.removeAll();
 
-            currentView.getDeckInFocus().addObserver(this);
-            for (Flashcard card : currentView.getDeckInFocus().getDeck()) {
-                grid.add(new AddMenuCard(card, currentView.getDeckInFocus(), grid));
+            objectsInFocus.getDeckInFocus().addObserver(this);
+            for (Flashcard card : objectsInFocus.getDeckInFocus().getDeck()) {
+                grid.add(new AddMenuCard(card, objectsInFocus.getDeckInFocus(), grid));
             }
 
             updateUI();
@@ -96,7 +99,6 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
                 add(backButton,c);
 
                 addButtonListenerToBackwardsButton(currentViewController);
-
 
             }
 

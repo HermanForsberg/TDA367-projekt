@@ -3,6 +3,7 @@ package Windows;
 import Controller.CurrentViewController;
 import Controller.Flashcard.PlayButtonListener;
 import Controller.MvcControl;
+import Controller.ObjectsInFocusController;
 import Controller.Observer;
 import Controller.Profile.AddProfileButtonListener;
 import Controller.Profile.ProfileButton;
@@ -19,15 +20,19 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
         private JButton addButton;
 
         private CurrentViewController currentViewController;
+
+        private ObjectsInFocusController objectsInFocusController;
         //TODO lös denna
 
-        public ProfileFeatureWindow(MvcModel model, CurrentViewController currentViewController, MvcControl control){
+        public ProfileFeatureWindow(MvcModel model, CurrentViewController currentViewController, MvcControl control, ObjectsInFocusController objectsInFocusController){
 
             this.currentViewController=currentViewController;
+            this.objectsInFocusController = objectsInFocusController;
             for(Profile profile: model.getProfiles()){
 
                 ProfileButton tempProfileButton = new ProfileButton(profile);
                 tempProfileButton.addButtonListenerToProfileClicked(currentViewController);
+                tempProfileButton.addButtonListenerToProfileClicked(objectsInFocusController);
                 add(tempProfileButton);
             }
 
