@@ -1,11 +1,13 @@
 package Model.Quests;
 
 import Controller.Observer;
+import Controller.ObserverHandler;
 import Model.Mediator;
+import Model.Observable;
 
 import java.io.Serializable;
 
-public class Quest implements Observer, Serializable {
+public class Quest implements Observer, Serializable, Observable {
     private final String typeOfQuest;
     private final String topic;
     private final String description;
@@ -14,6 +16,8 @@ public class Quest implements Observer, Serializable {
     private float amount;
     private float progress;
     private boolean isCompleted;
+
+    //private final ObserverHandler observerHandler;
 
     public Quest(String typeOfQuest, String topic, String description, int difficulty, int expGain, int amount) {
         this.typeOfQuest = typeOfQuest;
@@ -24,6 +28,7 @@ public class Quest implements Observer, Serializable {
         this.amount = amount;
         this.progress = 0;
         this.isCompleted = false;
+        //observerHandler = new ObserverHandler();
     }
 
     public void updateProgress(float currentAmount) {
@@ -37,6 +42,7 @@ public class Quest implements Observer, Serializable {
 
             //Skicka xp till Herman. TODO mediator
         }
+        //observerHandler.updateObservers();
     }
 
     public String getTopic() {
@@ -68,8 +74,8 @@ public class Quest implements Observer, Serializable {
         //updateProgress();
     }
 
-
-    public void notified(int name) {
-        updateProgress(name);
+    @Override
+    public void addObserver(Observer observer) {
+        //observerHandler.addObserver(observer);
     }
 }
