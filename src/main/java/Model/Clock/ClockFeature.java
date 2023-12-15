@@ -36,7 +36,7 @@ public class ClockFeature extends JPanel{
         return clockList.get(clockIndex);
     }
 
-    public void onManualClicked(){
+    public void onManualTimerClicked(){
         this.clockIndex = 0;
         for(Clock clock: clockList){
             clock.resetClock();

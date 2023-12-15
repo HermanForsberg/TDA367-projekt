@@ -111,8 +111,6 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
             });
         }
 
-
-
         public void addButtonListenerToAddButtonInMenu(AddButtonInMenusListener addListener){
 
             addButton.addActionListener(new ActionListener() {
@@ -126,12 +124,9 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
                     else {
                         JOptionPane.showMessageDialog(AddMenuWindow.this, "Need input in both fields");
                     }
-
                 }
-
             });
         }
-
     }
 
 

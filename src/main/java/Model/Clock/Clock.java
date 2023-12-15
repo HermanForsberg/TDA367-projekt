@@ -8,9 +8,6 @@ import Model.Observable;
 import java.util.TimerTask;
 import java.util.Timer;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import java.io.File;
 public abstract class Clock implements Observable, Observer{
     //Timer     = Keeps track of the time in a background thread.
     //TimerTask = Contains an abstract method called run(). When our Model.Timer reaches a certain time
@@ -21,12 +18,9 @@ public abstract class Clock implements Observable, Observer{
     private Timer timer;
     private boolean isRunning;
     private int minutesPassed;
-
     public static final int expGainPerMinute = 1;
 
     public Mediator mediator;
-    //TODO
-
 
     public Clock(int minutes) {
         this.minutes = minutes;
@@ -59,25 +53,11 @@ public abstract class Clock implements Observable, Observer{
     }
     protected void setMinutes(int minutes) {
         this.minutes = minutes;
+        observerHandler.updateObservers();
     }
-
     public void setMediator(Mediator newMediator){
         mediator = newMediator;
     }
-
-    // @param path to sound file that will be played.
-    // TODO flytta till v.
-    public void playSound(String soundFilePath){
-        try {
-            File soundFile = new File(soundFilePath);
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(soundFile));
-            clip.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    //public abstract int minutesPassed();
     protected void setSeconds(int seconds) {
         this.seconds = seconds;
         observerHandler.updateObservers();

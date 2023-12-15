@@ -7,7 +7,6 @@ public class ObserverHandler {
 
     private final Set<Observer> observers;
     public ObserverHandler(){
-
         observers = new HashSet<>();
     }
 

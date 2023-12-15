@@ -1,9 +1,5 @@
 package Model.Statistics;
 
-import Model.Flashcards.FlashcardDeck;
-
-import java.util.ArrayList;
-
 public class StatsDay {
 
     private int minutesLapsed;

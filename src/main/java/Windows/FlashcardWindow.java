@@ -27,10 +27,8 @@ public class FlashcardWindow extends JButton implements Observer, Window{
                 else{setText(card.getQuestion());
                 }
             }
-
         });
     }
-
 
     public void update(){
         setText(card.getQuestion());

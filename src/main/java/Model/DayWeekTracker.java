@@ -16,7 +16,6 @@ public class DayWeekTracker {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(FILENAME))) {
             lastCheckedDate = (LocalDate) inputStream.readObject();
         } catch (FileNotFoundException e) {
-            // File doesn't exist - set default value
             lastCheckedDate = LocalDate.now();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

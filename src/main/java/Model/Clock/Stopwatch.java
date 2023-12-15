@@ -1,11 +1,6 @@
 package Model.Clock;
 
-
-import Model.Mediator;
-
 public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
-
-
 
     public Stopwatch (){
         super(0);
@@ -32,6 +27,4 @@ public class Stopwatch extends Clock { //Counts upwards starting from 00:00.
     public void update() {
 
     }
-
-
 }

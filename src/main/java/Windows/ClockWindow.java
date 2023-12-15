@@ -1,9 +1,6 @@
 package Windows;
 
 import Controller.Clock.ClockController;
-import Controller.Clock.ManualTimerListener;
-import Controller.Clock.PomodoroListener;
-import Controller.Clock.StopwatchListener;
 import Controller.Observer;
 import Model.Clock.Clock;
 import Model.Clock.ManualTimer;
@@ -22,8 +19,6 @@ public class ClockWindow extends JPanel implements Observer{
 
         //TODO lösa denna
         public ClockWindow(Clock clock, ClockController clockController, JLabel imageLabel){
-
-
             this.clock = clock;
             clock.addObserver(this);
             this.clockController = clockController;
