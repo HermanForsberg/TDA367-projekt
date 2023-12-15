@@ -13,7 +13,7 @@ public class Quest implements Observer, Serializable, Observable {
     private final String description;
     private final int expGain;
     private final int difficulty;
-    private float amount;
+    private final float amount;
     private float progress;
     private boolean isCompleted;
 
