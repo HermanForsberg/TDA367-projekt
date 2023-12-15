@@ -1,5 +1,6 @@
 package Model.Quests;
 
+import Controller.Observer;
 import Model.DayWeekTracker;
 
 import java.io.*;
@@ -12,6 +13,8 @@ public class QuestFactory {
     ArrayList<String> listOfTopics = new ArrayList<>();
     ArrayList<Quest> quests = new ArrayList<>();
     DayWeekTracker dayWeekTracker;
+
+
     public QuestFactory() {
         dayWeekTracker = new DayWeekTracker();
 
@@ -36,6 +39,8 @@ public class QuestFactory {
         }
         saveQuestsToFile();
     }
+
+
 
     private void loadQuestsFromFile() {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(FILENAME))) {
