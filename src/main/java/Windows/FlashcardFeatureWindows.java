@@ -4,7 +4,7 @@ import Controller.BackwardsButtonListener;
 import Controller.CurrentViewController;
 import Controller.Flashcard.*;
 import Controller.Observer;
-import Model.CurrentView;
+
 import Model.Flashcards.Flashcard;
 import Model.Flashcards.FlashcardDeck;
 import Model.ObjectsInFocus;

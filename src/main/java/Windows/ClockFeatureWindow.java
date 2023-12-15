@@ -8,7 +8,6 @@ import Controller.Clock.ManualTimerListener;
 import Controller.Observer;
 import Model.Clock.Clock;
 import Model.Clock.ClockFeature;
-import Model.CurrentView;
 import View.Images;
 import Model.ObjectsInFocus;
 
@@ -185,11 +184,9 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
 
         public void update(){
 
-            for(Clock c: clocks){
-                clockControllers.get(c).setMediator(objectsInFocus.getCurrentProfile());
-                if(c != clockFeature.getClock()){
-                   //clock.resetClock();
-                }
+            for(Clock clock: clocks){
+                clockControllers.get(clock).setMediator(objectsInFocus.getCurrentProfile());
+
             }
 
             //clock.resetClock();

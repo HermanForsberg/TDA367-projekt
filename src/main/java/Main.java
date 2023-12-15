@@ -58,7 +58,7 @@ public class Main {
 
         views.put("questWindow", questsWindow);
 
-        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController, control, objectsInFocusController);
+        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController, control, objectsInFocusController, objectsInFocus);
 
         views.put("profileWindow", profileFeatureWindow);
 
