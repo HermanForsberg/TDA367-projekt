@@ -9,6 +9,7 @@ import Controller.Profile.AddProfileButtonListener;
 import Controller.Profile.ProfileButton;
 import Controller.Profile.ProfileButtonListener;
 import Model.MvcModel;
+import Model.ObjectsInFocus;
 import Model.Profile;
 
 import javax.swing.*;
@@ -22,12 +23,19 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
         private CurrentViewController currentViewController;
 
         private ObjectsInFocusController objectsInFocusController;
+
+        private ObjectsInFocus objectsInFocus;
+
+        private JLabel minutesPassedLabel = new JLabel("0");
+
+        private JLabel flashcardsDone = new JLabel("0");
         //TODO lös denna
 
-        public ProfileFeatureWindow(MvcModel model, CurrentViewController currentViewController, MvcControl control, ObjectsInFocusController objectsInFocusController){
+        public ProfileFeatureWindow(MvcModel model, CurrentViewController currentViewController, MvcControl control, ObjectsInFocusController objectsInFocusController, ObjectsInFocus objectsInFocus){
 
             this.currentViewController=currentViewController;
             this.objectsInFocusController = objectsInFocusController;
+            this.objectsInFocus = objectsInFocus;
             for(Profile profile: model.getProfiles()){
 
                 ProfileButton tempProfileButton = new ProfileButton(profile);
@@ -38,8 +46,13 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
 
             addButton = new JButton("Add new profile");
             add(addButton);
+            add(minutesPassedLabel);
+            add(flashcardsDone);
 
             addButtonListenerToAddProfile(control);
+
+
+
 
         }
 
@@ -61,6 +74,7 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
                         remove(addButton);
                         add(tempProfileButton);
                         add(addButton);
+
                         updateUI();
                     }
                     else {
@@ -71,8 +85,8 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
         }
 
         public void update(){
-
-
+            flashcardsDone.setText(objectsInFocus.getCurrentProfile().getStats().getFlashcardsCompleted() +" Flashcards done");
+            minutesPassedLabel.setText(String.valueOf(objectsInFocus.getCurrentProfile().getStats().getMinutesPassedFromCurrentDay()) + " Minutes passed");
         }
 
 

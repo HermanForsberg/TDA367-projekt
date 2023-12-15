@@ -2,7 +2,7 @@ package Windows;
 
 import Controller.Observer;
 import Controller.Quests.QuestCard;
-import Model.CurrentView;
+
 import Model.ObjectsInFocus;
 import Model.Quests.Quest;
 import Model.Quests.QuestFeature;
@@ -48,7 +48,8 @@ public class QuestsWindow extends JPanel implements Window, Observer {
         add(dailyLabel);
         add(weeklyLabel);
 
-
+        questFeature = objectsInFocus.getCurrentProfile().getQuestFeature();
+        dailyQuests = questFeature.getQuests();
 
 
         QuestCard questCard = new QuestCard(dailyQuests.get(0));
@@ -81,5 +82,7 @@ public class QuestsWindow extends JPanel implements Window, Observer {
 
     public void update(){
 
+        removeAll();
+        createGrid();
     }
 }
