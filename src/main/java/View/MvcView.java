@@ -14,7 +14,7 @@ import Controller.Observer;
 
 import Windows.Window;
 
-public class MvcView implements Observer{
+public class MvcView{
 
 
 
@@ -43,11 +43,6 @@ public class MvcView implements Observer{
 
     }
 
-    public void update(){
-
-    }
-
-    //public void setView(JPanel comp){mainPanel.add(comp);}
 
 
     public void setGuiControl(CurrentViewController control) {
