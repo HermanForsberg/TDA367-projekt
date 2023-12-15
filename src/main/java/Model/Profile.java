@@ -42,7 +42,11 @@ public class Profile implements Mediator, Observable{
         this.level = 1;
         this.decks = new ArrayList<FlashcardDeck>();
         this.stats = new Stats();
+        this.questFeature = new QuestFeature();
         this.init();
+    }
+    public QuestFeature getQuestFeature(){
+        return questFeature;
     }
 
     public void setStats(Stats stats) {
@@ -60,6 +64,7 @@ public class Profile implements Mediator, Observable{
         if(exp>(expToNextLevel+totalExpToCurrentLevel())){
             level ++;
             stats.addLevelGainedToCurrentDay(1);
+            questFeature.notified(stats.getLevelsFromCurrentDay(), "Level");
         }
     }
 
@@ -214,16 +219,19 @@ public class Profile implements Mediator, Observable{
 
     }
 
+
     @Override
     public void notified(String name) {
         if(Objects.equals(name, "clock")){
             addExp(1);
             System.out.println(getName());
             stats.addMinutesToCurrentDay(1);
+            questFeature.notified(stats.getMinutesPassedFromCurrentDay(), "Clock");
             System.out.println(getName() + " " + exp);
         }else if(Objects.equals(name, "flashcard")){
             addExp(1);
             stats.addFlashcardCompletedToCurrentDay(1);
+            questFeature.notified(stats.getFlashcardsFromCurrentDay(), "Flashcard");
             System.out.println(getName() + " " + exp);
         }else if (Objects.equals(name, "quest")){
 
