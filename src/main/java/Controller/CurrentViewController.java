@@ -4,7 +4,7 @@ import Controller.Flashcard.AddCardsButtonListener;
 import Controller.Flashcard.DeckButtonListener;
 import Controller.Flashcard.PlayButtonListener;
 import Controller.Profile.ProfileButtonListener;
-import Model.CurrentView;
+
 import Model.Flashcards.FlashcardDeck;
 import Model.Profile;
 import View.MvcView;

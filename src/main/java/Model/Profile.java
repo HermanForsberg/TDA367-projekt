@@ -45,6 +45,10 @@ public class Profile implements Mediator, Observable{
         this.mediator = questFeature;
         this.init();
     }
+
+    public Stats getStats(){
+        return stats;
+    }
     public QuestFeature getQuestFeature(){
         return questFeature;
     }

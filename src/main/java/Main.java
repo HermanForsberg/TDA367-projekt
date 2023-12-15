@@ -1,16 +1,11 @@
 import javax.swing.*;
 
-import Controller.Clock.ClockController;
 import Controller.Flashcard.DeckCollectionController;
 import Model.*;
 import Controller.*;
-import Model.Clock.*;
-import Model.Quests.QuestFeature;
-import Model.Statistics.Stats;
 import View.*;
 import Windows.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
@@ -58,11 +53,11 @@ public class Main {
 
         views.put("questWindow", questsWindow);
 
-        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController, control, objectsInFocusController);
+        ProfileFeatureWindow profileFeatureWindow = new ProfileFeatureWindow(model, currentViewController, control, objectsInFocusController, objectsInFocus);
 
         views.put("profileWindow", profileFeatureWindow);
 
-        //view.setGuiControl(currentViewController);
+
         MvcMenu menu = new MvcMenu(currentViewController);
 
         JFrame frame = new JFrame("MyPlugg");

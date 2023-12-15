@@ -5,7 +5,7 @@ import Controller.Flashcard.AddButtonListener;
 import Controller.Flashcard.DeckButton;
 import Controller.Flashcard.DeckCollectionController;
 import Controller.Flashcard.DeckController;
-import Model.CurrentView;
+
 import Model.Flashcards.FlashcardDeck;
 import Model.ObjectsInFocus;
 import Model.Profile;

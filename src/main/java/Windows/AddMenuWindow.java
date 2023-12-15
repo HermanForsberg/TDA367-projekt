@@ -8,7 +8,6 @@ import Controller.Flashcard.AddMenuCard;
 import Controller.Flashcard.DeckController;
 import Controller.ObjectsInFocusController;
 import Controller.Observer;
-import Model.CurrentView;
 import Model.Flashcards.Flashcard;
 import Model.ObjectsInFocus;
 import Model.Profile;

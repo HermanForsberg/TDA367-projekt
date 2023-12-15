@@ -93,7 +93,7 @@ public class Stats {
     }
 
     public int getFlashcardsCompleted() {
-        return flashcardsCompleted;
+        return getCurrentDay().getFlashcardsCompleted();
     }
 
     public int getLevelsGained() {
