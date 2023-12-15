@@ -11,8 +11,8 @@ public class Quest implements Observer, Serializable {
     private final String description;
     private final int expGain;
     private final int difficulty;
-    private final int amount;
-    private final int progress;
+    private float amount;
+    private float progress;
     private boolean isCompleted;
 
     public Quest(String typeOfQuest, String topic, String description, int difficulty, int expGain, int amount) {
@@ -26,12 +26,16 @@ public class Quest implements Observer, Serializable {
         this.isCompleted = false;
     }
 
-    public void updateProgress(int currentAmount) {
-        int progress = Math.min(currentAmount/amount, 1) * 100;
+    public void updateProgress(float currentAmount) {
+
+        progress = currentAmount/amount * 100;
+
+        System.out.println(progress + "Progress");
+
         if (progress >= 100 && !isCompleted){
             isCompleted = true;
-            //Skicka xp till Herman. TODO mediator
 
+            //Skicka xp till Herman. TODO mediator
         }
     }
 
@@ -47,7 +51,7 @@ public class Quest implements Observer, Serializable {
         return expGain;
     }
 
-    public int getProgress() {
+    public float getProgress() {
         return progress;
     }
 
