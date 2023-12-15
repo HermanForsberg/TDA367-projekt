@@ -40,7 +40,6 @@ public class CurrentView {
 
     public FlashcardDeck getDeckInFocus(){
         return deckInFocus;
-
     }
 
     public void setProfile(Profile profile){

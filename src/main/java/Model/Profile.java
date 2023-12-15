@@ -4,6 +4,8 @@ import Controller.Observer;
 import Controller.ObserverHandler;
 import Model.Flashcards.Flashcard;
 import Model.Flashcards.FlashcardDeck;
+import Model.Quests.Quest;
+import Model.Quests.QuestFeature;
 import Model.Statistics.StatisticModel;
 import Model.Statistics.Stats;
 
@@ -29,6 +31,8 @@ public class Profile implements Mediator, Observable{
     private FlashcardDeck newestDeck;
 
     private ObserverHandler observerHandler = new ObserverHandler();
+
+    private QuestFeature questFeature;
 
     private final int expToLevelConvertion = 100;
 
