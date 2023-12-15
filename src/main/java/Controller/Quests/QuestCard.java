@@ -6,11 +6,15 @@ import Model.Quests.Quest;
 import javax.swing.*;
 import java.awt.*;
 
-public class QuestCard extends JPanel {
+public class QuestCard extends JPanel implements Observer{
     private final JLabel title = new JLabel("", SwingConstants.CENTER);
     private final JLabel description = new JLabel("", SwingConstants.CENTER);
     private final JLabel progress = new JLabel("", SwingConstants.CENTER);
+
+    private Quest quest;
     public QuestCard(Quest quest) {
+        this.quest = quest;
+        //this.quest.addObserver(this);
         setLayout(new GridLayout(3,0,0,0));
         Color customColor = new Color(186, 231, 255);
         if (quest.isCompleted()) {
@@ -49,4 +53,8 @@ public class QuestCard extends JPanel {
         add(progress);
     }
 
+    public void update(){
+        System.out.println(quest.getProgress() + "PRogreeeesa");
+        progress.setText("Progress: " + quest.getProgress() + "%");
+    }
 }

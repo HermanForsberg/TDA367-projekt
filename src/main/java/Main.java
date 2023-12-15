@@ -48,7 +48,7 @@ public class Main {
 
         views.put("clockFeature", clockFeatureWindow);
 
-        QuestsWindow questsWindow = new QuestsWindow(currentView.getProfile().getQuestFeature());
+        QuestsWindow questsWindow = new QuestsWindow(currentView);
 
         views.put("questWindow", questsWindow);
 
