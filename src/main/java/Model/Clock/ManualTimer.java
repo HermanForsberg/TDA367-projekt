@@ -4,7 +4,6 @@ public class ManualTimer extends Clock { //Counts downwards.
 
     public ManualTimer() {
         super(20);
-
     }
 
     public void calculateTime(){
@@ -39,11 +38,8 @@ public class ManualTimer extends Clock { //Counts downwards.
         setSeconds(2);
     }
 
-
     @Override
     public void update() {
 
     }
-
-
 }

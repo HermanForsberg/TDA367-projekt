@@ -191,7 +191,6 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
 
             //clock.resetClock();
             clock = clocks.get(clockFeature.getClockIndex());
-            clock.playSound("src/main/sound/Click_Sound.wav");
 
             //Resets everything
             removeAll();

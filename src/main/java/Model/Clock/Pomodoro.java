@@ -1,12 +1,8 @@
 package Model.Clock;
 
-import Model.Mediator;
-
 public class Pomodoro extends Clock implements Rest {
     boolean timeToRest;
     int intervalCounter;
-
-
 
     public Pomodoro() {
         super(25);
@@ -60,6 +56,4 @@ public class Pomodoro extends Clock implements Rest {
     public void update() {
 
     }
-
-
 }

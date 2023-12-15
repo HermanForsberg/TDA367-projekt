@@ -1,13 +1,11 @@
 package Windows;
 
 import Controller.CurrentViewController;
-import Controller.Flashcard.PlayButtonListener;
 import Controller.MvcControl;
 import Controller.ObjectsInFocusController;
 import Controller.Observer;
 import Controller.Profile.AddProfileButtonListener;
 import Controller.Profile.ProfileButton;
-import Controller.Profile.ProfileButtonListener;
 import Model.MvcModel;
 import Model.ObjectsInFocus;
 import Model.Profile;
@@ -50,13 +48,7 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
             add(flashcardsDone);
 
             addButtonListenerToAddProfile(control);
-
-
-
-
         }
-
-
 
         public void addButtonListenerToAddProfile(AddProfileButtonListener apbl){
             addButton.addActionListener(new ActionListener() {
@@ -88,8 +80,6 @@ public class ProfileFeatureWindow extends  JPanel implements Observer, Window{
             flashcardsDone.setText(objectsInFocus.getCurrentProfile().getStats().getFlashcardsCompleted() +" Flashcards done");
             minutesPassedLabel.setText(String.valueOf(objectsInFocus.getCurrentProfile().getStats().getMinutesPassedFromCurrentDay()) + " Minutes passed");
         }
-
-
     }
 
 

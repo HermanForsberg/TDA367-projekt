@@ -22,8 +22,6 @@ public class ClockWindow extends JPanel implements Observer{
 
         //TODO lösa denna
         public ClockWindow(Clock clock, ClockController clockController, JLabel imageLabel){
-
-
             this.clock = clock;
             clock.addObserver(this);
             this.clockController = clockController;

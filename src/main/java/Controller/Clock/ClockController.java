@@ -1,18 +1,10 @@
 package Controller.Clock;
 
-import Controller.Observer;
 import Model.Clock.Clock;
 import Model.Clock.ManualTimer;
-import Model.Mediator;
-
-import javax.swing.*;
-import java.awt.*;
 
 
 public class ClockController {
-
-    //TODO lösa denna
-
     private Clock clock;
 
     public ClockController(Clock clock) {
@@ -41,7 +33,6 @@ public class ClockController {
     public void addTime(){
         if (clock instanceof ManualTimer){
             ((ManualTimer) clock).addTime();
-            //clock.playSound("src/main/sound/Click_Sound.wav");
         }
     }
 
