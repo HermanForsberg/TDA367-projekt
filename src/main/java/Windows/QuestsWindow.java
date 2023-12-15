@@ -15,7 +15,6 @@ public class QuestsWindow extends JPanel implements Window, Observer {
 
     private JLabel dailyLabel = new JLabel("Daily", SwingConstants.CENTER);
     private JLabel weeklyLabel = new JLabel("Weekly", SwingConstants.CENTER);
-    private ImageIcon flameImage = new ImageIcon("src/main/img/flame_64.png");
     private JLabel dailyStreakLabel = new JLabel("Streak 56", SwingConstants.CENTER);
     private JLabel weeklyStreakLabel = new JLabel("Streak 2", SwingConstants.CENTER);
     ArrayList<Quest> dailyQuests;
