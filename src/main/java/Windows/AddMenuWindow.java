@@ -62,6 +62,7 @@ public class AddMenuWindow extends JPanel implements Window, Observer {
         }
 
         public void update(){
+
             removeActionListeners(addButton);
 
             deckController = new DeckController(currentView.getDeckInFocus());

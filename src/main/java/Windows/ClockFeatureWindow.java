@@ -190,6 +190,9 @@ public class ClockFeatureWindow extends JPanel implements Window, Observer {
 
             for(Clock c: clocks){
                 clockControllers.get(c).setMediator(currentView.getProfile());
+                if(c != clockFeature.getClock()){
+                    clock.resetClock();
+                }
             }
 
             //clock.resetClock();

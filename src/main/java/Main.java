@@ -22,6 +22,10 @@ public class Main {
 
         MvcControl control = new MvcControl(model);
 
+        ObjectsInFocus objectsInFocus = new ObjectsInFocus();
+
+        ObjectsInFocusController objectsInFocusController = new ObjectsInFocusController(objectsInFocus);
+
         HashMap<String, Window> views = new HashMap<>();
 
         CurrentView currentView = new CurrentView();

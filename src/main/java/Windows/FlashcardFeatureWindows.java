@@ -189,6 +189,8 @@ public class FlashcardFeatureWindows extends JPanel implements Observer, Window{
 
 
             if(deck.getCurrentIndex() == deck.getSize()-1){
+                addButtonListenerToCorrect(flashcardController);
+                addButtonListenerToWrong(flashcardController);
                 next.setBackground(Color.MAGENTA);
                 next.setText("Finish");
 
