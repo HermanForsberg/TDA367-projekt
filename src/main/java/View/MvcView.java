@@ -3,7 +3,7 @@ package View;
 import Controller.CurrentViewController;
 import Controller.MvcControl;
 
-import Model.CurrentView;
+
 import Model.MvcModel;
 
 import java.awt.*;
@@ -16,12 +16,11 @@ import Windows.Window;
 
 public class MvcView implements Observer{
 
-    private CurrentView control;
+
 
     private JPanel mainPanel = new JPanel();
     private int gap = 10;
 
-    private CurrentView currentView;
 
     private HashMap<String, Window> views;
 
@@ -46,13 +45,6 @@ public class MvcView implements Observer{
 
     public void update(){
 
-        //System.out.println(views.get(currentView.getCurrentView()));
-        mainPanel.removeAll();
-        mainPanel.add((Component) views.get(currentView.getCurrentView()));
-        for(Component component: mainPanel.getComponents()){
-            component.repaint();
-        }
-        mainPanel.updateUI();
     }
 
     //public void setView(JPanel comp){mainPanel.add(comp);}
